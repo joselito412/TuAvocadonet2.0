@@ -1,0 +1,7 @@
+{
+    "graphs": {
+        "consultorio": "./app/services/langgraph/graph.py:graph"
+    },
+    "env": ".env",
+    "dependencies": ["."]
+}

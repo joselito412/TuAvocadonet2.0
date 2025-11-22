@@ -11,22 +11,33 @@ const AIChat = () => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
   const hasMounted = useRef(false);
+  const hasUserInteracted = useRef(false);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // Only scroll if user has interacted or messages have been added
+    if (hasUserInteracted.current && messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   useEffect(() => {
-    // Only scroll after the first mount to prevent auto-scroll on page load
-    if (hasMounted.current) {
-      scrollToBottom();
-    } else {
+    // Skip scroll on initial mount
+    if (!hasMounted.current) {
       hasMounted.current = true;
+      return;
+    }
+    
+    // Only scroll if user has sent a message
+    if (hasUserInteracted.current) {
+      scrollToBottom();
     }
   }, [messages, isLoading]);
 
   const handleSend = async (text = inputValue) => {
     if (!text.trim()) return;
+
+    // Mark that user has interacted
+    hasUserInteracted.current = true;
 
     analytics.trackAction('chat_message_sent', { messageType: 'user' });
 

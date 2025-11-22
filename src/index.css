@@ -105,13 +105,13 @@ h3 { font-size: 1.8rem; margin-bottom: 1rem; }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
-    max-width: 1200px;
+    padding: 15px 40px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
 .avocado-logo-img { 
-    height: 100px; 
+    height: 80px; 
     width: auto;
     transition: transform 0.3s;
 }
@@ -123,7 +123,7 @@ h3 { font-size: 1.8rem; margin-bottom: 1rem; }
 .nav-links {
     display: flex; /* Changed from none to flex for navigation */
     list-style: none;
-    gap: 40px;
+    gap: 35px;
 }
 
 .nav-links a {
@@ -757,7 +757,7 @@ h3 { font-size: 1.8rem; margin-bottom: 1rem; }
 
 /* TYPOGRAPHY ENHANCEMENTS */
 .eyebrow {
-    display: block;
+    display: none; /* Hidden per user request */
     font-size: 0.8rem;
     font-weight: 700;
     color: var(--color-accent);
@@ -1115,4 +1115,28 @@ footer a:hover {
 
 footer .fab:hover {
     transform: scale(1.2);
+}
+
+/* BLOG CARDS */
+.blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.blog-preview-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    background: white;
+}
+
+/* FEATURED ARTICLE */
+.featured-article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.top-article-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-color: var(--color-primary);
 }

@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { queryLegalAssistant } from '../services/ragService';
+import { sanitizeHTML } from '../utils/security';
+import { analytics } from '../utils/analytics';
 
 const AIChat = () => {
   const [messages, setMessages] = useState([
@@ -8,17 +10,25 @@ const AIChat = () => {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
+  const hasMounted = useRef(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
-    scrollToBottom();
+    // Only scroll after the first mount to prevent auto-scroll on page load
+    if (hasMounted.current) {
+      scrollToBottom();
+    } else {
+      hasMounted.current = true;
+    }
   }, [messages, isLoading]);
 
   const handleSend = async (text = inputValue) => {
     if (!text.trim()) return;
+
+    analytics.trackAction('chat_message_sent', { messageType: 'user' });
 
     const userMsg = { id: Date.now(), text, sender: 'user' };
     setMessages(prev => [...prev, userMsg]);
@@ -29,9 +39,15 @@ const AIChat = () => {
       const response = await queryLegalAssistant(text);
       const botMsg = { id: Date.now() + 1, text: response, sender: 'bot' };
       setMessages(prev => [...prev, botMsg]);
+      analytics.trackAction('chat_response_received', { success: true });
     } catch (error) {
       console.error("Error querying AI:", error);
-      setMessages(prev => [...prev, { id: Date.now() + 1, text: "Lo siento, tuve un problema conectando con la base de datos legal.", sender: 'bot' }]);
+      analytics.trackError(error, { context: 'AI Chat' });
+      setMessages(prev => [...prev, { 
+        id: Date.now() + 1, 
+        text: error.message || "Lo siento, tuve un problema conectando con la base de datos legal.", 
+        sender: 'bot' 
+      }]);
     } finally {
       setIsLoading(false);
     }
@@ -39,6 +55,12 @@ const AIChat = () => {
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') handleSend();
+  };
+
+  // Safe message rendering function
+  const renderMessage = (text) => {
+    const sanitized = sanitizeHTML(text.replace(/\n/g, '<br>'));
+    return { __html: sanitized };
   };
 
   return (
@@ -55,7 +77,7 @@ const AIChat = () => {
 
       <div className="chat-messages">
         {messages.map(msg => (
-          <div key={msg.id} className={`message ${msg.sender}`} dangerouslySetInnerHTML={{ __html: msg.text.replace(/\n/g, '<br>') }}></div>
+          <div key={msg.id} className={`message ${msg.sender}`} dangerouslySetInnerHTML={renderMessage(msg.text)}></div>
         ))}
         {isLoading && (
           <div className="message bot">
@@ -79,8 +101,9 @@ const AIChat = () => {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
+            maxLength={1000}
           />
-          <button className="send-btn" onClick={() => handleSend()}>
+          <button className="send-btn" onClick={() => handleSend()} disabled={isLoading}>
             <i className="fas fa-paper-plane"></i>
           </button>
         </div>

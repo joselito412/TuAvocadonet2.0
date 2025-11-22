@@ -6,8 +6,8 @@ function Footer() {
     <footer style={{ 
       background: 'var(--color-dark)', 
       color: 'white', 
-      padding: '60px 0 30px',
-      marginTop: '80px'
+      padding: '50px 0 25px',
+      marginTop: '60px'
     }}>
       <div className="content-wrapper">
         <div style={{ 

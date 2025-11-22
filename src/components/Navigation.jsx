@@ -28,6 +28,16 @@ function Navigation() {
               Personas
             </Link>
           </li>
+          <li>
+            <Link to="/blog" className={location.pathname === '/blog' ? 'active' : ''}>
+              Blog
+            </Link>
+          </li>
+          <li>
+            <Link to="/sobre-nosotros" className={location.pathname === '/sobre-nosotros' ? 'active' : ''}>
+              Nosotros
+            </Link>
+          </li>
         </ul>
         <button className="btn-login">Log In</button>
       </div>

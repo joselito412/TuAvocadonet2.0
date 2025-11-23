@@ -2,9 +2,9 @@ import React, { useState, useMemo } from 'react';
 
 const TeamCard = ({ title, icon, children }) => {
   return (
-    <div className="big-team-card" style={{ padding: '50px 40px' }}>
-      <span className="icon" style={{ marginBottom: '30px' }}>{icon}</span>
-      <h2 style={{ marginBottom: '30px' }}>{title}</h2>
+    <div className="big-team-card p-12">
+      <span className="icon mb-8">{icon}</span>
+      <h2 className="mb-8">{title}</h2>
       <div className="card-content">
         {children}
       </div>
@@ -13,14 +13,14 @@ const TeamCard = ({ title, icon, children }) => {
 };
 
 const ProfileItem = ({ name, role, location }) => (
-  <div className="profile-item" style={{ padding: '15px', marginBottom: '15px' }}>
-    <div className="profile-avatar" style={{ width: '50px', height: '50px', fontSize: '1.2rem' }}>
+  <div className="profile-item p-4 mb-4">
+    <div className="profile-avatar w-12 h-12 text-lg">
       {name.charAt(0)}
     </div>
     <div>
-      <h4 style={{ margin: 0, color: 'var(--color-dark)', fontSize: '1.1rem' }}>{name}</h4>
-      <p style={{ margin: '4px 0 0', fontSize: '0.9rem', color: '#666' }}>{role}</p>
-      {location && <p style={{ margin: '2px 0 0', fontSize: '0.85rem', color: '#999', fontStyle: 'italic' }}>📍 {location}</p>}
+      <h4 className="m-0 text-dark text-lg">{name}</h4>
+      <p className="mt-1 text-sm text-gray-600">{role}</p>
+      {location && <p className="mt-1 text-xs text-gray-500 italic">📍 {location}</p>}
     </div>
   </div>
 );
@@ -55,23 +55,23 @@ const LawyerSearch = () => {
   }, [filterLocation, filterSpecialty, searchTerm]);
 
   return (
-    <div style={{ marginTop: '40px' }}>
-      <h3 style={{ marginBottom: '20px', color: 'var(--color-primary)' }}>Buscador de Talento Legal</h3>
+    <div className="mt-10">
+      <h3 className="mb-5 text-primary">Buscador de Talento Legal</h3>
       
       {/* Filters */}
-      <div style={{ display: 'flex', gap: '15px', marginBottom: '30px', flexWrap: 'wrap' }}>
+      <div className="flex gap-4 mb-8 flex-wrap">
         <input 
           type="text" 
           placeholder="Buscar por nombre..." 
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          style={{ padding: '10px 15px', borderRadius: '8px', border: '1px solid #ddd', flex: '1', minWidth: '200px' }}
+          className="px-4 py-2 rounded-lg border border-gray-300 flex-1 min-w-[200px] focus:outline-none focus:ring-2 focus:ring-primary"
         />
         
         <select 
           value={filterLocation} 
           onChange={(e) => setFilterLocation(e.target.value)}
-          style={{ padding: '10px 15px', borderRadius: '8px', border: '1px solid #ddd' }}
+          className="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
         >
           {locations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
         </select>
@@ -79,14 +79,14 @@ const LawyerSearch = () => {
         <select 
           value={filterSpecialty} 
           onChange={(e) => setFilterSpecialty(e.target.value)}
-          style={{ padding: '10px 15px', borderRadius: '8px', border: '1px solid #ddd' }}
+          className="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
         >
           {specialties.map(spec => <option key={spec} value={spec}>{spec}</option>)}
         </select>
       </div>
 
       {/* Results */}
-      <div style={{ maxHeight: '400px', overflowY: 'auto', paddingRight: '10px' }}>
+      <div className="max-h-96 overflow-y-auto pr-3">
         {filteredLawyers.length > 0 ? (
           filteredLawyers.map(lawyer => (
             <ProfileItem 
@@ -97,7 +97,7 @@ const LawyerSearch = () => {
             />
           ))
         ) : (
-          <p style={{ textAlign: 'center', color: '#999', padding: '20px' }}>No se encontraron abogados con estos filtros.</p>
+          <p className="text-center text-gray-500 py-5">No se encontraron abogados con estos filtros.</p>
         )}
       </div>
     </div>
@@ -106,13 +106,13 @@ const LawyerSearch = () => {
 
 function AboutPage() {
   return (
-    <div className="section-block" style={{ background: 'var(--color-light)' }}>
+    <div className="section-block bg-light">
       {/* Header Section */}
       <div className="content-wrapper text-center mb-60">
-        <h1 style={{ marginBottom: '30px' }}>
+        <h1 className="mb-8">
           Somos un equipo legaltech que adopta la tecnología en el corazón de sus procesos
         </h1>
-        <p className="lead-text" style={{ margin: '0 auto', maxWidth: '800px' }}>
+        <p className="lead-text mx-auto max-w-3xl">
           Fusionamos el derecho con la innovación para crear soluciones que realmente funcionan.
         </p>
       </div>
@@ -123,12 +123,12 @@ function AboutPage() {
           
           {/* Card 1: Equipo Tech */}
           <TeamCard title="Equipo Tech" icon="💻">
-            <p className="text-center mb-40" style={{ fontSize: '1.1rem', color: '#555' }}>
+            <p className="text-center mb-10 text-lg text-gray-600">
               Mentes brillantes detrás de la arquitectura, desarrollo y dirección tecnológica de Avocado.
             </p>
             
             <div className="profile-list">
-              <h3 style={{ fontSize: '1.2rem', borderBottom: '1px solid #eee', paddingBottom: '15px', marginBottom: '25px', color: 'var(--color-secondary)' }}>Desarrollo & Dirección</h3>
+              <h3 className="text-xl border-b border-gray-200 pb-4 mb-6 text-secondary">Desarrollo & Dirección</h3>
               <ProfileItem name="Desarrollador X" role="Lead Developer" location="Remoto" />
               <ProfileItem name="Desarrollador Y" role="Frontend Specialist" location="Remoto" />
               <ProfileItem name="Desarrollador Z" role="AI Engineer" location="Remoto" />
@@ -138,7 +138,7 @@ function AboutPage() {
 
           {/* Card 2: Equipo de Abogados */}
           <TeamCard title="Nuestros AVOCADOS" icon="⚖️">
-            <p className="text-center mb-40" style={{ fontSize: '1.1rem', color: '#555' }}>
+            <p className="text-center mb-10 text-lg text-gray-600">
               Expertos legales comprometidos con la excelencia y la accesibilidad.
             </p>
 

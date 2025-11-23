@@ -23,15 +23,28 @@ const headerStyle = {
 // --- PANTALLA 1: HOME ---
 export const PhoneHome = () => (
   <div style={screenStyle}>
-    <div style={{ textAlign: 'center', marginTop: '20px' }}>
+    <div style={{ textAlign: 'center', marginTop: '10px' }}>
       <h3 style={headerStyle}>Hola, Usuario</h3>
+      
+      {/* Imagen del hombre 3D */}
+      <div style={{ margin: '15px 0' }}>
+        <img 
+          src={`${import.meta.env.BASE_URL}img/hombre3d.png`} 
+          alt="Asistente Legal" 
+          style={{ 
+            width: '120px', 
+            height: 'auto',
+            filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.1))'
+          }} 
+        />
+      </div>
     </div>
     
     <div style={{ 
       backgroundColor: '#FFEBEE', 
       padding: '15px', 
       borderRadius: '12px', 
-      marginTop: '20px',
+      marginTop: '10px',
       textAlign: 'center',
       border: '1px solid #FFCDD2'
     }}>

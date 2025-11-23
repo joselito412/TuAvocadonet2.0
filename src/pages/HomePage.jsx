@@ -20,13 +20,9 @@ function HomePage() {
           
           <header className="section-block" id="hero">
             <div className="text-content">
-              <span className="eyebrow">TU ABOGADO DE BOLSILLO</span>
+              {/* <span className="eyebrow">TU ABOGADO DE BOLSILLO</span> */}
               <h1>Orientación legal profesional al alcance de tu mano</h1>
               <p className="lead-text">El futuro legal, simplificado y accesible desde tu celular.</p>
-
-              <div style={{ marginTop: '30px' }}>
-                 <img src={`${import.meta.env.BASE_URL}img/hombre3d.png`} alt="Asistente Virtual" style={{ maxWidth: '100%', height: 'auto', maxHeight: '300px', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.1))' }} />
-              </div>
             </div>
             <div className="mobile-phone-display">
               <div className="phone-mockup-mobile">
@@ -37,7 +33,7 @@ function HomePage() {
 
           <section className="section-block" id="features">
             <div className="text-content">
-              <span className="eyebrow">DOCUMENTACIÓN INTELIGENTE</span>
+              {/* <span className="eyebrow">DOCUMENTACIÓN INTELIGENTE</span> */}
               <h2>Crea documentos para ti y tu empresa</h2>
               <p>TuAvocado se encarga del trabajo repetitivo. Genera contratos y documentos legales en minutos.</p>
               
@@ -53,7 +49,7 @@ function HomePage() {
 
           <section className="section-block" id="automation">
             <div className="text-content">
-              <span className="eyebrow">GESTIÓN EFICIENTE</span>
+              {/* <span className="eyebrow">GESTIÓN EFICIENTE</span> */}
               <h2>Gestiona tus servicios en el Tablero privado</h2>
               <p>Un espacio organizado tipo Notion para llevar el control total de tus procesos.</p>
               <div className="dashboard-cards-container">
@@ -86,18 +82,34 @@ function HomePage() {
 
           <section className="section-block" id="specialized">
             <div className="text-content">
-              <span className="eyebrow">MARKETPLACE LEGAL</span>
+              {/* <span className="eyebrow">MARKETPLACE LEGAL</span> */}
               <h2>¿Necesitas un abogado especializado?</h2>
               <p>Te conectamos con <strong>profesionales verificados</strong> en múltiples jurisdicciones.</p>
               
-              <div className="flag-carousel" style={{ marginTop: '20px', display: 'flex', gap: '15px' }}>
-                <div className="flag-item" title="Colombia">
-                   <img src="https://flagcdn.com/w80/co.png" alt="Colombia" style={{ width: '40px', borderRadius: '4px', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' }} />
-                   <span style={{ display: 'block', fontSize: '0.8rem', marginTop: '5px' }}>Colombia</span>
+              {/* Improved Country Cards */}
+              <div className="country-cards-container">
+                <div className="country-card">
+                  <div className="country-flag">
+                    <img src="https://flagcdn.com/w160/co.png" alt="Colombia" />
+                  </div>
+                  <h4>Colombia</h4>
+                  <p className="text-sm text-gray-600">Expertos en derecho colombiano</p>
+                  <div className="flex items-center gap-2 text-xs text-gray-500">
+                    <i className="fas fa-users"></i>
+                    <span>120+ abogados</span>
+                  </div>
                 </div>
-                <div className="flag-item" title="USA">
-                   <img src="https://flagcdn.com/w80/us.png" alt="USA" style={{ width: '40px', borderRadius: '4px', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' }} />
-                   <span style={{ display: 'block', fontSize: '0.8rem', marginTop: '5px' }}>USA</span>
+
+                <div className="country-card">
+                  <div className="country-flag">
+                    <img src="https://flagcdn.com/w160/us.png" alt="USA" />
+                  </div>
+                  <h4>Estados Unidos</h4>
+                  <p className="text-sm text-gray-600">Especialistas en ley americana</p>
+                  <div className="flex items-center gap-2 text-xs text-gray-500">
+                    <i className="fas fa-users"></i>
+                    <span>80+ abogados</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -110,7 +122,7 @@ function HomePage() {
 
           <section className="section-block" id="subscriptions">
             <div className="text-content">
-              <span className="eyebrow">PLANES FLEXIBLES</span>
+              {/* <span className="eyebrow">PLANES FLEXIBLES</span> */}
               <h2>Suscripciones</h2>
               <p>Elige el nivel de acompañamiento que necesitas.</p>
               
@@ -178,7 +190,7 @@ function HomePage() {
       
       <section className="section-block section-consultancy-full" id="consultancy">
          <div className="content-wrapper" style={{ textAlign: 'center', maxWidth: '900px' }}>
-            <span className="eyebrow">ASISTENCIA INTELIGENTE</span>
+            {/* <span className="eyebrow">ASISTENCIA INTELIGENTE</span> */}
             <h2 style={{ marginBottom: '20px' }}>Consultorio Jurídico IA</h2>
             <p style={{ marginBottom: '40px', fontSize: '1.1rem', color: '#555', maxWidth: '700px', margin: '0 auto 40px' }}>
               Obtén orientación legal instantánea con nuestro asistente de IA. Haz preguntas sobre contratos, derechos laborales, tutelas y más. Disponible 24/7 para resolver tus dudas legales.
@@ -195,7 +207,7 @@ function HomePage() {
       <section className="section-block" id="blog" style={{ padding: '80px 0', background: 'white' }}>
          <div className="content-wrapper">
             <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-              <span className="eyebrow">CONOCIMIENTO LEGAL</span>
+              {/* <span className="eyebrow">CONOCIMIENTO LEGAL</span> */}
               <h2>Blog Legal-Tech</h2>
               <p style={{ fontSize: '1.1rem', color: '#666', maxWidth: '600px', margin: '15px auto 0' }}>
                 Mantente actualizado con las últimas tendencias en derecho y tecnología

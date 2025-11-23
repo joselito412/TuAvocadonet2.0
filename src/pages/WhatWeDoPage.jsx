@@ -67,11 +67,11 @@ function WhatWeDoPage() {
   return (
     <div>
       {/* Section 1: What is Avocado & How it Works */}
-      <section className="section-block" style={{ background: 'white' }}>
+      <section className="section-block bg-white">
         <div className="content-wrapper">
           <div className="text-center mb-60">
             <h1>¿Qué es Avocado?</h1>
-            <p className="lead-text" style={{ margin: '0 auto' }}>
+            <p className="lead-text mx-auto">
               Somos la primera plataforma legal impulsada por Inteligencia Artificial que democratiza el acceso a la justicia. 
               Combinamos tecnología de vanguardia con supervisión de abogados certificados para ofrecer asesoría legal accesible, rápida y confiable.
             </p>
@@ -81,10 +81,10 @@ function WhatWeDoPage() {
             <h2 className="text-center mb-40">Cómo funciona nuestra IA</h2>
             <div className="grid-container grid-4">
               {steps.map((item, index) => (
-                <div key={index} className="dashboard-card" style={{ flexDirection: 'column', alignItems: 'flex-start', position: 'relative' }}>
-                  <div style={{ fontSize: '3rem', fontWeight: '800', color: 'rgba(46, 125, 50, 0.1)', position: 'absolute', top: '10px', right: '20px' }}>{item.step}</div>
-                  <h3 style={{ position: 'relative', zIndex: 1 }}>{item.title}</h3>
-                  <p style={{ position: 'relative', zIndex: 1 }}>{item.desc}</p>
+                <div key={index} className="dashboard-card flex-col items-start relative">
+                  <div className="text-5xl font-extrabold text-primary opacity-10 absolute top-3 right-5">{item.step}</div>
+                  <h3 className="relative z-10">{item.title}</h3>
+                  <p className="relative z-10">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -93,7 +93,7 @@ function WhatWeDoPage() {
       </section>
 
       {/* Section 2: Automated Services & Catalog */}
-      <section className="section-block" style={{ background: 'var(--color-light)' }}>
+      <section className="section-block bg-light">
         <div className="content-wrapper">
           <h2 className="text-center mb-40">Nuestros Planes</h2>
           <div className="pricing-cards-container mb-60">
@@ -104,7 +104,7 @@ function WhatWeDoPage() {
                   <h3>{service.title}</h3>
                   <div className="price">{service.price}</div>
                 </div>
-                <ul className="plan-features" style={{ marginTop: '20px' }}>
+                <ul className="plan-features mt-5">
                   {service.features.map((feature, idx) => (
                     <li key={idx}>
                       <i className="fas fa-check"></i>
@@ -119,16 +119,9 @@ function WhatWeDoPage() {
           <h2 className="text-center mb-40">Catálogo de Servicios Automatizados</h2>
           <div className="grid-container grid-5">
              {catalog.map((item, index) => (
-               <div key={index} style={{ 
-                 background: 'white', 
-                 padding: '15px', 
-                 borderRadius: '12px', 
-                 textAlign: 'center',
-                 boxShadow: 'var(--shadow-soft)',
-                 border: '1px solid rgba(0,0,0,0.05)'
-               }}>
-                 <div style={{ fontSize: '2rem', marginBottom: '10px' }}>{item.icon}</div>
-                 <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>{item.title}</div>
+               <div key={index} className="bg-white p-4 rounded-xl text-center shadow-soft border border-gray-50">
+                 <div className="text-3xl mb-3">{item.icon}</div>
+                 <div className="font-semibold text-sm">{item.title}</div>
                </div>
              ))}
           </div>
@@ -136,30 +129,20 @@ function WhatWeDoPage() {
       </section>
 
       {/* Section 3: Practice Areas (Carousel) */}
-      <section className="section-block" style={{ background: 'white' }}>
+      <section className="section-block bg-white">
         <div className="content-wrapper">
           <h2 className="text-center mb-40">Áreas de Derecho</h2>
           
           {/* Using the swipe-cards-container for horizontal scroll behavior on all devices for this specific section as requested */}
-          <div className="swipe-cards-container" style={{ paddingBottom: '20px' }}>
+          <div className="swipe-cards-container pb-5">
             {areas.map((area, index) => (
-              <div key={index} style={{ 
-                minWidth: '160px',
-                padding: '30px 20px', 
-                textAlign: 'center', 
-                background: 'white', 
-                borderRadius: '16px', 
-                boxShadow: 'var(--shadow-soft)',
-                border: '1px solid rgba(0,0,0,0.05)',
-                scrollSnapAlign: 'start',
-                marginRight: '20px'
-              }}>
-                <span style={{ fontSize: '3rem', display: 'block', marginBottom: '10px' }} role="img" aria-label={area.name}>{area.emoji}</span>
-                <span style={{ fontWeight: '600', color: 'var(--color-dark)', fontSize: '0.9rem' }}>{area.name}</span>
+              <div key={index} className="min-w-[160px] py-8 px-5 text-center bg-white rounded-2xl shadow-soft border border-gray-50 snap-start mr-5">
+                <span className="text-5xl block mb-3" role="img" aria-label={area.name}>{area.emoji}</span>
+                <span className="font-semibold text-dark text-sm">{area.name}</span>
               </div>
             ))}
           </div>
-          <p className="text-center mt-20" style={{ color: '#999', fontSize: '0.9rem' }}>Desliza para ver más áreas →</p>
+          <p className="text-center mt-20 text-gray-500 text-sm">Desliza para ver más áreas →</p>
         </div>
       </section>
     </div>

@@ -72,34 +72,34 @@ const UsersPage = () => {
   };
 
   const renderContentCard = (data) => (
-    <div className={`user-content-card ${data.className}`} style={{ height: '100%' }}>
-      <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-        {isMobile && <h3 className="text-center" style={{color: 'var(--color-primary)', marginBottom: '15px'}}>{data.label}</h3>}
-        <h2 className="text-center mb-40" style={{ fontSize: isMobile ? '1.5rem' : '2.5rem' }}>
+    <div className={`user-content-card ${data.className}`}>
+      <div className="max-w-4xl mx-auto">
+        {isMobile && <h3 className="text-center text-primary mb-4">{data.label}</h3>}
+        <h2 className="text-center mb-40 text-2xl md:text-4xl">
           {data.headline}
         </h2>
 
         <div className="pain-solution-grid">
           <div>
-            <h3 style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <h3 className="mb-5 flex items-center gap-3">
               <span>😓</span> El Dolor
             </h3>
-            <p style={{ lineHeight: '1.8', color: '#555' }}>
+            <p className="leading-relaxed text-gray-600">
               {data.pain}
             </p>
           </div>
           
           <div>
-            <h3 style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <h3 className="mb-5 flex items-center gap-3">
               <span>🥑</span> La Solución AVOCADO
             </h3>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
+            <ul className="list-none p-0">
               {data.solution.map((item, idx) => (
-                <li key={idx} style={{ marginBottom: '15px', display: 'flex', gap: '10px' }}>
-                  <i className="fas fa-check-circle" style={{ color: 'var(--color-primary)', marginTop: '4px' }}></i>
+                <li key={idx} className="mb-4 flex gap-3">
+                  <i className="fas fa-check-circle text-primary mt-1"></i>
                   <div>
-                    <strong style={{ display: 'block', color: 'var(--color-dark)' }}>{item.title}</strong>
-                    <span style={{ fontSize: '0.9rem', color: '#666' }}>{item.desc}</span>
+                    <strong className="block text-dark">{item.title}</strong>
+                    <span className="text-sm text-gray-600">{item.desc}</span>
                   </div>
                 </li>
               ))}
@@ -107,16 +107,16 @@ const UsersPage = () => {
           </div>
         </div>
 
-        <div style={{ textAlign: 'center', borderTop: '1px solid #eee', paddingTop: '30px' }}>
-          <p style={{ marginBottom: '20px', fontSize: '1.1rem' }}>
-            Tu Herramienta Ideal: <strong style={{ color: 'var(--color-dark)' }}>{data.tool}</strong>
+        <div className="text-center border-t border-gray-200 pt-8">
+          <p className="mb-5 text-lg">
+            Tu Herramienta Ideal: <strong className="text-dark">{data.tool}</strong>
           </p>
           
           <button className={data.btnClass}>
             {data.cta}
           </button>
           
-          <p style={{ marginTop: '15px', fontSize: '0.9rem', fontStyle: 'italic', color: '#888' }}>
+          <p className="mt-4 text-sm italic text-gray-500">
             {data.microcopy}
           </p>
         </div>
@@ -128,10 +128,10 @@ const UsersPage = () => {
     <div className="section-block" style={{ background: 'white', minHeight: '100vh' }}>
       {/* Hero Section */}
       <div className="content-wrapper text-center mb-60">
-        <h1 style={{ marginBottom: '20px' }}>
-          La legalidad no es talla única. <span style={{ color: 'var(--color-secondary)' }}>Elige tu batalla.</span>
+        <h1 className="mb-5">
+          La legalidad no es talla única. <span className="text-secondary">Elige tu batalla.</span>
         </h1>
-        <p className="lead-text" style={{ margin: '0 auto' }}>
+        <p className="lead-text mx-auto">
           Desde proteger tu primera línea de código hasta automatizar el compliance de un e-commerce masivo. 
           Nuestra arquitectura se adapta a tu velocidad, no al revés.
         </p>

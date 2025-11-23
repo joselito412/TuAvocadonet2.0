@@ -75,35 +75,29 @@ function BlogPage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="section-block" style={{ minHeight: '50vh', textAlign: 'center', background: 'var(--gradient-hero)' }}>
+      <section className="section-block min-h-[50vh] text-center bg-gradient-to-r from-green-50 to-blue-50">
         <div className="content-wrapper">
           <span className="eyebrow">CONOCIMIENTO LEGAL</span>
-          <h1 style={{ marginBottom: '30px' }}>Blog Legal-Tech</h1>
-          <p className="lead-text" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <h1 className="mb-8">Blog Legal-Tech</h1>
+          <p className="lead-text max-w-3xl mx-auto">
             Mantente actualizado con las últimas tendencias en derecho, tecnología e innovación legal.
           </p>
         </div>
       </section>
 
       {/* Categories Filter */}
-      <section style={{ background: 'white', padding: '30px 0', borderBottom: '1px solid #eee', position: 'sticky', top: '120px', zIndex: 100 }}>
+      <section className="bg-white py-8 border-b border-gray-200 sticky top-[120px] z-[100]">
         <div className="content-wrapper">
-          <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="flex gap-4 justify-center flex-wrap">
             {categories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                style={{
-                  padding: '10px 20px',
-                  borderRadius: '25px',
-                  border: selectedCategory === cat ? '2px solid var(--color-primary)' : '2px solid #eee',
-                  background: selectedCategory === cat ? 'var(--color-primary)' : 'white',
-                  color: selectedCategory === cat ? 'white' : 'var(--color-dark)',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s',
-                  fontSize: '0.9rem'
-                }}
+                className={`px-5 py-2 rounded-full border-2 font-semibold cursor-pointer transition-all text-sm ${
+                  selectedCategory === cat 
+                    ? 'border-primary bg-primary text-white' 
+                    : 'border-gray-200 bg-white text-dark hover:border-primary hover:text-primary'
+                }`}
               >
                 {cat}
               </button>
@@ -113,77 +107,46 @@ function BlogPage() {
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="section-block" style={{ padding: '80px 0' }}>
+      <section className="section-block py-20">
         <div className="content-wrapper">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '40px' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {filteredPosts.map(post => (
               <article 
                 key={post.id}
-                style={{
-                  background: 'white',
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                  boxShadow: 'var(--shadow-soft)',
-                  transition: 'all 0.3s',
-                  cursor: 'pointer',
-                  border: '1px solid #f0f0f0'
-                }}
-                className="blog-card"
+                className="blog-card bg-white rounded-2xl overflow-hidden shadow-soft cursor-pointer border border-gray-100"
               >
-                <div style={{
-                  width: '100%',
-                  height: '220px',
-                  background: `url(${post.image}) center/cover`,
-                  position: 'relative'
-                }}>
-                  <div style={{
-                    position: 'absolute',
-                    top: '15px',
-                    left: '15px',
-                    background: 'var(--color-primary)',
-                    color: 'white',
-                    padding: '5px 12px',
-                    borderRadius: '20px',
-                    fontSize: '0.75rem',
-                    fontWeight: '600'
-                  }}>
+                <div className="w-full h-56 bg-cover bg-center relative" style={{ backgroundImage: `url(${post.image})` }}>
+                  <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">
                     {post.category}
                   </div>
                 </div>
                 
-                <div style={{ padding: '25px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px', fontSize: '0.85rem', color: '#666' }}>
+                <div className="p-6">
+                  <div className="flex items-center gap-4 mb-4 text-sm text-gray-600">
                     <span>
-                      <i className="fas fa-calendar-alt" style={{ marginRight: '5px', color: 'var(--color-primary)' }}></i>
+                      <i className="fas fa-calendar-alt mr-2 text-primary"></i>
                       {post.date}
                     </span>
                     <span>
-                      <i className="fas fa-clock" style={{ marginRight: '5px', color: 'var(--color-primary)' }}></i>
+                      <i className="fas fa-clock mr-2 text-primary"></i>
                       {post.readTime}
                     </span>
                   </div>
                   
-                  <h3 style={{ fontSize: '1.3rem', marginBottom: '15px', lineHeight: '1.4', color: 'var(--color-dark)' }}>
+                  <h3 className="text-xl mb-4 leading-snug text-dark">
                     {post.title}
                   </h3>
                   
-                  <p style={{ color: '#666', lineHeight: '1.6', marginBottom: '20px' }}>
+                  <p className="text-gray-600 leading-relaxed mb-5">
                     {post.excerpt}
                   </p>
                   
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '15px', borderTop: '1px solid #f0f0f0' }}>
-                    <span style={{ fontSize: '0.9rem', color: '#888' }}>
-                      <i className="fas fa-user" style={{ marginRight: '8px' }}></i>
+                  <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <span className="text-sm text-gray-500">
+                      <i className="fas fa-user mr-2"></i>
                       {post.author}
                     </span>
-                    <button style={{
-                      background: 'transparent',
-                      border: 'none',
-                      color: 'var(--color-primary)',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      fontSize: '0.9rem'
-                    }}>
+                    <button className="bg-transparent border-0 text-primary font-semibold cursor-pointer text-sm hover:underline">
                       Leer más →
                     </button>
                   </div>
@@ -193,35 +156,28 @@ function BlogPage() {
           </div>
 
           {filteredPosts.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-              <i className="fas fa-inbox" style={{ fontSize: '4rem', color: '#ccc', marginBottom: '20px' }}></i>
-              <p style={{ color: '#666', fontSize: '1.1rem' }}>No hay artículos en esta categoría</p>
+            <div className="text-center py-16 px-5">
+              <i className="fas fa-inbox text-6xl text-gray-300 mb-5"></i>
+              <p className="text-gray-600 text-lg">No hay artículos en esta categoría</p>
             </div>
           )}
         </div>
       </section>
 
       {/* Newsletter CTA */}
-      <section className="section-block" style={{ background: 'var(--color-dark)', color: 'white', padding: '60px 0', textAlign: 'center' }}>
+      <section className="section-block bg-dark text-white py-16 text-center">
         <div className="content-wrapper">
-          <h2 style={{ color: 'white', marginBottom: '15px' }}>Suscríbete a nuestro Newsletter</h2>
-          <p style={{ fontSize: '1.1rem', marginBottom: '30px', color: '#ccc' }}>
+          <h2 className="text-white mb-4">Suscríbete a nuestro Newsletter</h2>
+          <p className="text-lg mb-8 text-gray-300">
             Recibe los últimos artículos y novedades Legal-Tech directamente en tu correo
           </p>
-          <div style={{ display: 'flex', gap: '10px', maxWidth: '500px', margin: '0 auto', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div className="flex gap-3 max-w-lg mx-auto flex-wrap justify-center">
             <input 
               type="email" 
               placeholder="tu@email.com" 
-              style={{
-                flex: 1,
-                minWidth: '250px',
-                padding: '12px 20px',
-                borderRadius: '8px',
-                border: 'none',
-                fontSize: '1rem'
-              }}
+              className="flex-1 min-w-[250px] px-5 py-3 rounded-lg border-0 text-base focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <button className="btn-primary" style={{ whiteSpace: 'nowrap' }}>
+            <button className="btn-primary whitespace-nowrap">
               Suscribirme
             </button>
           </div>

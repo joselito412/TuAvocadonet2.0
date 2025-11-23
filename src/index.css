@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap');
+/* Tailwind CSS - Suppress linting for PostCSS directives */
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -8,19 +9,24 @@
   body {
     @apply font-body bg-light text-dark overflow-x-hidden pt-20;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading font-bold text-dark;
   }
-  
+
   h1 {
     @apply text-5xl md:text-6xl leading-tight mb-6;
   }
-  
+
   h2 {
     @apply text-3xl md:text-4xl mb-4 text-primary;
   }
-  
+
   h3 {
     @apply text-2xl md:text-3xl mb-3;
   }
@@ -31,88 +37,211 @@
   .main-nav {
     @apply fixed top-0 left-0 w-full bg-white bg-opacity-90 backdrop-blur-md z-50 border-b border-gray-100;
   }
-  
+
   .nav-content-wrapper {
     @apply flex justify-between items-center px-6 md:px-10 py-4 max-w-7xl mx-auto;
   }
-  
+
   .avocado-logo-img {
     @apply h-20 w-auto transition-transform hover:scale-105;
   }
-  
+
   .nav-links {
     @apply flex list-none gap-8 items-center;
   }
-  
+
   .nav-links a {
     @apply no-underline text-dark font-medium text-sm transition-colors hover:text-primary;
   }
-  
+
   .nav-links a.active {
     @apply text-primary border-b-2 border-primary pb-1;
   }
-  
+
   .mobile-menu-toggle {
     @apply hidden bg-transparent border-0 text-2xl text-dark cursor-pointer relative z-[1100];
   }
-  
+
   .mobile-only-btn {
     @apply hidden;
   }
-  
+
   .desktop-only-btn {
     @apply block;
   }
-  
+
   /* Buttons */
   .btn-primary {
     @apply bg-accent text-white px-8 py-3 rounded-full border-0 font-semibold text-sm cursor-pointer 
            transition-all duration-300 hover:-translate-y-1 hover:shadow-hover;
   }
-  
+
   .btn-login {
-    @apply bg-transparent border-2 border-primary text-primary px-6 py-2 rounded-full font-medium 
-           transition-colors hover:bg-primary hover:text-white;
+    @apply bg-action text-white px-6 py-3 rounded-lg font-semibold transition-all hover:opacity-90;
   }
-  
+
+  /* Split Layout & Sticky Phone Display */
+  .split-layout {
+    @apply flex gap-12 max-w-7xl mx-auto px-6;
+  }
+
+  .scroll-content {
+    @apply flex-1;
+  }
+
+  .sticky-column {
+    @apply hidden lg:block w-96 flex-shrink-0;
+  }
+
+  .sticky-wrapper {
+    @apply sticky top-32 h-screen flex items-center justify-center;
+    padding: 2rem 0;
+  }
+
+  /* Mobile Phone Display - Appears AFTER text content on mobile */
+  .mobile-phone-display {
+    @apply block lg:hidden mt-12 mb-8;
+    order: 2; /* Text content is order 1 by default */
+  }
+
+  .phone-mockup-mobile {
+    @apply max-w-xs mx-auto;
+  }
+
+  .text-content {
+    @apply max-w-2xl;
+    order: 1; /* Appears first on mobile */
+  }
+
+  /* Ensure proper flex direction on mobile */
+  @media (max-width: 1024px) {
+    .section-block {
+      @apply flex-col;
+    }
+  }
+
+  /* Phone Mockup Styling */
+  .phone-frame-container {
+    @apply relative;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+  }
+
+  .phone-mockup {
+    @apply relative w-80 h-[640px] bg-gray-900 rounded-[3rem] p-3 shadow-2xl border-8 border-gray-800;
+    transition: transform 0.3s ease;
+  }
+
+  .phone-mockup:hover {
+    transform: scale(1.02);
+  }
+
+  .phone-notch {
+    @apply absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-800 rounded-b-2xl z-10;
+  }
+
+  .phone-screen {
+    @apply w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative;
+  }
+
+  .screen-content {
+    @apply w-full h-full;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
   /* Utilities */
   .content-wrapper {
     @apply max-w-6xl mx-auto px-5 relative;
   }
-  
+
   .section-block {
     @apply py-20;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
   }
-  
+
+  .section-block#hero,
+  .section-block#features,
+  .section-block#automation,
+  .section-block#specialized,
+  .section-block#subscriptions {
+    background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 50%, #ffffff 100%);
+    border-bottom: 1px solid rgba(46, 125, 50, 0.1);
+    min-height: 100vh;
+  }
+
+  .section-block#features {
+    background: linear-gradient(135deg, #F1F8E9 0%, #E8F5E9 50%, #ffffff 100%);
+  }
+
+  .section-block#automation {
+    background: linear-gradient(135deg, #ffffff 0%, #E8F5E9 50%, #F1F8E9 100%);
+  }
+
+  .section-block#specialized {
+    background: linear-gradient(135deg, #F1F8E9 0%, #ffffff 50%, #E8F5E9 100%);
+  }
+
+  .section-block#subscriptions {
+    background: linear-gradient(135deg, #E8F5E9 0%, #ffffff 100%);
+  }
+
+  /* Add spacing and shadow between sections */
+  .split-layout .section-block {
+    @apply mb-0 rounded-2xl shadow-soft;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .split-layout .section-block:first-child {
+    @apply mt-0;
+  }
+
+  /* Ensure text-content doesn't overflow */
+  .section-block .text-content {
+    width: 100%;
+  }
+
   .glass-panel {
     @apply bg-gradient-to-br from-white to-gray-50 backdrop-blur-lg 
            border border-gray-200 shadow-soft rounded-lg;
   }
-  
+
   .eyebrow {
-    @apply text-xs font-bold text-accent uppercase tracking-widest mb-2;
+    @apply text-xs font-bold text-primary uppercase tracking-widest mb-2;
   }
-  
+
   .lead-text {
     @apply text-xl md:text-2xl text-primary mb-8;
   }
-  
+
   /* Cards */
   .dashboard-card {
     @apply bg-white p-6 rounded-2xl shadow-soft flex items-center gap-5 
            transition-all duration-300 border border-gray-50 
            hover:-translate-y-2 hover:scale-105 hover:shadow-hover hover:border-primary/20;
   }
-  
+
   .card-icon-wrapper {
     @apply w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center 
            text-primary text-xl transition-colors;
   }
-  
+
   .dashboard-card:hover .card-icon-wrapper {
     @apply bg-primary text-white;
   }
-  
+
   /* Chat Interface */
   .chat-interface-container {
     @apply max-w-3xl mx-auto flex flex-col 
@@ -120,100 +249,448 @@
            shadow-hover overflow-hidden;
     height: 600px;
   }
-  
+
   .chat-header {
     @apply p-5 border-b border-gray-100 flex items-center gap-4 bg-white bg-opacity-50;
   }
-  
+
   .chat-avatar {
     @apply w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white;
   }
-  
+
   .chat-messages {
     @apply flex-1 p-8 overflow-y-auto flex flex-col gap-5 bg-transparent;
   }
-  
+
   .message {
     @apply max-w-[80%] px-5 py-4 rounded-2xl text-sm leading-relaxed;
   }
-  
+
   .message.bot {
     @apply bg-white bg-opacity-90 text-dark self-start rounded-tl-sm shadow-sm;
   }
-  
+
   .message.user {
     @apply bg-primary text-white self-end rounded-tr-sm shadow-sm;
   }
-  
+
   .chat-input-area {
     @apply p-5 bg-white bg-opacity-50 border-t border-gray-100;
   }
-  
+
   .suggestion-chips {
     @apply flex gap-2 mt-4 overflow-x-auto pb-1;
   }
-  
+
   .chip {
     @apply bg-gray-100 px-4 py-2 rounded-full text-sm cursor-pointer whitespace-nowrap 
            transition-colors hover:bg-primary hover:text-white;
   }
-  
+
   .chat-input {
     @apply w-full px-5 pr-14 py-4 border-2 border-gray-200 rounded-full 
            font-body text-base transition-colors focus:outline-none focus:border-secondary;
   }
-  
+
   .send-btn {
     @apply absolute right-2 top-1/2 -translate-y-1/2 bg-secondary text-white 
            w-10 h-10 rounded-full border-0 cursor-pointer flex items-center justify-center 
            transition-transform hover:scale-110;
   }
-  
+
   /* Pricing Cards */
   .pricing-card {
     @apply bg-white rounded-2xl p-5 flex-1 min-w-[140px] shadow-soft 
            border border-gray-50 text-center transition-all duration-300 relative 
            hover:-translate-y-2 hover:shadow-hover;
   }
-  
+
   .pricing-card.popular {
     @apply border-2 border-primary bg-green-50 scale-105 z-10 hover:scale-110;
   }
-  
+
   .pricing-card.premium .price {
     @apply text-secondary;
   }
-  
+
   .popular-badge {
     @apply absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white 
            text-xs px-3 py-1 rounded-full font-bold;
   }
-  
+
   .plan-features {
     @apply list-none p-0 text-left text-sm;
   }
-  
+
   .plan-features li {
     @apply mb-2 flex items-center gap-2;
   }
-  
+
   .plan-features i {
     @apply text-primary w-4;
   }
-  
+
   .plan-features li.disabled {
     @apply text-gray-400;
   }
-  
+
   .plan-features li.disabled i {
     @apply text-gray-300;
   }
+
+  /* Grid Utilities */
+  .grid-container {
+    @apply grid gap-8;
+  }
+
+  .grid-3 {
+    @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .grid-4 {
+    @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-4;
+  }
+
+  .grid-5 {
+    @apply grid-cols-2 md:grid-cols-3 lg:grid-cols-5;
+  }
+
+  /* DocExplorer Component - Enhanced UX/UI */
+  .doc-explorer-container {
+    @apply mt-8 mb-6;
+  }
+
+  /* Tab Navigation */
+  .doc-tabs {
+    @apply flex gap-2 mb-6 overflow-x-auto pb-2;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .doc-tabs::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .doc-tabs::-webkit-scrollbar-thumb {
+    @apply bg-primary/30 rounded-full;
+  }
+
+  .doc-tab-btn {
+    @apply flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm
+           bg-white border-2 border-gray-200 text-dark
+           transition-all duration-300 cursor-pointer whitespace-nowrap
+           hover:border-primary hover:bg-green-50 hover:shadow-md;
+    min-width: fit-content;
+  }
+
+  .doc-tab-btn.active {
+    @apply bg-primary border-primary text-white shadow-lg transform scale-105;
+  }
+
+  .doc-tab-btn:focus {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+  }
+
+  /* Document List Container */
+  .doc-list-container {
+    @apply bg-white rounded-2xl p-6 shadow-soft border border-gray-100;
+  }
+
+  .doc-list-header {
+    @apply flex items-center gap-4 mb-6 pb-4 border-b border-gray-200;
+  }
+
+  .doc-list-title {
+    @apply text-xl font-bold text-dark m-0 flex-1;
+  }
+
+  .doc-count {
+    @apply text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full;
+  }
+
+  /* Document Grid Layout */
+  .doc-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+  }
+
+  /* Document Card */
+  .doc-card {
+    @apply flex items-center gap-4 p-4 rounded-xl
+           bg-gradient-to-r from-gray-50 to-white
+           border border-gray-200
+           cursor-pointer transition-all duration-300
+           hover:shadow-lg hover:border-primary hover:scale-105 hover:-translate-y-1;
+  }
+
+  .doc-card:focus {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+  }
+
+  .doc-card-icon {
+    @apply w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center
+           text-primary text-xl flex-shrink-0 transition-all duration-300;
+  }
+
+  .doc-card:hover .doc-card-icon {
+    @apply bg-primary text-white transform scale-110;
+  }
+
+  .doc-card-content {
+    @apply flex-1 flex items-center justify-between gap-3;
+  }
+
+  .doc-card-title {
+    @apply text-sm font-semibold text-dark leading-tight;
+  }
+
+  .doc-card-action {
+    @apply w-8 h-8 rounded-full bg-white border border-gray-300 
+           flex items-center justify-center text-gray-400 text-xs
+           transition-all duration-300 flex-shrink-0;
+  }
+
+  .doc-card:hover .doc-card-action {
+    @apply bg-primary border-primary text-white transform translate-x-1;
+  }
+
+  /* Mobile Optimizations */
+  @media (max-width: 768px) {
+    .doc-explorer-container {
+      @apply mt-6 mb-4;
+    }
+
+    .doc-tabs {
+      @apply gap-2 pb-3;
+    }
+
+    .doc-tab-btn {
+      @apply px-4 py-2 text-xs;
+      min-height: 44px; /* Touch-friendly */
+    }
+
+    .doc-list-container {
+      @apply p-4 rounded-xl;
+    }
+
+    .doc-list-header {
+      @apply flex-col items-start gap-2 mb-4;
+    }
+
+    .doc-list-title {
+      @apply text-lg;
+    }
+
+    .doc-grid {
+      @apply grid-cols-1 gap-3;
+    }
+
+    .doc-card {
+      @apply p-3;
+      min-height: 60px; /* Touch-friendly */
+    }
+
+    .doc-card-icon {
+      @apply w-10 h-10 text-lg;
+    }
+
+    .doc-card-title {
+      @apply text-xs;
+    }
+  }
+
+
+  /* Swipe Cards Container */
+  .swipe-cards-container {
+    @apply flex overflow-x-auto snap-x snap-mandatory gap-5 pb-4;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .swipe-card {
+    @apply flex-shrink-0 w-full md:w-auto snap-start;
+  }
+
+  .swipe-indicator {
+    @apply flex justify-center gap-2 mt-6;
+  }
+
+  .swipe-dot {
+    @apply w-2 h-2 rounded-full bg-gray-300 transition-colors;
+  }
+
+  .swipe-dot.active {
+    @apply bg-primary w-6;
+  }
+
+  /* Users Page Tabs */
+  .users-tabs-container {
+    @apply flex gap-4 mb-8 border-b border-gray-200 justify-center flex-wrap;
+  }
+
+  .user-tab-btn {
+    @apply px-6 py-3 font-semibold text-gray-600 border-b-2 border-transparent 
+           transition-all hover:text-primary cursor-pointer bg-transparent;
+  }
+
+  .user-tab-btn.active {
+    @apply text-primary border-primary;
+  }
+
+  .user-content-card {
+    @apply bg-white p-10 rounded-2xl shadow-soft border border-gray-100;
+  }
+
+  .pain-solution-grid {
+    @apply grid md:grid-cols-2 gap-10 mt-10;
+  }
+
+  /* Pricing Cards */
+  .pricing-cards-container {
+    @apply flex gap-6 justify-center flex-wrap;
+  }
+
+  .plan-header {
+    @apply text-center pb-5 border-b border-gray-100;
+  }
+
+  .price {
+    @apply text-4xl font-bold text-primary mt-3;
+  }
+
+  /* Team Cards - About Page */
+  .team-cards-grid {
+    @apply grid md:grid-cols-2 gap-10;
+  }
+
+  .big-team-card {
+    @apply bg-white rounded-2xl shadow-soft border border-gray-100 p-10 
+           transition-all duration-300 hover:-translate-y-1 hover:shadow-hover;
+  }
+
+  .big-team-card .icon {
+    @apply text-6xl block;
+  }
+
+  .profile-list {
+    @apply space-y-4;
+  }
+
+  .profile-item {
+    @apply flex items-center gap-4 p-4 rounded-lg bg-gray-50 
+           transition-colors hover:bg-gray-100;
+  }
+
+  .profile-avatar {
+    @apply w-12 h-12 rounded-full bg-primary text-white 
+           flex items-center justify-center font-bold text-lg;
+  }
+
+  /* Social Impact Section */
+  .section-social-impact {
+    @apply py-20 bg-gradient-to-br from-green-50 to-white;
+  }
+
+  .impact-header {
+    @apply text-center mb-12;
+  }
+
+  .impact-grid {
+    @apply grid md:grid-cols-2 gap-10 items-center max-w-5xl mx-auto;
+  }
+
+  .impact-card {
+    @apply bg-white p-8 rounded-2xl shadow-soft border border-gray-100;
+  }
+
+  .impact-card.highlight {
+    @apply bg-gradient-to-br from-green-50 to-white border-primary;
+  }
+
+  .counter-wrapper {
+    @apply text-center mb-6;
+  }
+
+  .flip-counter {
+    @apply flex justify-center gap-2 mb-4;
+  }
+
+  .flip-digit {
+    @apply bg-primary text-white w-12 h-16 rounded-lg flex items-center justify-center 
+           text-3xl font-bold shadow-md;
+  }
+
+  .flip-digit-inner {
+    @apply flex items-center justify-center;
+  }
+
+  .counter-label {
+    @apply block text-lg font-semibold text-gray-700 mt-4;
+  }
+
+  .impact-text-content {
+    @apply space-y-4;
+  }
+
+  /* WhatsApp Button */
+  .whatsapp-float {
+    @apply fixed bottom-6 right-6 z-50;
+  }
+
+  .wa-tooltip {
+    @apply absolute bottom-20 right-0 bg-white p-4 rounded-lg shadow-hover 
+           border border-gray-200 w-64 opacity-0 invisible transition-all duration-300;
+  }
+
+  .wa-tooltip.show {
+    @apply opacity-100 visible;
+  }
+
+  .wa-button {
+    @apply bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center 
+           shadow-hover text-3xl transition-all hover:scale-110 relative cursor-pointer;
+  }
+
+  .notification-badge {
+    @apply absolute -top-1 -right-1 bg-red-500 text-white w-6 h-6 rounded-full 
+           flex items-center justify-center text-xs font-bold;
+  }
+
+  /* Blog Cards */
+  .blog-card {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-hover;
+  }
+
+  /* Custom Utility Classes */
+  .mb-60 {
+    @apply mb-16 md:mb-24;
+  }
+
+  .mb-40 {
+    @apply mb-10 md:mb-16;
+  }
+
+  .mt-60 {
+    @apply mt-16 md:mt-24;
+  }
+
+  .mt-20 {
+    @apply mt-5 md:mt-8;
+  }
 }
-
-
 
 /* Mobile Responsive Styles */
 @media (max-width: 900px) {
+  /* Mobile adjustments */
+  .section-consultancy-full {
+    background-attachment: scroll; /* fixed causes issues on mobile */
+  }
+  .mobile-phone-display {
+    z-index: 5; /* ensure phone mockup appears above overlay */
+  }
+  .section-consultancy-full::before {
+    @apply bg-white bg-opacity-10; /* lighter overlay on mobile */
+  }
+
   .mobile-menu-toggle {
     @apply block;
   }
@@ -240,14 +717,84 @@
   .desktop-only-btn {
     @apply hidden;
   }
-  
+
   .chat-interface-container {
     @apply w-full mx-0 rounded-md;
     height: 500px;
   }
-  
+
+  /* Consultancy Section with Background */
+  .section-consultancy-full {
+    @apply relative;
+    background-image: url('/img/ilustracion-consultorio.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+  }
+
+  .section-consultancy-full::before {
+    content: '';
+    @apply absolute inset-0 bg-white bg-opacity-20;
+  }
+
   .section-consultancy-full .content-wrapper {
-    @apply px-4;
+    @apply px-4 relative z-10;
+  }
+
+  /* Transparent Chat Interface with Blur */
+  .section-consultancy-full .chat-interface-container {
+    @apply bg-white bg-opacity-20 backdrop-blur-xl;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    @apply bg-white bg-opacity-30 backdrop-blur-xl;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .section-consultancy-full .chat-header {
+    @apply bg-white bg-opacity-40;
+  }
+
+  .section-consultancy-full .chat-messages {
+    @apply bg-transparent;
+  }
+
+  .section-consultancy-full .message.bot {
+    @apply bg-white bg-opacity-95;
+  }
+
+  .section-consultancy-full .chat-input-area {
+    @apply bg-white bg-opacity-40;
+  }
+
+  /* Country Cards for Lawyer Section */
+  .country-cards-container {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6 mt-8;
+  }
+
+  .country-card {
+    @apply bg-white rounded-2xl p-6 shadow-lg border border-gray-100
+           transition-all duration-300 hover:shadow-xl hover:-translate-y-2
+           flex flex-col items-center text-center;
+  }
+
+  .country-flag {
+    @apply w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center
+           overflow-hidden mb-4 shadow-md;
+  }
+
+  .country-flag img {
+    @apply w-full h-full object-cover;
+  }
+
+  .country-card h4 {
+    @apply text-lg font-bold text-dark mb-2;
+  }
+
+  .country-card:hover {
+    @apply border-primary;
+  }
+
+  .country-card:hover .country-flag {
+    @apply transform scale-110 shadow-xl;
   }
 }
-

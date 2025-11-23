@@ -3,33 +3,27 @@ import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
-    <footer style={{ 
-      background: 'var(--color-dark)', 
-      color: 'white', 
-      padding: '50px 0 25px',
-      marginTop: '60px'
-    }}>
+    <footer className="bg-dark text-white py-12 mt-16">
       <div className="content-wrapper">
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-          gap: '40px',
-          marginBottom: '40px'
-        }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
           {/* Column 1: Brand */}
           <div>
-            <img src={`${import.meta.env.BASE_URL}img/logo.png`} alt="Avocado Logo" style={{ height: '60px', marginBottom: '20px' }} />
-            <p style={{ fontSize: '0.95rem', color: '#ccc', lineHeight: '1.6' }}>
+            <img 
+              src={`${import.meta.env.BASE_URL}img/logo.png`} 
+              alt="Avocado Logo" 
+              className="h-16 mb-5" 
+            />
+            <p className="text-sm text-gray-400 leading-relaxed">
               Tu abogado de bolsillo. Orientación legal profesional impulsada por IA, accesible 24/7.
             </p>
-            <div style={{ marginTop: '20px', display: 'flex', gap: '15px' }}>
-              <a href="#" style={{ color: 'white', fontSize: '1.5rem', transition: 'color 0.3s' }}>
+            <div className="mt-5 flex gap-4">
+              <a href="#" className="text-white text-2xl transition-colors hover:text-primary">
                 <i className="fab fa-linkedin"></i>
               </a>
-              <a href="#" style={{ color: 'white', fontSize: '1.5rem', transition: 'color 0.3s' }}>
+              <a href="#" className="text-white text-2xl transition-colors hover:text-primary">
                 <i className="fab fa-twitter"></i>
               </a>
-              <a href="#" style={{ color: 'white', fontSize: '1.5rem', transition: 'color 0.3s' }}>
+              <a href="#" className="text-white text-2xl transition-colors hover:text-primary">
                 <i className="fab fa-instagram"></i>
               </a>
             </div>
@@ -37,35 +31,35 @@ function Footer() {
 
           {/* Column 2: Navigation */}
           <div>
-            <h4 style={{ color: 'white', marginBottom: '20px', fontSize: '1.1rem' }}>Navegación</h4>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-              <li style={{ marginBottom: '12px' }}>
-                <Link to="/" style={{ color: '#ccc', textDecoration: 'none', transition: 'color 0.3s' }}>
+            <h4 className="text-white mb-5 text-lg font-semibold">Navegación</h4>
+            <ul className="list-none p-0 space-y-3">
+              <li>
+                <Link to="/" className="text-gray-400 no-underline transition-colors hover:text-primary">
                   Asesoría Legal
                 </Link>
               </li>
-              <li style={{ marginBottom: '12px' }}>
-                <Link to="/que-hacemos" style={{ color: '#ccc', textDecoration: 'none', transition: 'color 0.3s' }}>
+              <li>
+                <Link to="/que-hacemos" className="text-gray-400 no-underline transition-colors hover:text-primary">
                   ¿Qué hacemos?
                 </Link>
               </li>
-              <li style={{ marginBottom: '12px' }}>
-                <Link to="/usuarios" style={{ color: '#ccc', textDecoration: 'none', transition: 'color 0.3s' }}>
+              <li>
+                <Link to="/usuarios" className="text-gray-400 no-underline transition-colors hover:text-primary">
                   Usuarios
                 </Link>
               </li>
-              <li style={{ marginBottom: '12px' }}>
-                <Link to="/blog" style={{ color: '#ccc', textDecoration: 'none', transition: 'color 0.3s' }}>
+              <li>
+                <Link to="/blog" className="text-gray-400 no-underline transition-colors hover:text-primary">
                   Blog
                 </Link>
               </li>
-              <li style={{ marginBottom: '12px' }}>
-                <Link to="/sobre-nosotros" style={{ color: '#ccc', textDecoration: 'none', transition: 'color 0.3s' }}>
+              <li>
+                <Link to="/sobre-nosotros" className="text-gray-400 no-underline transition-colors hover:text-primary">
                   Nosotros
                 </Link>
               </li>
-              <li style={{ marginBottom: '12px' }}>
-                <Link to="/sostenibilidad" style={{ color: '#ccc', textDecoration: 'none', transition: 'color 0.3s' }}>
+              <li>
+                <Link to="/sostenibilidad" className="text-gray-400 no-underline transition-colors hover:text-primary">
                   Sostenibilidad
                 </Link>
               </li>
@@ -74,20 +68,20 @@ function Footer() {
 
           {/* Column 3: Legal */}
           <div>
-            <h4 style={{ color: 'white', marginBottom: '20px', fontSize: '1.1rem' }}>Información Legal</h4>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-              <li style={{ marginBottom: '12px' }}>
-                <Link to="/legal#datos-personales" style={{ color: '#ccc', textDecoration: 'none', transition: 'color 0.3s' }}>
+            <h4 className="text-white mb-5 text-lg font-semibold">Información Legal</h4>
+            <ul className="list-none p-0 space-y-3">
+              <li>
+                <Link to="/legal#datos-personales" className="text-gray-400 no-underline transition-colors hover:text-primary">
                   Datos Personales
                 </Link>
               </li>
-              <li style={{ marginBottom: '12px' }}>
-                <Link to="/legal#terminos" style={{ color: '#ccc', textDecoration: 'none', transition: 'color 0.3s' }}>
+              <li>
+                <Link to="/legal#terminos" className="text-gray-400 no-underline transition-colors hover:text-primary">
                   Términos y Condiciones
                 </Link>
               </li>
-              <li style={{ marginBottom: '12px' }}>
-                <Link to="/legal#privacidad" style={{ color: '#ccc', textDecoration: 'none', transition: 'color 0.3s' }}>
+              <li>
+                <Link to="/legal#privacidad" className="text-gray-400 no-underline transition-colors hover:text-primary">
                   Política de Privacidad
                 </Link>
               </li>
@@ -96,30 +90,26 @@ function Footer() {
 
           {/* Column 4: Contact */}
           <div>
-            <h4 style={{ color: 'white', marginBottom: '20px', fontSize: '1.1rem' }}>Contacto</h4>
-            <p style={{ color: '#ccc', marginBottom: '10px' }}>
-              <i className="fas fa-envelope" style={{ marginRight: '10px', color: 'var(--color-primary)' }}></i>
+            <h4 className="text-white mb-5 text-lg font-semibold">Contacto</h4>
+            <p className="text-gray-400 mb-3 flex items-center">
+              <i className="fas fa-envelope mr-3 text-primary"></i>
               hola@avocado.legal
             </p>
-            <p style={{ color: '#ccc', marginBottom: '10px' }}>
-              <i className="fas fa-phone" style={{ marginRight: '10px', color: 'var(--color-primary)' }}></i>
+            <p className="text-gray-400 mb-3 flex items-center">
+              <i className="fas fa-phone mr-3 text-primary"></i>
               +57 300 123 4567
             </p>
-            <p style={{ color: '#ccc' }}>
-              <i className="fas fa-map-marker-alt" style={{ marginRight: '10px', color: 'var(--color-primary)' }}></i>
+            <p className="text-gray-400 flex items-center">
+              <i className="fas fa-map-marker-alt mr-3 text-primary"></i>
               Bogotá, Colombia
             </p>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div style={{ 
-          borderTop: '1px solid rgba(255,255,255,0.1)', 
-          paddingTop: '30px',
-          textAlign: 'center'
-        }}>
-          <p className="copyright" style={{ margin: 0, color: '#999', fontSize: '0.9rem' }}>
-            &copy; 2024 - 2025 <strong style={{ color: 'white' }}>AVOCADO</strong>. Todos los derechos reservados.
+        <div className="border-t border-white border-opacity-10 pt-8 text-center">
+          <p className="copyright m-0 text-gray-500 text-sm">
+            &copy; 2024 - 2025 <strong className="text-white">AVOCADO</strong>. Todos los derechos reservados.
           </p>
         </div>
       </div>

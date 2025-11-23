@@ -1,7 +1,7 @@
 import React from 'react';
 import { PhoneHome, PhoneDocs, PhoneDashboard, PhoneLawyers, PhonePricing } from './PhoneScreens';
 
-const PhoneWrapper = ({ activeSection }) => {
+const PhoneWrapper = ({ activeSection, selectedPlan = 'junior', selectedDocCategory = 'Civil', selectedCountry = 'co' }) => {
   
   // Determinar qué pantalla mostrar según la sección activa
   const renderScreen = () => {
@@ -9,13 +9,13 @@ const PhoneWrapper = ({ activeSection }) => {
       case 'hero':
         return <PhoneHome />;
       case 'features': // Documentos
-        return <PhoneDocs />;
+        return <PhoneDocs selectedCategory={selectedDocCategory} />;
       case 'automation': // Dashboard
         return <PhoneDashboard />;
       case 'specialized': // Abogados
-        return <PhoneLawyers />;
+        return <PhoneLawyers selectedCountry={selectedCountry} />;
       case 'subscriptions': // Pricing
-        return <PhonePricing />;
+        return <PhonePricing selectedPlan={selectedPlan} />;
       default:
         return <PhoneHome />;
     }

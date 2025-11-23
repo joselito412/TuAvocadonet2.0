@@ -11,6 +11,7 @@ import AboutPage from './pages/AboutPage';
 import LegalPage from './pages/LegalPage';
 import BlogPage from './pages/BlogPage';
 import SustainabilityPage from './pages/SustainabilityPage';
+import WhatsAppPage from './pages/WhatsAppPage';
 import { analytics, performanceMonitor } from './utils/analytics';
 
 function AppContent() {
@@ -39,6 +40,7 @@ function AppContent() {
           <Route path="/sostenibilidad" element={<SustainabilityPage />} />
           <Route path="/legal" element={<LegalPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/whatsapp" element={<WhatsAppPage />} />
         </Routes>
       </ErrorBoundary>
 

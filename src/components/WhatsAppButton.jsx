@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const WhatsAppButton = () => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Auto-show tooltip after 3 seconds
@@ -21,7 +23,8 @@ const WhatsAppButton = () => {
     // Simulate "Connecting to agent..." delay
     setTimeout(() => {
       setIsConnecting(false);
-      window.open('https://wa.me/1234567890', '_blank');
+      // Navigate to WhatsApp test page
+      navigate('/whatsapp');
     }, 1000);
   };
 
@@ -35,7 +38,7 @@ const WhatsAppButton = () => {
           </p>
         ) : (
           <p style={{ margin: 0, fontSize: '0.9rem', color: '#333' }}>
-            <strong>¿Necesitas un abogado ya?</strong><br />
+            <strong>¿Necesitas una solución legal ya?</strong><br />
             Habla con un experto en tiempo real.
           </p>
         )}

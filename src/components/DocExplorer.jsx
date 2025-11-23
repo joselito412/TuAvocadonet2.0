@@ -31,8 +31,15 @@ const categories = {
   'Tutelas': ['Tutela Salud', 'Tutela Educación', 'Derecho de Petición', 'Impugnación Fallo']
 };
 
-const DocExplorer = () => {
+const DocExplorer = ({ onCategoryChange }) => {
   const [activeTab, setActiveTab] = useState('Civil');
+
+  const handleTabChange = (cat) => {
+    setActiveTab(cat);
+    if (onCategoryChange) {
+      onCategoryChange(cat);
+    }
+  };
 
   return (
     <div className="doc-explorer-container">
@@ -45,7 +52,7 @@ const DocExplorer = () => {
             aria-selected={activeTab === cat}
             aria-controls={`panel-${cat}`}
             className={`doc-tab-btn ${activeTab === cat ? 'active' : ''}`}
-            onClick={() => setActiveTab(cat)}
+            onClick={() => handleTabChange(cat)}
           >
             <i className={`fas ${categoryIcons[cat]} mr-2`} aria-hidden="true"></i>
             <span>{cat}</span>

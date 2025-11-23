@@ -1,0 +1,32 @@
+import React from 'react';
+
+const WhatsAppPage = () => {
+  return (
+    <div style={{ 
+      minHeight: '100vh', 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center',
+      background: 'linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 50%, #ffffff 100%)',
+      padding: '20px'
+    }}>
+      <div style={{
+        background: 'white',
+        padding: '40px',
+        borderRadius: '20px',
+        boxShadow: '0 8px 30px rgba(0,0,0,0.1)',
+        maxWidth: '600px',
+        textAlign: 'center'
+      }}>
+        <div style={{ fontSize: '4rem', marginBottom: '20px' }}>💬</div>
+        <h1 style={{ color: '#2E7D32', marginBottom: '20px' }}>Hello World</h1>
+        <p style={{ fontSize: '1.2rem', color: '#666', lineHeight: '1.6' }}>
+          Imagina que acá llegaste al chat de WhatsApp
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default WhatsAppPage;
+

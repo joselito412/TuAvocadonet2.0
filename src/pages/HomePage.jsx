@@ -189,7 +189,7 @@ function HomePage() {
       </section>
 
       <div className="content-wrapper">
-        <SocialImpact />
+        <SocialImpact showLearnMore={true} />
       </div>
 
       <section className="section-block" id="blog" style={{ padding: '80px 0', background: 'white' }}>

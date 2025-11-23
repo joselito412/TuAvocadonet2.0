@@ -1,125 +1,165 @@
 import React from 'react';
 
 function WhatWeDoPage() {
+  const steps = [
+    { step: '01', title: 'Haz tu Consulta', desc: 'Describe tu situación legal en lenguaje cotidiano.' },
+    { step: '02', title: 'IA Analiza', desc: 'Nuestro sistema procesa y consulta bases de datos legales.' },
+    { step: '03', title: 'Recibe Respuesta', desc: 'Orientación clara y accionable en minutos.' },
+    { step: '04', title: 'Supervisión (Solo suscripción Senior)', desc: 'Abogado revisa casos complejos y documentos antes de ser enviados a tu correo.' }
+  ];
+
+  const services = [
+    { 
+      title: 'Free', 
+      price: '$0',
+      features: ['Consultas Limitadas', 'Sin Documentos', 'Sin Abogado'],
+      className: 'pricing-card'
+    },
+    { 
+      title: 'Junior', 
+      price: '$15',
+      features: ['IA Ilimitada', 'Generación Docs', 'Sin Abogado'],
+      className: 'pricing-card popular'
+    },
+    { 
+      title: 'Senior', 
+      price: '$100',
+      features: ['IA Ilimitada', 'Docs Premium', 'Abogado Humano'],
+      className: 'pricing-card premium'
+    }
+  ];
+
+  const catalog = [
+    { icon: '📄', title: 'Creación de documentos' },
+    { icon: '✍️', title: 'Auto-completado inteligente' },
+    { icon: '🧠', title: 'Conceptos legales IA' },
+    { icon: '📅', title: 'Agendar consulta' },
+    { icon: '🏢', title: 'Constitución SAS' },
+    { icon: '®️', title: 'Registro de marca' },
+    { icon: '🛡️', title: 'Compliance datos' },
+    { icon: '⚖️', title: 'Revisión de Tutelas' },
+    { icon: '🔒', title: 'Generación de NDAs' },
+    { icon: '💰', title: 'Liquidación de Nómina' }
+  ];
+
+  const areas = [
+    { name: 'Civil', emoji: '🏠' },
+    { name: 'Familia', emoji: '👨‍👩‍👧‍👦' },
+    { name: 'Comercial', emoji: '🏢' },
+    { name: 'Pymes', emoji: '🏪' },
+    { name: 'Emprendedores', emoji: '🚀' },
+    { name: 'Marcas', emoji: '®️' },
+    { name: 'Creativos', emoji: '🎨' },
+    { name: 'Desarrolladores', emoji: '💻' },
+    { name: 'Datos', emoji: '🔒' },
+    { name: 'Gobierno Tech', emoji: '🤖' },
+    { name: 'Público', emoji: '🏛️' },
+    { name: 'PQRs', emoji: '📝' },
+    { name: 'Tutelas', emoji: '⚖️' },
+    { name: 'Inmobiliario', emoji: '🏗️' },
+    { name: 'Penal', emoji: '👮' },
+    { name: 'Tributario', emoji: '💰' },
+    { name: 'Laboral', emoji: '👷' },
+    { name: 'Financiero', emoji: '🏦' },
+    { name: 'Fintech', emoji: '💳' }
+  ];
+
   return (
     <div>
-      {/* Hero Section */}
-      <section className="section-block" id="what-hero" style={{ minHeight: '60vh', textAlign: 'center' }}>
+      {/* Section 1: What is Avocado & How it Works */}
+      <section className="section-block" style={{ background: 'white' }}>
         <div className="content-wrapper">
-          <span className="eyebrow">NUESTRA MISIÓN</span>
-          <h1 style={{ marginBottom: '30px' }}>¿Qué es Avocado?</h1>
-          <p className="lead-text" style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
-            Somos la primera plataforma legal impulsada por Inteligencia Artificial que democratiza el acceso a la justicia.
-            Combinamos tecnología de vanguardia con supervisión de abogados certificados para ofrecer asesoría legal accesible, rápida y confiable.
-          </p>
-        </div>
-      </section>
-
-      {/* AI Technology Section */}
-      <section className="section-block" style={{ background: 'white', padding: '80px 0' }}>
-        <div className="content-wrapper">
-          <span className="eyebrow">TECNOLOGÍA RAG</span>
-          <h2>Cómo funciona nuestra IA</h2>
-          <div className="dashboard-cards-container" style={{ marginTop: '40px' }}>
-            <div className="dashboard-card">
-              <div className="card-icon-wrapper">
-                <i className="fas fa-brain"></i>
-              </div>
-              <div>
-                <h4 style={{ margin: '0 0 8px', color: 'var(--color-dark)' }}>Procesamiento Inteligente</h4>
-                <span>Tecnología RAG (Retrieval-Augmented Generation) que consulta bases de datos legales actualizadas en tiempo real.</span>
-              </div>
-            </div>
-            <div className="dashboard-card">
-              <div className="card-icon-wrapper">
-                <i className="fas fa-gavel"></i>
-              </div>
-              <div>
-                <h4 style={{ margin: '0 0 8px', color: 'var(--color-dark)' }}>Supervisión Profesional</h4>
-                <span>Todas las respuestas son revisadas por abogados certificados antes de ser entregadas en casos críticos.</span>
-              </div>
-            </div>
-            <div className="dashboard-card">
-              <div className="card-icon-wrapper">
-                <i className="fas fa-shield-check"></i>
-              </div>
-              <div>
-                <h4 style={{ margin: '0 0 8px', color: 'var(--color-dark)' }}>Precisión Garantizada</h4>
-                <span>Mantenemos una tasa de precisión superior al 95% gracias a nuestro entrenamiento continuo con normativa colombiana.</span>
-              </div>
-            </div>
+          <div className="text-center mb-60">
+            <h1>¿Qué es Avocado?</h1>
+            <p className="lead-text" style={{ margin: '0 auto' }}>
+              Somos la primera plataforma legal impulsada por Inteligencia Artificial que democratiza el acceso a la justicia. 
+              Combinamos tecnología de vanguardia con supervisión de abogados certificados para ofrecer asesoría legal accesible, rápida y confiable.
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* Practice Areas Section */}
-      <section className="section-block" style={{ padding: '80px 0' }}>
-        <div className="content-wrapper">
-          <span className="eyebrow">COBERTURA LEGAL</span>
-          <h2>Áreas de Derecho</h2>
-          <p style={{ maxWidth: '700px', margin: '0 auto 50px', textAlign: 'center' }}>
-            Cubrimos las 5 áreas más demandadas del derecho en Colombia y Estados Unidos
-          </p>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px', marginTop: '40px' }}>
-            {[
-              { area: 'Civil', icon: 'fa-home', examples: 'Contratos, Arrendamientos, Compraventas' },
-              { area: 'Laboral', icon: 'fa-briefcase', examples: 'Despidos, Liquidaciones, Acosos' },
-              { area: 'Comercial', icon: 'fa-building', examples: 'Constitución SAS, Propiedad Intelectual' },
-              { area: 'Penal', icon: 'fa-balance-scale', examples: 'Defensas, Denuncias, Audiencias' },
-              { area: 'Tutelas', icon: 'fa-hands-helping', examples: 'Salud, Educación, Derechos Fundamentales' }
-            ].map((item, index) => (
-              <div key={index} style={{ 
-                background: 'white', 
-                padding: '30px', 
-                borderRadius: '16px', 
-                boxShadow: 'var(--shadow-soft)', 
-                textAlign: 'center',
-                transition: 'all 0.3s'
-              }} className="practice-area-card">
-                <i className={`fas ${item.icon}`} style={{ fontSize: '3rem', color: 'var(--color-primary)', marginBottom: '20px' }}></i>
-                <h3 style={{ marginBottom: '10px' }}>{item.area}</h3>
-                <p style={{ fontSize: '0.9rem', color: '#666' }}>{item.examples}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Workflow Section */}
-      <section className="section-block" style={{ background: 'var(--gradient-hero)', padding: '80px 0' }}>
-        <div className="content-wrapper">
-          <span className="eyebrow">PROCESO SIMPLE</span>
-          <h2>De la Consulta a la Solución</h2>
-          
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '30px', marginTop: '60px', flexWrap: 'wrap' }}>
-            {[
-              { step: '01', title: 'Haz tu Consulta', desc: 'Describe tu situación legal en lenguaje cotidiano' },
-              { step: '02', title: 'IA Analiza', desc: 'Nuestro sistema procesa y consulta bases de datos legales' },
-              { step: '03', title: 'Recibe Respuesta', desc: 'Orientación clara y accionable en minutos' },
-              { step: '04', title: 'Supervisión (Opcional)', desc: 'Abogado revisa casos complejos' }
-            ].map((item, index) => (
-              <div key={index} style={{ maxWidth: '220px', textAlign: 'center' }}>
-                <div style={{ 
-                  width: '60px', 
-                  height: '60px', 
-                  borderRadius: '50%', 
-                  background: 'var(--color-primary)', 
-                  color: 'white', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  fontWeight: 'bold', 
-                  fontSize: '1.5rem', 
-                  margin: '0 auto 20px' 
-                }}>
-                  {item.step}
+          <div className="mt-60">
+            <h2 className="text-center mb-40">Cómo funciona nuestra IA</h2>
+            <div className="grid-container grid-4">
+              {steps.map((item, index) => (
+                <div key={index} className="dashboard-card" style={{ flexDirection: 'column', alignItems: 'flex-start', position: 'relative' }}>
+                  <div style={{ fontSize: '3rem', fontWeight: '800', color: 'rgba(46, 125, 50, 0.1)', position: 'absolute', top: '10px', right: '20px' }}>{item.step}</div>
+                  <h3 style={{ position: 'relative', zIndex: 1 }}>{item.title}</h3>
+                  <p style={{ position: 'relative', zIndex: 1 }}>{item.desc}</p>
                 </div>
-                <h4 style={{ marginBottom: '10px' }}>{item.title}</h4>
-                <p style={{ fontSize: '0.9rem', color: '#555' }}>{item.desc}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 2: Automated Services & Catalog */}
+      <section className="section-block" style={{ background: 'var(--color-light)' }}>
+        <div className="content-wrapper">
+          <h2 className="text-center mb-40">Nuestros Planes</h2>
+          <div className="pricing-cards-container mb-60">
+            {services.map((service, index) => (
+              <div key={index} className={service.className}>
+                {service.className.includes('popular') && <div className="popular-badge">RECOMENDADO</div>}
+                <div className="plan-header">
+                  <h3>{service.title}</h3>
+                  <div className="price">{service.price}</div>
+                </div>
+                <ul className="plan-features" style={{ marginTop: '20px' }}>
+                  {service.features.map((feature, idx) => (
+                    <li key={idx}>
+                      <i className="fas fa-check"></i>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
+
+          <h2 className="text-center mb-40">Catálogo de Servicios Automatizados</h2>
+          <div className="grid-container grid-5">
+             {catalog.map((item, index) => (
+               <div key={index} style={{ 
+                 background: 'white', 
+                 padding: '15px', 
+                 borderRadius: '12px', 
+                 textAlign: 'center',
+                 boxShadow: 'var(--shadow-soft)',
+                 border: '1px solid rgba(0,0,0,0.05)'
+               }}>
+                 <div style={{ fontSize: '2rem', marginBottom: '10px' }}>{item.icon}</div>
+                 <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>{item.title}</div>
+               </div>
+             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section 3: Practice Areas (Carousel) */}
+      <section className="section-block" style={{ background: 'white' }}>
+        <div className="content-wrapper">
+          <h2 className="text-center mb-40">Áreas de Derecho</h2>
+          
+          {/* Using the swipe-cards-container for horizontal scroll behavior on all devices for this specific section as requested */}
+          <div className="swipe-cards-container" style={{ paddingBottom: '20px' }}>
+            {areas.map((area, index) => (
+              <div key={index} style={{ 
+                minWidth: '160px',
+                padding: '30px 20px', 
+                textAlign: 'center', 
+                background: 'white', 
+                borderRadius: '16px', 
+                boxShadow: 'var(--shadow-soft)',
+                border: '1px solid rgba(0,0,0,0.05)',
+                scrollSnapAlign: 'start',
+                marginRight: '20px'
+              }}>
+                <span style={{ fontSize: '3rem', display: 'block', marginBottom: '10px' }} role="img" aria-label={area.name}>{area.emoji}</span>
+                <span style={{ fontWeight: '600', color: 'var(--color-dark)', fontSize: '0.9rem' }}>{area.name}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-center mt-20" style={{ color: '#999', fontSize: '0.9rem' }}>Desliza para ver más áreas →</p>
         </div>
       </section>
     </div>

@@ -1,118 +1,154 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
+
+const TeamCard = ({ title, icon, children }) => {
+  return (
+    <div className="big-team-card" style={{ padding: '50px 40px' }}>
+      <span className="icon" style={{ marginBottom: '30px' }}>{icon}</span>
+      <h2 style={{ marginBottom: '30px' }}>{title}</h2>
+      <div className="card-content">
+        {children}
+      </div>
+    </div>
+  );
+};
+
+const ProfileItem = ({ name, role, location }) => (
+  <div className="profile-item" style={{ padding: '15px', marginBottom: '15px' }}>
+    <div className="profile-avatar" style={{ width: '50px', height: '50px', fontSize: '1.2rem' }}>
+      {name.charAt(0)}
+    </div>
+    <div>
+      <h4 style={{ margin: 0, color: 'var(--color-dark)', fontSize: '1.1rem' }}>{name}</h4>
+      <p style={{ margin: '4px 0 0', fontSize: '0.9rem', color: '#666' }}>{role}</p>
+      {location && <p style={{ margin: '2px 0 0', fontSize: '0.85rem', color: '#999', fontStyle: 'italic' }}>📍 {location}</p>}
+    </div>
+  </div>
+);
+
+// Mock Data for Lawyers
+const MOCK_LAWYERS = [
+  { id: 1, name: 'Jose Guillermo Vasquez', role: 'Consultor Líder', location: 'Bogotá', specialty: 'Tech Law' },
+  { id: 2, name: 'Andrea Martínez', role: 'Especialista Civil', location: 'Bogotá', specialty: 'Civil' },
+  { id: 3, name: 'Carlos Ruiz', role: 'Asociado Regional', location: 'Medellín', specialty: 'Comercial' },
+  { id: 4, name: 'Diana López', role: 'Asociado Regional', location: 'Cali', specialty: 'Laboral' },
+  { id: 5, name: 'Fernando Torres', role: 'Asociado Regional', location: 'Barranquilla', specialty: 'Penal' },
+  { id: 6, name: 'Laura García', role: 'Especialista IP', location: 'Bogotá', specialty: 'Propiedad Intelectual' },
+  { id: 7, name: 'Miguel Ángel', role: 'Litigante', location: 'Medellín', specialty: 'Civil' },
+];
+
+const LawyerSearch = () => {
+  const [filterLocation, setFilterLocation] = useState('Todos');
+  const [filterSpecialty, setFilterSpecialty] = useState('Todas');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const locations = ['Todos', ...new Set(MOCK_LAWYERS.map(l => l.location))];
+  const specialties = ['Todas', ...new Set(MOCK_LAWYERS.map(l => l.specialty))];
+
+  const filteredLawyers = useMemo(() => {
+    return MOCK_LAWYERS.filter(lawyer => {
+      const matchLocation = filterLocation === 'Todos' || lawyer.location === filterLocation;
+      const matchSpecialty = filterSpecialty === 'Todas' || lawyer.specialty === filterSpecialty;
+      const matchSearch = lawyer.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          lawyer.role.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchLocation && matchSpecialty && matchSearch;
+    });
+  }, [filterLocation, filterSpecialty, searchTerm]);
+
+  return (
+    <div style={{ marginTop: '40px' }}>
+      <h3 style={{ marginBottom: '20px', color: 'var(--color-primary)' }}>Buscador de Talento Legal</h3>
+      
+      {/* Filters */}
+      <div style={{ display: 'flex', gap: '15px', marginBottom: '30px', flexWrap: 'wrap' }}>
+        <input 
+          type="text" 
+          placeholder="Buscar por nombre..." 
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{ padding: '10px 15px', borderRadius: '8px', border: '1px solid #ddd', flex: '1', minWidth: '200px' }}
+        />
+        
+        <select 
+          value={filterLocation} 
+          onChange={(e) => setFilterLocation(e.target.value)}
+          style={{ padding: '10px 15px', borderRadius: '8px', border: '1px solid #ddd' }}
+        >
+          {locations.map(loc => <option key={loc} value={loc}>{loc}</option>)}
+        </select>
+
+        <select 
+          value={filterSpecialty} 
+          onChange={(e) => setFilterSpecialty(e.target.value)}
+          style={{ padding: '10px 15px', borderRadius: '8px', border: '1px solid #ddd' }}
+        >
+          {specialties.map(spec => <option key={spec} value={spec}>{spec}</option>)}
+        </select>
+      </div>
+
+      {/* Results */}
+      <div style={{ maxHeight: '400px', overflowY: 'auto', paddingRight: '10px' }}>
+        {filteredLawyers.length > 0 ? (
+          filteredLawyers.map(lawyer => (
+            <ProfileItem 
+              key={lawyer.id} 
+              name={lawyer.name} 
+              role={`${lawyer.role} • ${lawyer.specialty}`} 
+              location={lawyer.location} 
+            />
+          ))
+        ) : (
+          <p style={{ textAlign: 'center', color: '#999', padding: '20px' }}>No se encontraron abogados con estos filtros.</p>
+        )}
+      </div>
+    </div>
+  );
+};
 
 function AboutPage() {
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="section-block" style={{ minHeight: '60vh', textAlign: 'center', background: 'var(--gradient-hero)' }}>
-        <div className="content-wrapper">
-          <span className="eyebrow">CONÓCENOS</span>
-          <h1 style={{ marginBottom: '30px' }}>Sobre Nosotros</h1>
-          <p className="lead-text" style={{ maxWidth: '800px', margin: '0 auto' }}>
-            Somos un equipo de abogados, ingenieros y diseñadores apasionados por democratizar el acceso a la justicia a través de la tecnología.
-          </p>
-        </div>
-      </section>
+    <div className="section-block" style={{ background: 'var(--color-light)' }}>
+      {/* Header Section */}
+      <div className="content-wrapper text-center mb-60">
+        <h1 style={{ marginBottom: '30px' }}>
+          Somos un equipo legaltech que adopta la tecnología en el corazón de sus procesos
+        </h1>
+        <p className="lead-text" style={{ margin: '0 auto', maxWidth: '800px' }}>
+          Fusionamos el derecho con la innovación para crear soluciones que realmente funcionan.
+        </p>
+      </div>
 
-      {/* Mission Section */}
-      <section className="section-block" style={{ background: 'white', padding: '80px 0' }}>
-        <div className="content-wrapper">
-          <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-            <h2 style={{ marginBottom: '30px' }}>Nuestra Misión</h2>
-            <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: '#555', marginBottom: '40px' }}>
-              Transformar la industria legal combinando inteligencia artificial de última generación con la experiencia de abogados certificados, 
-              haciendo que el asesoramiento legal sea accesible, asequible y eficiente para todos.
+      {/* Team Cards Section */}
+      <div className="content-wrapper">
+        <div className="team-cards-grid">
+          
+          {/* Card 1: Equipo Tech */}
+          <TeamCard title="Equipo Tech" icon="💻">
+            <p className="text-center mb-40" style={{ fontSize: '1.1rem', color: '#555' }}>
+              Mentes brillantes detrás de la arquitectura, desarrollo y dirección tecnológica de Avocado.
             </p>
-          </div>
-        </div>
-      </section>
+            
+            <div className="profile-list">
+              <h3 style={{ fontSize: '1.2rem', borderBottom: '1px solid #eee', paddingBottom: '15px', marginBottom: '25px', color: 'var(--color-secondary)' }}>Desarrollo & Dirección</h3>
+              <ProfileItem name="Desarrollador X" role="Lead Developer" location="Remoto" />
+              <ProfileItem name="Desarrollador Y" role="Frontend Specialist" location="Remoto" />
+              <ProfileItem name="Desarrollador Z" role="AI Engineer" location="Remoto" />
+              <ProfileItem name="Director Tech" role="CTO" location="Bogotá" />
+            </div>
+          </TeamCard>
 
-      {/* Team Section */}
-      <section className="section-block" style={{ padding: '80px 0' }}>
-        <div className="content-wrapper">
-          <span className="eyebrow" style={{ textAlign: 'center', display: 'block' }}>NUESTRO EQUIPO</span>
-          <h2 style={{ textAlign: 'center', marginBottom: '60px' }}>El Equipo TuAvocado</h2>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '40px' }}>
-            {[
-              { name: 'Dra. María Rodríguez', role: 'Directora Legal', area: 'Civil y Comercial', img: '/img/avatar-senior-1.png' },
-              { name: 'Dr. Carlos Méndez', role: 'Abogado Senior', area: 'Laboral y Penal', img: '/img/avatar-senior-2.png' },
-              { name: 'Dr. Ana Gómez', role: 'Especialista en Tutelas', area: 'Derechos Fundamentales', img: '/img/avatar-junior-1.png' },
-              { name: 'Dr. Juan Pérez', role: 'Asesor Corporativo', area: 'Propiedad Intelectual', img: '/img/avatar-junior-2.png' }
-            ].map((member, index) => (
-              <div key={index} style={{ 
-                background: 'white', 
-                borderRadius: '16px', 
-                overflow: 'hidden',
-                boxShadow: 'var(--shadow-soft)',
-                transition: 'all 0.3s',
-                cursor: 'pointer'
-              }} className="team-member-card">
-                <div style={{ 
-                  width: '100%', 
-                  height: '250px', 
-                  background: `url(${member.img}) center/cover`,
-                  position: 'relative'
-                }}>
-                  <div style={{ 
-                    position: 'absolute', 
-                    bottom: 0, 
-                    left: 0, 
-                    right: 0, 
-                    background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)',
-                    padding: '20px',
-                    color: 'white'
-                  }}>
-                    <h3 style={{ margin: '0 0 5px', color: 'white', fontSize: '1.1rem' }}>{member.name}</h3>
-                    <p style={{ margin: 0, fontSize: '0.9rem', color: '#ddd' }}>{member.role}</p>
-                  </div>
-                </div>
-                <div style={{ padding: '20px' }}>
-                  <p style={{ margin: 0, color: 'var(--color-primary)', fontWeight: '600', fontSize: '0.95rem' }}>
-                    <i className="fas fa-briefcase" style={{ marginRight: '8px' }}></i>
-                    {member.area}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+          {/* Card 2: Equipo de Abogados */}
+          <TeamCard title="Nuestros AVOCADOS" icon="⚖️">
+            <p className="text-center mb-40" style={{ fontSize: '1.1rem', color: '#555' }}>
+              Expertos legales comprometidos con la excelencia y la accesibilidad.
+            </p>
 
-      {/* Values Section */}
-      <section className="section-block" style={{ background: 'var(--color-light)', padding: '80px 0' }}>
-        <div className="content-wrapper">
-          <h2 style={{ textAlign: 'center', marginBottom: '60px' }}>Nuestros Valores</h2>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px' }}>
-            {[
-              { icon: 'fa-users', title: 'Accesibilidad', desc: 'Justicia para todos, sin barreras económicas' },
-              { icon: 'fa-lightbulb', title: 'Innovación', desc: 'Tecnología al servicio del derecho' },
-              { icon: 'fa-shield-check', title: 'Integridad', desc: 'Ética y transparencia en cada paso' },
-              { icon: 'fa-heart', title: 'Empatía', desc: 'Entendemos tus necesidades legales' }
-            ].map((value, index) => (
-              <div key={index} style={{ textAlign: 'center', padding: '30px' }}>
-                <i className={`fas ${value.icon}`} style={{ fontSize: '3rem', color: 'var(--color-primary)', marginBottom: '20px' }}></i>
-                <h3 style={{ marginBottom: '15px' }}>{value.title}</h3>
-                <p style={{ color: '#666' }}>{value.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            {/* Replaced static list with LawyerSearch component */}
+            <LawyerSearch />
+            
+          </TeamCard>
 
-      {/* CTA Section */}
-      <section className="section-block" style={{ background: 'var(--color-dark)', color: 'white', textAlign: 'center', padding: '60px 0' }}>
-        <div className="content-wrapper">
-          <h2 style={{ color: 'white', marginBottom: '20px' }}>¿Quieres formar parte del equipo?</h2>
-          <p style={{ fontSize: '1.1rem', marginBottom: '30px', color: '#ccc' }}>
-            Estamos siempre buscando talento legal y tecnológico
-          </p>
-          <button className="btn-primary">
-            Ver Vacantes
-          </button>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

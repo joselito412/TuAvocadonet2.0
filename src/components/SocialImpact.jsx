@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const SocialImpact = () => {
+const SocialImpact = ({ showLearnMore }) => {
   const [count, setCount] = useState(0);
   const target = 0; // Número objetivo de consultas (actualmente en 0)
 
@@ -62,6 +62,16 @@ const SocialImpact = () => {
           <p>
             <strong>Paz Social:</strong> Al mejorar el acceso a la información legal, contribuimos directamente a disminuir la conflictividad y resolver disputas eficientemente.
           </p>
+          
+          {showLearnMore && (
+            <div style={{ marginTop: '30px' }}>
+              <a href="/#/sostenibilidad" style={{ textDecoration: 'none' }}>
+                <button className="btn-primary" style={{ padding: '12px 25px', fontSize: '0.9rem' }}>
+                  Ver más impacto →
+                </button>
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </section>

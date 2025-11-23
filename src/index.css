@@ -163,6 +163,7 @@ h3 {
   color: var(--color-dark);
   cursor: pointer;
   z-index: 1100;
+  position: relative; /* Fix for z-index */
 }
 
 .mobile-only-btn {
@@ -1223,9 +1224,7 @@ h3 {
     display: block;
     text-align: center;
   }
-  .nav-links {
-    display: none; /* Hide nav links on mobile */
-  }
+
 }
 
 /* PRACTICE AREA CARD HOVER */

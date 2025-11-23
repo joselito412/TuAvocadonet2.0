@@ -41,33 +41,32 @@ export const PhoneHome = () => {
         gap: '20px',
         padding: '20px'
       }}>
-        <div style={{ textAlign: 'center', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-          <h3 style={{...headerStyle, color: '#1B5E20', marginBottom: '20px'}}>Hola, Usuario</h3>
-          
+        <div style={{ textAlign: 'center', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingTop: '30px' }}>
           {/* Imagen avatar-junior-1 - centrada y con mejor tamaño */}
           <div style={{ 
             display: 'flex', 
             justifyContent: 'center', 
             alignItems: 'center',
-            flex: 1,
             width: '100%',
-            margin: '20px 0'
+            marginBottom: '15px'
           }}>
-            <img 
+        <img 
               src={`${import.meta.env.BASE_URL}img/avatar-junior-1.png`} 
-              alt="Asistente Legal" 
-              style={{ 
+          alt="Asistente Legal" 
+          style={{ 
                 width: '100%', 
                 maxWidth: '200px',
-                height: 'auto',
+            height: 'auto',
                 objectFit: 'contain',
                 filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.15))'
-              }} 
-            />
-          </div>
-        </div>
-
-        <div style={{ 
+          }} 
+        />
+      </div>
+          
+          <h3 style={{...headerStyle, color: '#1B5E20', marginBottom: '0', marginTop: '10px', fontSize: '1rem'}}>¿En qué te puedo ayudar hoy?</h3>
+    </div>
+    
+    <div style={{ 
           marginTop: 'auto', 
           marginBottom: '20px', 
           display: 'flex', 
@@ -78,23 +77,23 @@ export const PhoneHome = () => {
           <button 
             onClick={handleChatClick}
             style={{ 
-              background: '#FF6D00', 
-              color: 'white', 
-              border: 'none', 
+        background: '#FF6D00', 
+        color: 'white', 
+        border: 'none', 
               padding: '14px', 
-              borderRadius: '25px', 
-              fontWeight: 'bold', 
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
+        borderRadius: '25px', 
+        fontWeight: 'bold', 
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '8px',
               boxShadow: '0 4px 10px rgba(255, 109, 0, 0.3)',
               width: '100%'
             }}
           >
-            <i className="fas fa-comment-dots"></i> Habla con tu Avocado
-          </button>
+        <i className="fas fa-comment-dots"></i> Habla con tu Avocado
+      </button>
 
           <div style={{ 
             backgroundColor: 'rgba(255, 255, 255, 0.9)', 
@@ -108,10 +107,10 @@ export const PhoneHome = () => {
             <i className="fas fa-search"></i> 
             <span style={{ fontSize: '0.85rem' }}>Buscar servicio...</span>
           </div>
-        </div>
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 // --- PANTALLA 2: DOCUMENTOS ---
@@ -140,19 +139,19 @@ export const PhoneDocs = ({ selectedCategory = 'Civil' }) => {
   const documents = categories[selectedCategory] || categories['Civil'];
 
   return (
-    <div style={screenStyle}>
-      <h3 style={headerStyle}>Mis Documentos</h3>
-      
+  <div style={screenStyle}>
+    <h3 style={headerStyle}>Mis Documentos</h3>
+    
       <div style={{ display: 'flex', gap: '10px', marginBottom: '15px' }}>
-        <div style={{ flex: 1, background: '#E8F5E9', padding: '10px', borderRadius: '8px', textAlign: 'center' }}>
-          <i className="fas fa-plus" style={{ color: '#2E7D32' }}></i><br/>
-          <span style={{ fontSize: '0.7rem' }}>Nuevo</span>
-        </div>
-        <div style={{ flex: 1, background: '#F5F5F5', padding: '10px', borderRadius: '8px', textAlign: 'center' }}>
-          <i className="fas fa-folder" style={{ color: '#757575' }}></i><br/>
-          <span style={{ fontSize: '0.7rem' }}>Archivos</span>
-        </div>
+      <div style={{ flex: 1, background: '#E8F5E9', padding: '10px', borderRadius: '8px', textAlign: 'center' }}>
+        <i className="fas fa-plus" style={{ color: '#2E7D32' }}></i><br/>
+        <span style={{ fontSize: '0.7rem' }}>Nuevo</span>
       </div>
+      <div style={{ flex: 1, background: '#F5F5F5', padding: '10px', borderRadius: '8px', textAlign: 'center' }}>
+        <i className="fas fa-folder" style={{ color: '#757575' }}></i><br/>
+        <span style={{ fontSize: '0.7rem' }}>Archivos</span>
+      </div>
+    </div>
 
       <div style={{ 
         fontSize: '0.7rem', 
@@ -176,15 +175,15 @@ export const PhoneDocs = ({ selectedCategory = 'Civil' }) => {
             background: 'white'
           }}>
             <i className={`fas ${getDocumentIcon(doc)}`} style={{ color: '#2E7D32', fontSize: '1rem' }}></i>
-            <div style={{ flex: 1 }}>
+          <div style={{ flex: 1 }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 'bold' }}>{doc}</div>
               <div style={{ fontSize: '0.6rem', color: '#888' }}>Disponible</div>
-            </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  );
+  </div>
+);
 };
 
 // --- PANTALLA 3: DASHBOARD (NOTION STYLE) ---
@@ -265,9 +264,9 @@ export const PhoneLawyers = ({ selectedCountry = 'co' }) => {
   const lawyers = lawyersByCountry[selectedCountry] || lawyersByCountry['co'];
 
   return (
-    <div style={screenStyle}>
-      <h3 style={headerStyle}>Especialistas</h3>
-      
+  <div style={screenStyle}>
+    <h3 style={headerStyle}>Especialistas</h3>
+    
       <div style={{ 
         fontSize: '0.75rem', 
         color: '#666', 
@@ -278,8 +277,8 @@ export const PhoneLawyers = ({ selectedCountry = 'co' }) => {
         textAlign: 'center'
       }}>
         {countryNames[selectedCountry]}
-      </div>
-      
+    </div>
+    
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', overflowY: 'auto', maxHeight: '400px' }}>
         {lawyers.map((lawyer, i) => (
           <div key={i} style={{ 
@@ -291,7 +290,7 @@ export const PhoneLawyers = ({ selectedCountry = 'co' }) => {
             borderRadius: '8px',
             border: '1px solid #eee'
           }}>
-            <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative' }}>
                <img 
                  src={lawyer.img} 
                  alt={lawyer.name} 
@@ -303,34 +302,34 @@ export const PhoneLawyers = ({ selectedCountry = 'co' }) => {
                    border: '2px solid #E8F5E9'
                  }} 
                />
-            </div>
-            <div style={{ flex: 1 }}>
+          </div>
+          <div style={{ flex: 1 }}>
               <div style={{ fontWeight: 'bold', fontSize: '0.85rem', color: '#2E7D32' }}>{lawyer.name}</div>
               <div style={{ fontSize: '0.7rem', color: '#666', marginTop: '2px' }}>{lawyer.spec}</div>
-            </div>
+          </div>
             <div style={{ color: '#FFC107', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '3px' }}>
               <i className="fas fa-star"></i> 
               <span>{lawyer.stars}</span>
-            </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  );
+  </div>
+);
 };
 
 // --- PANTALLA 5: PRICING ---
-export function PhonePricing({ selectedPlan = 'junior' }) {
-  // Determinar qué imagen mostrar según el plan seleccionado
+export function PhonePricing({ selectedPlan = 'free' }) {
+  // Determinar qué imagen mostrar según el plan seleccionado (invertido entre FREE y Junior)
   const getAvatarImage = () => {
     switch(selectedPlan.toLowerCase()) {
       case 'senior':
         return `${import.meta.env.BASE_URL}img/avatar-senior-1.png`;
       case 'free':
-        return `${import.meta.env.BASE_URL}img/avatar-free-2.png`;
+        return `${import.meta.env.BASE_URL}img/Gob. Corporativo (2).png`;
       case 'junior':
       default:
-        return `${import.meta.env.BASE_URL}img/Gob. Corporativo (2).png`;
+        return `${import.meta.env.BASE_URL}img/avatar-free-2.png`;
     }
   };
 
@@ -382,12 +381,12 @@ export function PhonePricing({ selectedPlan = 'junior' }) {
           marginTop: '20px'
         }}>
           <div style={{ 
-            background: selectedPlan === 'free' ? '#2E7D32' : '#E8F5E9', 
+            background: selectedPlan === 'free' ? '#6c757d' : '#E8F5E9', 
             padding: '15px 10px', 
             borderRadius: '12px',
             textAlign: 'center',
             transform: selectedPlan === 'free' ? 'scale(1.05)' : 'scale(1)',
-            boxShadow: selectedPlan === 'free' ? '0 4px 8px rgba(46, 125, 50, 0.3)' : 'none',
+            boxShadow: selectedPlan === 'free' ? '0 4px 8px rgba(108, 117, 125, 0.3)' : 'none',
             transition: 'all 0.3s ease'
           }}>
             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: selectedPlan === 'free' ? 'white' : 'var(--color-primary)' }}>
@@ -416,12 +415,12 @@ export function PhonePricing({ selectedPlan = 'junior' }) {
           </div>
           
           <div style={{ 
-            background: selectedPlan === 'senior' ? '#2E7D32' : '#E3F2FD', 
+            background: selectedPlan === 'senior' ? '#4065B9' : '#E3F2FD', 
             padding: '15px 10px', 
             borderRadius: '12px',
             textAlign: 'center',
             transform: selectedPlan === 'senior' ? 'scale(1.05)' : 'scale(1)',
-            boxShadow: selectedPlan === 'senior' ? '0 4px 8px rgba(46, 125, 50, 0.3)' : 'none',
+            boxShadow: selectedPlan === 'senior' ? '0 4px 8px rgba(64, 101, 185, 0.3)' : 'none',
             transition: 'all 0.3s ease'
           }}>
             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: selectedPlan === 'senior' ? 'white' : 'var(--color-secondary)' }}>

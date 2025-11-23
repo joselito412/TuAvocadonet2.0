@@ -11,7 +11,7 @@ function HomePage() {
   // IDs de las secciones que queremos trackear
   const sectionIds = ['hero', 'features', 'automation', 'specialized', 'subscriptions', 'social-impact', 'consultancy', 'blog'];
   const activeSection = useScrollSpy(sectionIds, 300);
-  const [selectedPlan, setSelectedPlan] = useState('junior');
+  const [selectedPlan, setSelectedPlan] = useState('free');
   const [selectedDocCategory, setSelectedDocCategory] = useState('Civil');
   const [selectedCountry, setSelectedCountry] = useState('co');
 
@@ -25,8 +25,8 @@ function HomePage() {
             <div className="text-content" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
               {/* <span className="eyebrow">TU ABOGADO DE BOLSILLO</span> */}
               <div>
-                <h1>Orientación legal profesional al alcance de tu mano</h1>
-                <p className="lead-text">El futuro legal, simplificado y accesible desde tu celular.</p>
+              <h1>Orientación legal profesional al alcance de tu mano</h1>
+              <p className="lead-text">El futuro legal, simplificado y accesible desde tu celular.</p>
               </div>
               
               {/* Tarjeta de Emergencia fuera del celular */}
@@ -51,7 +51,7 @@ function HomePage() {
                     <div className="phone-notch"></div>
                     <div className="phone-screen">
                       <div className="screen-content fade-in">
-                        <PhoneHome />
+                <PhoneHome />
                       </div>
                     </div>
                   </div>
@@ -118,7 +118,7 @@ function HomePage() {
                     <div className="phone-notch"></div>
                     <div className="phone-screen">
                       <div className="screen-content fade-in">
-                        <PhoneDashboard />
+                <PhoneDashboard />
                       </div>
                     </div>
                   </div>
@@ -190,14 +190,14 @@ function HomePage() {
                           objectFit: 'cover',
                           borderRadius: '50%'
                         }} />
-                      </div>
+                  </div>
                       <h4 style={{ margin: '0 0 6px', fontSize: '1rem', fontWeight: 'bold', color: isSelected ? '#2E7D32' : '#333' }}>{country.name}</h4>
                       <p style={{ fontSize: '0.75rem', color: '#666', margin: '0 0 8px' }}>{country.desc}</p>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.7rem', color: '#888' }}>
                         <i className="fas fa-users" style={{ color: isSelected ? '#2E7D32' : '#999' }}></i>
                         <span>{country.lawyers}+ abogados</span>
-                      </div>
-                    </div>
+                  </div>
+                </div>
                   );
                 })}
               </div>
@@ -355,14 +355,16 @@ function HomePage() {
       {/* SECCIONES FULL WIDTH (SIN CELULAR) */}
       
       <section className="section-block section-consultancy-full" id="consultancy">
-         <div className="content-wrapper" style={{ textAlign: 'center', maxWidth: '900px' }}>
+         <div className="content-wrapper section-consultancy-content">
             {/* <span className="eyebrow">ASISTENCIA INTELIGENTE</span> */}
-            <h2 style={{ marginBottom: '20px' }}>Consultorio Jurídico IA</h2>
-            <p style={{ marginBottom: '40px', fontSize: '1.1rem', color: '#555', maxWidth: '700px', margin: '0 auto 40px' }}>
+            <h2 className="section-consultancy-title">Consultorio Jurídico IA</h2>
+            <p className="section-consultancy-description">
               Obtén orientación legal instantánea con nuestro asistente de IA. Haz preguntas sobre contratos, derechos laborales, tutelas y más. Disponible 24/7 para resolver tus dudas legales.
             </p>
             
+            <div className="section-consultancy-chat">
             <AIChat />
+            </div>
          </div>
       </section>
 
@@ -370,18 +372,18 @@ function HomePage() {
         <SocialImpact showLearnMore={true} />
       </div>
 
-      <section className="section-block" id="blog" style={{ padding: '80px 0', background: 'white' }}>
+      <section className="section-block section-blog" id="blog">
          <div className="content-wrapper">
-            <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+            <div className="section-blog-header">
               {/* <span className="eyebrow">CONOCIMIENTO LEGAL</span> */}
               <h2>Blog Legal-Tech</h2>
-              <p style={{ fontSize: '1.1rem', color: '#666', maxWidth: '600px', margin: '15px auto 0' }}>
+              <p className="section-blog-subtitle">
                 Mantente actualizado con las últimas tendencias en derecho y tecnología
               </p>
             </div>
             
             {/* Two Column Layout */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '40px', marginBottom: '50px' }}>
+            <div className="section-blog-grid">
               
               {/* BLOQUE 1: Último Artículo Destacado */}
               <div style={{

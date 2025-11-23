@@ -6,8 +6,29 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
   body {
     @apply font-body bg-light text-dark overflow-x-hidden pt-20;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   h1,
@@ -83,6 +104,7 @@
   /* Split Layout & Sticky Phone Display */
   .split-layout {
     @apply flex gap-12 max-w-7xl mx-auto px-6;
+    align-items: flex-start;
   }
 
   .scroll-content {
@@ -91,10 +113,16 @@
 
   .sticky-column {
     @apply hidden lg:block w-96 flex-shrink-0;
+    position: relative;
   }
 
   .sticky-wrapper {
-    @apply sticky top-32 h-screen flex items-center justify-center;
+    position: sticky;
+    top: 8rem;
+    height: calc(100vh - 8rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 2rem 0;
   }
 
@@ -178,6 +206,8 @@
   /* Utilities */
   .content-wrapper {
     @apply max-w-6xl mx-auto px-5 relative;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .section-block {
@@ -760,6 +790,60 @@
   .section-consultancy-full .content-wrapper {
     @apply relative z-10;
   }
+
+  /* Consultancy Section Content */
+  .section-consultancy-content {
+    text-align: center;
+    max-width: 900px;
+    padding: 40px 20px;
+  }
+
+  .section-consultancy-title {
+    margin-bottom: 20px;
+  }
+
+  .section-consultancy-description {
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-consultancy-chat {
+    width: 100%;
+  }
+
+  /* Blog Section */
+  .section-blog {
+    padding: 80px 0;
+    background: white;
+  }
+
+  .section-blog-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .section-blog-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+    margin: 15px auto 0;
+  }
+
+  .section-blog-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+
+  /* Social Impact Section */
+  .section-social-impact {
+    padding: 60px 20px;
+  }
 }
 
 /* Mobile Responsive Styles */
@@ -826,6 +910,24 @@
   .chat-interface-container {
     @apply w-full mx-0 rounded-md;
     height: 500px;
+    max-width: 100% !important;
+  }
+
+  .section-consultancy-full .chat-interface-container {
+    height: 450px !important;
+    margin: 0 !important;
+  }
+
+  .chat-header {
+    padding: 15px !important;
+  }
+
+  .chat-messages {
+    padding: 15px !important;
+  }
+
+  .chat-input-area {
+    padding: 15px !important;
   }
 
   /* Consultancy Section with Background - Mobile Override */
@@ -840,6 +942,96 @@
 
   .section-consultancy-full .content-wrapper {
     @apply px-4;
+  }
+
+  /* Consultancy Section Mobile */
+  .section-consultancy-content {
+    padding: 30px 15px !important;
+  }
+
+  .section-consultancy-title {
+    font-size: 1.5rem !important;
+    margin-bottom: 15px !important;
+  }
+
+  .section-consultancy-description {
+    font-size: 0.95rem !important;
+    margin-bottom: 25px !important;
+    padding: 0 10px;
+  }
+
+  .section-consultancy-chat {
+    width: 100%;
+    padding: 0;
+  }
+
+  /* Blog Section Mobile */
+  .section-blog {
+    padding: 40px 0 !important;
+  }
+
+  .section-blog-header {
+    margin-bottom: 30px !important;
+    padding: 0 15px;
+  }
+
+  .section-blog-subtitle {
+    font-size: 0.95rem !important;
+    padding: 0 15px;
+  }
+
+  .section-blog-grid {
+    grid-template-columns: 1fr !important;
+    gap: 25px !important;
+    margin-bottom: 30px !important;
+    padding: 0 15px;
+  }
+
+  .featured-article {
+    margin-bottom: 20px;
+  }
+
+  .featured-article > div:first-child {
+    height: 200px !important;
+  }
+
+  .featured-article > div:last-child {
+    padding: 20px !important;
+  }
+
+  /* Social Impact Mobile */
+  .section-social-impact {
+    padding: 40px 15px !important;
+  }
+
+  .impact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+
+  .impact-header {
+    margin-bottom: 30px !important;
+    padding: 0 10px;
+  }
+
+  .impact-header h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .flip-counter {
+    gap: 4px !important;
+  }
+
+  .flip-digit {
+    width: 30px !important;
+    height: 40px !important;
+    font-size: 1.5rem !important;
+  }
+
+  /* Content Wrapper Mobile */
+  .content-wrapper {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
   }
 
   /* Country Cards for Lawyer Section */
@@ -876,5 +1068,100 @@
   .country-card:hover .country-flag {
     @apply transform scale-110 shadow-xl;
     border-color: #2E7D32;
+  }
+
+  /* Split Layout Mobile */
+  .split-layout {
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding: 0 15px !important;
+  }
+
+  .sticky-column {
+    display: none !important;
+  }
+
+  .scroll-content {
+    width: 100% !important;
+  }
+
+  .section-block {
+    padding: 40px 15px !important;
+    min-height: auto !important;
+  }
+
+  .text-content {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+  .section-consultancy-content {
+    padding: 20px 10px !important;
+  }
+
+  .section-consultancy-title {
+    font-size: 1.3rem !important;
+  }
+
+  .section-consultancy-description {
+    font-size: 0.9rem !important;
+  }
+
+  .section-consultancy-full .chat-interface-container {
+    height: 400px !important;
+  }
+
+  .section-blog {
+    padding: 30px 0 !important;
+  }
+
+  .section-blog-header {
+    margin-bottom: 20px !important;
+  }
+
+  .section-blog-subtitle {
+    font-size: 0.9rem !important;
+  }
+
+  .featured-article > div:first-child {
+    height: 180px !important;
+  }
+
+  .featured-article > div:last-child {
+    padding: 15px !important;
+  }
+
+  .section-social-impact {
+    padding: 30px 10px !important;
+  }
+
+  .impact-card {
+    padding: 20px !important;
+  }
+
+  .flip-digit {
+    width: 25px !important;
+    height: 35px !important;
+    font-size: 1.2rem !important;
+  }
+
+  h1 {
+    font-size: 1.8rem !important;
+  }
+
+  h2 {
+    font-size: 1.4rem !important;
+  }
+
+  .lead-text {
+    font-size: 1rem !important;
+  }
+
+  .content-wrapper {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
   }
 }

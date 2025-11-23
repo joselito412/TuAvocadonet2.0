@@ -50,13 +50,23 @@ function Footer() {
                 </Link>
               </li>
               <li style={{ marginBottom: '12px' }}>
-                <Link to="/personas" style={{ color: '#ccc', textDecoration: 'none', transition: 'color 0.3s' }}>
-                  Personas
+                <Link to="/usuarios" style={{ color: '#ccc', textDecoration: 'none', transition: 'color 0.3s' }}>
+                  Usuarios
+                </Link>
+              </li>
+              <li style={{ marginBottom: '12px' }}>
+                <Link to="/blog" style={{ color: '#ccc', textDecoration: 'none', transition: 'color 0.3s' }}>
+                  Blog
                 </Link>
               </li>
               <li style={{ marginBottom: '12px' }}>
                 <Link to="/sobre-nosotros" style={{ color: '#ccc', textDecoration: 'none', transition: 'color 0.3s' }}>
-                  Sobre Nosotros
+                  Nosotros
+                </Link>
+              </li>
+              <li style={{ marginBottom: '12px' }}>
+                <Link to="/sostenibilidad" style={{ color: '#ccc', textDecoration: 'none', transition: 'color 0.3s' }}>
+                  Sostenibilidad
                 </Link>
               </li>
             </ul>

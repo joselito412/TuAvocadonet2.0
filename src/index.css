@@ -85,7 +85,7 @@
   .sticky-column {
     @apply hidden lg:block w-96 flex-shrink-0;
     /* Ensure the column takes full height of the parent flex container */
-    align-self: stretch; 
+    align-self: stretch;
     position: relative;
   }
 
@@ -858,33 +858,6 @@
 
   .lead-text {
     @apply text-lg;
-  }
-
-  .mobile-menu-toggle {
-    @apply block;
-  }
-
-  .nav-links {
-    @apply fixed top-0 -right-full w-full h-screen bg-white bg-opacity-95 backdrop-blur-lg
-           flex-col justify-center items-center gap-8 transition-all duration-300 
-           shadow-xl;
-    z-index: 1000;
-  }
-
-  .nav-links.open {
-    @apply right-0;
-  }
-
-  .nav-links a {
-    @apply text-2xl font-bold;
-  }
-
-  .mobile-only-btn {
-    @apply block mt-5;
-  }
-
-  .desktop-only-btn {
-    @apply hidden;
   }
 
   .chat-interface-container {

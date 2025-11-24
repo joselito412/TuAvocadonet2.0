@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const SocialImpact = ({ showLearnMore }) => {
   const [count, setCount] = useState(0);
-  const target = 0; // Número objetivo de consultas (actualmente en 0)
+  const target = 12450; // Número objetivo de consultas
 
   useEffect(() => {
     const duration = 2000; // 2 segundos

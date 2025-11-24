@@ -1,7 +1,14 @@
 import React from 'react';
 import { PhoneHome, PhoneDocs, PhoneDashboard, PhoneLawyers, PhonePricing } from './PhoneScreens';
+import useDeviceDetection from '../hooks/useDeviceDetection';
 
 const PhoneWrapper = ({ activeSection, selectedPlan = 'junior', selectedDocCategory = 'Civil', selectedCountry = 'co' }) => {
+  const { isDesktop } = useDeviceDetection();
+
+  // Don't render anything on non-desktop devices
+  if (!isDesktop) {
+    return null;
+  }
   
   // Determinar qué pantalla mostrar según la sección activa
   const renderScreen = () => {

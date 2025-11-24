@@ -329,7 +329,7 @@ export function PhonePricing({ selectedPlan = 'free' }) {
         return `${import.meta.env.BASE_URL}img/Gob. Corporativo (2).png`;
       case 'junior':
       default:
-        return `${import.meta.env.BASE_URL}img/avatar-free-2.png`;
+        return `${import.meta.env.BASE_URL}img/avatar-junior-1.png`;
     }
   };
 
@@ -398,18 +398,18 @@ export function PhonePricing({ selectedPlan = 'free' }) {
           </div>
           
           <div style={{ 
-            background: selectedPlan === 'junior' ? '#2E7D32' : 'var(--color-primary)', 
+            background: selectedPlan === 'junior' ? '#2E7D32' : '#E8F5E9', 
             padding: '15px 10px', 
             borderRadius: '12px',
             textAlign: 'center',
             transform: selectedPlan === 'junior' ? 'scale(1.05)' : 'scale(1)',
-            boxShadow: selectedPlan === 'junior' ? '0 4px 8px rgba(46, 125, 50, 0.3)' : '0 4px 8px rgba(46, 125, 50, 0.3)',
+            boxShadow: selectedPlan === 'junior' ? '0 4px 8px rgba(46, 125, 50, 0.3)' : 'none',
             transition: 'all 0.3s ease'
           }}>
-            <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white' }}>
+            <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: selectedPlan === 'junior' ? 'white' : '#2E7D32' }}>
               Junior
             </div>
-            <div style={{ fontSize: '0.7rem', color: 'white', marginTop: '5px' }}>
+            <div style={{ fontSize: '0.7rem', color: selectedPlan === 'junior' ? 'white' : '#2E7D32', marginTop: '5px' }}>
               $15
             </div>
           </div>

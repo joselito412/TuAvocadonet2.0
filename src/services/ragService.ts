@@ -1,23 +1,26 @@
-// RAG Service - Legal Assistant API
 import { config, isDevelopment } from '../config/config';
 import { RateLimiter, sanitizeInput } from '../utils/security';
 import { analytics } from '../utils/analytics';
+import { ragQuerySchema, type RagResponse } from '../schemas/rag';
+import { api } from '../lib/axios';
 
 const rateLimiter = new RateLimiter(config.maxRequestsPerWindow, config.rateLimitWindow);
 
-export async function queryLegalAssistant(query) {
+export async function queryLegalAssistant(query: string): Promise<string> {
   // Rate limiting check
   if (!rateLimiter.canMakeRequest()) {
     analytics.trackAction('rate_limit_exceeded', { query: query.substring(0, 50) });
     throw new Error('Demasiadas solicitudes. Por favor, espera un momento y vuelve a intentar.');
   }
 
-  // Sanitize input
-  const sanitizedQuery = sanitizeInput(query, config.maxMessageLength);
+  // Validate and sanitize input using Zod
+  const validationResult = ragQuerySchema.safeParse({ query });
   
-  if (!sanitizedQuery) {
-    throw new Error('La consulta no puede estar vacía.');
+  if (!validationResult.success) {
+    throw new Error(validationResult.error.issues[0].message);
   }
+
+  const sanitizedQuery = sanitizeInput(validationResult.data.query, config.maxMessageLength);
 
   if (isDevelopment()) {
     console.log("Querying RAG with:", sanitizedQuery.substring(0, 100));
@@ -29,12 +32,13 @@ export async function queryLegalAssistant(query) {
   });
 
   try {
-    // TODO: CONECTAR AQUÍ TU VECTOR DB
-    // 1. Embed query (OpenAI embeddings)
-    // 2. Search in Vector DB  
-    // 3. Send context + query to LLM
+    // Connect to real Vector DB via Axios
+    // We use the defined RagResponse type for strict typing of the response data
+    const response = await api.post<RagResponse>('/rag/query', { query: sanitizedQuery });
+    return response.data.answer;
     
-    // Simulated RAG response for now
+    /* 
+    // Simulated RAG response (kept for reference/fallback if needed)
     return new Promise((resolve) => {
       setTimeout(() => {
         const lowerQuery = sanitizedQuery.toLowerCase();
@@ -49,8 +53,10 @@ export async function queryLegalAssistant(query) {
         }
       }, 1500);
     });
+    */
   } catch (error) {
-    analytics.trackError(error, { context: 'RAG query', query: sanitizedQuery.substring(0, 50) });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    analytics.trackError(new Error(errorMessage), { context: 'RAG query', query: sanitizedQuery.substring(0, 50) });
     throw new Error('Error al conectar con el servicio de asesoría legal. Intenta nuevamente.');
   }
 }

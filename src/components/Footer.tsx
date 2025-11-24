@@ -1,10 +1,9 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
     <footer className="bg-dark text-white py-12 mt-16">
-      <div className="content-wrapper">
+      <div className="max-w-6xl mx-auto px-5 relative w-full box-border">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
           {/* Column 1: Brand */}
           <div>
@@ -33,36 +32,20 @@ function Footer() {
           <div>
             <h4 className="text-white mb-5 text-lg font-semibold">Navegación</h4>
             <ul className="list-none p-0 space-y-3">
-              <li>
-                <Link to="/" className="text-gray-400 no-underline transition-colors hover:text-primary">
-                  Asesoría Legal
-                </Link>
-              </li>
-              <li>
-                <Link to="/que-hacemos" className="text-gray-400 no-underline transition-colors hover:text-primary">
-                  ¿Qué hacemos?
-                </Link>
-              </li>
-              <li>
-                <Link to="/usuarios" className="text-gray-400 no-underline transition-colors hover:text-primary">
-                  Usuarios
-                </Link>
-              </li>
-              <li>
-                <Link to="/blog" className="text-gray-400 no-underline transition-colors hover:text-primary">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link to="/sobre-nosotros" className="text-gray-400 no-underline transition-colors hover:text-primary">
-                  Nosotros
-                </Link>
-              </li>
-              <li>
-                <Link to="/sostenibilidad" className="text-gray-400 no-underline transition-colors hover:text-primary">
-                  Sostenibilidad
-                </Link>
-              </li>
+              {[
+                { path: '/', label: 'Asesoría Legal' },
+                { path: '/que-hacemos', label: '¿Qué hacemos?' },
+                { path: '/usuarios', label: 'Usuarios' },
+                { path: '/blog', label: 'Blog' },
+                { path: '/sobre-nosotros', label: 'Nosotros' },
+                { path: '/sostenibilidad', label: 'Sostenibilidad' },
+              ].map((link) => (
+                <li key={link.path}>
+                  <Link to={link.path} className="text-gray-400 no-underline transition-colors hover:text-primary">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -70,21 +53,17 @@ function Footer() {
           <div>
             <h4 className="text-white mb-5 text-lg font-semibold">Información Legal</h4>
             <ul className="list-none p-0 space-y-3">
-              <li>
-                <Link to="/legal#datos-personales" className="text-gray-400 no-underline transition-colors hover:text-primary">
-                  Datos Personales
-                </Link>
-              </li>
-              <li>
-                <Link to="/legal#terminos" className="text-gray-400 no-underline transition-colors hover:text-primary">
-                  Términos y Condiciones
-                </Link>
-              </li>
-              <li>
-                <Link to="/legal#privacidad" className="text-gray-400 no-underline transition-colors hover:text-primary">
-                  Política de Privacidad
-                </Link>
-              </li>
+              {[
+                { path: '/legal#datos-personales', label: 'Datos Personales' },
+                { path: '/legal#terminos', label: 'Términos y Condiciones' },
+                { path: '/legal#privacidad', label: 'Política de Privacidad' },
+              ].map((link) => (
+                <li key={link.path}>
+                  <Link to={link.path} className="text-gray-400 no-underline transition-colors hover:text-primary">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

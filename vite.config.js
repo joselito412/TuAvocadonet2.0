@@ -16,5 +16,20 @@ export default defineConfig({
     assetsDir: "assets",
     sourcemap: false,
     minify: "esbuild",
+    chunkSizeWarningLimit: 600,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Vendor chunks for better caching
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          // Separate chunk for UI components
+          'ui-components': [
+            './src/components/Navigation.tsx',
+            './src/components/Footer.tsx',
+            './src/components/WhatsAppButton.jsx'
+          ],
+        },
+      },
+    },
   },
 });

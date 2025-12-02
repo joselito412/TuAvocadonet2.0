@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avocado Legal</title>
+    <script>
+      // GitHub Pages 404 handler for React Router (BrowserRouter)
+      // Redirects to index.html with the correct path
+      var pathSegmentsToKeep = 1;
+      var l = window.location;
+      var basePath = l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/');
+      var path = l.pathname.slice(basePath.length);
+      var redirect = basePath + '/index.html' + (path ? '?p=' + encodeURIComponent(path) : '') + l.search + l.hash;
+      window.location.replace(redirect);
+    </script>
+  </head>
+  <body>
+    <div>Redirecting...</div>
+  </body>
+</html>

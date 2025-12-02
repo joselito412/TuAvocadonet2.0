@@ -8,9 +8,10 @@ function Footer() {
           {/* Column 1: Brand */}
           <div>
             <img 
-              src={`${import.meta.env.BASE_URL}img/logo.png`} 
+              src={`${import.meta.env.BASE_URL}img/Logo_Avocado.svg`} 
               alt="Avocado Logo" 
-              className="h-16 mb-5" 
+              className="h-20 md:h-24 lg:h-28 w-auto mb-5" 
+              style={{ minWidth: '140px' }}
             />
             <p className="text-sm text-gray-400 leading-relaxed">
               Tu abogado de bolsillo. Orientación legal profesional impulsada por IA, accesible 24/7.

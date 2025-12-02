@@ -23,13 +23,14 @@ function Navigation() {
     <>
       {/* Fixed Navigation Bar */}
       <nav className="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
-        <div className="flex justify-between items-center px-6 md:px-10 py-4 max-w-7xl mx-auto">
+        <div className="flex justify-between items-center px-4 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 max-w-7xl mx-auto">
           <div className="flex-shrink-0">
             <Link to="/" onClick={closeMenu}>
               <img
-                src={`${import.meta.env.BASE_URL}img/logo.png`}
+                src={`${import.meta.env.BASE_URL}img/Logo_Avocado.svg`}
                 alt="AVO Logo"
-                className="h-20 w-auto transition-transform hover:scale-105"
+                className="h-20 md:h-24 lg:h-28 w-auto transition-transform hover:scale-105"
+                style={{ minWidth: '100px', maxWidth: '200px' }}
               />
             </Link>
           </div>

@@ -87,20 +87,60 @@
     /* Ensure the column takes full height of the parent flex container */
     align-self: stretch;
     position: relative;
+    z-index: 40; /* Menor que el header (z-50) para que el header siempre esté por encima */
+  }
+
+  /* Animación de entrada: celular aparece desde arriba (bajando de sección 1 a 2) */
+  .sticky-column.phone-slide-down .sticky-wrapper {
+    animation: slideDownFromTop 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  @keyframes slideDownFromTop {
+    from {
+      opacity: 0;
+      transform: translateY(-150px) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Animación de salida: celular desaparece hacia abajo (subiendo de sección 2 a 1) */
+  .sticky-column.phone-slide-out .sticky-wrapper {
+    animation: slideOutToBottom 0.8s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+  }
+
+  @keyframes slideOutToBottom {
+    from {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(150px) scale(0.9);
+    }
+  }
+
+  /* Estado visible sin animación */
+  .sticky-column.phone-visible .sticky-wrapper {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 
   .sticky-wrapper {
     position: sticky;
-    top: 6rem; /* Adjusted top offset */
+    top: 6rem; /* Adjusted top offset - respeta el espacio del header */
     height: calc(100vh - 6rem);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem 0;
+    padding: 1rem 0;
     /* Ensure it doesn't overflow its container */
-    max-height: 100vh;
-    z-index: 50;
+    max-height: calc(100vh - 6rem); /* Asegura que no exceda el viewport menos el header */
+    z-index: 40; /* Menor que el header para que nunca se sobreponga */
     will-change: transform;
+    overflow: hidden; /* Evita que el contenido se desborde */
   }
 
   /* Mobile Phone Display - Appears AFTER text content on mobile */
@@ -151,8 +191,10 @@
   }
 
   .phone-mockup {
-    @apply relative w-80 h-[640px] bg-gray-900 rounded-[3rem] p-3 shadow-2xl border-8 border-gray-800;
+    @apply relative w-64 h-[520px] bg-gray-900 rounded-[2.5rem] p-2.5 shadow-2xl border-[6px] border-gray-800;
     transition: transform 0.3s ease;
+    max-width: 100%;
+    max-height: calc(100vh - 8rem); /* Asegura que quepa en la pantalla */
   }
 
   .phone-mockup:hover {
@@ -160,11 +202,11 @@
   }
 
   .phone-notch {
-    @apply absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-800 rounded-b-2xl z-10;
+    @apply absolute top-0 left-1/2 -translate-x-1/2 w-28 h-5 bg-gray-800 rounded-b-xl z-10;
   }
 
   .phone-screen {
-    @apply w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative;
+    @apply w-full h-full bg-white rounded-[2rem] overflow-hidden relative;
   }
 
   .screen-content {
@@ -707,7 +749,15 @@
 
   /* WhatsApp Button */
   .whatsapp-float {
-    @apply fixed bottom-6 right-6 z-50;
+    @apply fixed;
+    z-index: 1000 !important;
+    position: fixed !important;
+    /* bottom y right se controlan dinámicamente desde el componente */
+  }
+  
+  .wa-button {
+    position: relative !important;
+    z-index: 1001 !important;
   }
 
   .wa-tooltip {
@@ -720,8 +770,10 @@
   }
 
   .wa-button {
-    @apply bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center 
-           shadow-hover text-3xl transition-all hover:scale-110 relative cursor-pointer;
+    @apply bg-green-500 text-white rounded-full flex items-center justify-center 
+           shadow-hover transition-all hover:scale-110 relative cursor-pointer;
+    /* width y height se controlan dinámicamente desde el componente */
+    /* text-3xl se controla dinámicamente desde el componente */
   }
 
   .notification-badge {

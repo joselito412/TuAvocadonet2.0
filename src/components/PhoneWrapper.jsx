@@ -13,7 +13,7 @@ const PhoneWrapper = ({ activeSection, selectedPlan = 'junior', selectedDocCateg
   // Determinar qué pantalla mostrar según la sección activa
   const renderScreen = () => {
     switch (activeSection) {
-      case 'hero':
+      case 'features-intro':
         return <PhoneHome />;
       case 'features': // Documentos
         return <PhoneDocs selectedCategory={selectedDocCategory} />;

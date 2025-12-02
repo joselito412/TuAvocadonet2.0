@@ -4,6 +4,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import { WhatsAppMenuProvider } from './contexts/WhatsAppMenuContext';
 import { analytics, performanceMonitor } from './utils/analytics';
 
 // Lazy load all pages for code splitting
@@ -58,7 +59,7 @@ function AppContent() {
   }, []);
 
   return (
-    <>
+    <WhatsAppMenuProvider>
       <Navigation />
       
       <ErrorBoundary name="PageContent">
@@ -79,7 +80,7 @@ function AppContent() {
       <Footer />
 
       <WhatsAppButton />
-    </>
+    </WhatsAppMenuProvider>
   );
 }
 

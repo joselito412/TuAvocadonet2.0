@@ -32,7 +32,7 @@ function HomePage() {
   const [selectedDocCategory, setSelectedDocCategory] = useState('Civil');
   const [selectedCountry, setSelectedCountry] = useState('co');
   const [phoneAnimation, setPhoneAnimation] = useState(''); // 'enter', 'exit', 'visible', ''
-  const [isNearTop, setIsNearTop] = useState(false);
+
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [videoMuted, setVideoMuted] = useState(true);
   const [videoLoading, setVideoLoading] = useState(true);
@@ -191,20 +191,6 @@ function HomePage() {
     };
   }, [debugLog]); // Included debugLog
 
-  // Detectar cuando el scroll está cerca del top para ocultar el celular
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      // Si el scroll está muy cerca del top (menos de 100px), ocultar el celular
-      setIsNearTop(scrollY < 100);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Verificar posición inicial
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   // Inicializar el video cuando se monta el componente
   useEffect(() => {
     if (videoRef.current) {
@@ -276,12 +262,14 @@ function HomePage() {
 
     // Si salimos de hero (bajando), el celular aparece
     if (previousSection === 'hero' && activeSection !== 'hero') {
-      setPhoneAnimation('enter');
+      setTimeout(() => setPhoneAnimation('enter'), 0);
     }
     // Si volvemos a hero (subiendo), el celular desaparece
     else if (activeSection === 'hero' && activeSection !== previousSection) {
-      setPhoneAnimation('exit');
-      setTimeout(() => setPhoneAnimation(''), 500);
+      setTimeout(() => {
+        setPhoneAnimation('exit');
+        setTimeout(() => setPhoneAnimation(''), 500);
+      }, 0);
     }
 
     previousSectionRef.current = activeSection;

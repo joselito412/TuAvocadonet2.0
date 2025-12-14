@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-const SocialImpact = ({ showLearnMore }) => {
+const SocialImpact = ({ showLearnMore, compact = false }) => {
+  const { t } = useTranslation();
   const [count, setCount] = useState(0);
   const target = 12450; // Número objetivo de consultas
 
@@ -9,7 +11,7 @@ const SocialImpact = ({ showLearnMore }) => {
     const steps = 50;
     const increment = target / steps;
     let current = 0;
-    
+
     const timer = setInterval(() => {
       current += increment;
       if (current >= target) {
@@ -28,46 +30,69 @@ const SocialImpact = ({ showLearnMore }) => {
   const digits = countString.split('');
 
   return (
-    <section className="section-social-impact" id="social-impact">
-      <div className="impact-header">
-        <span className="eyebrow">NUESTRO COMPROMISO</span>
-        <h2>Impacto Social & Ambiental</h2>
-      </div>
+    <section className={compact ? 'w-full' : 'section-social-impact'} id="social-impact">
+      {!compact && (
+        <div className="impact-header">
+          <span className="eyebrow">{t('socialImpact.eyebrow')}</span>
+          <h2>{t('socialImpact.title')}</h2>
+        </div>
+      )}
 
-      <div className="impact-grid">
-        <div className="impact-card highlight">
-          <div className="counter-wrapper">
-            <div className="flip-counter">
-              {digits.map((digit, index) => (
-                <div key={index} className="flip-digit">
-                  <div className="flip-digit-inner">
-                    <span>{digit}</span>
+      <div
+        className={`grid md:grid-cols-12 gap-8 ${compact ? 'lg:gap-10' : 'lg:gap-20'} max-w-7xl mx-auto items-center ${compact ? 'px-0' : 'px-6'}`}
+      >
+        <div className="col-span-12 md:col-span-5">
+          <div
+            className={`impact-card ${compact ? 'bg-white shadow-none border-0' : 'bg-white shadow-none border border-gray-100'} w-full`}
+          >
+            <div className="counter-wrapper">
+              <div className="flip-counter">
+                {digits.map((digit, index) => (
+                  <div key={index} className="flip-digit">
+                    <div className="flip-digit-inner">
+                      <span>{digit}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              <span className="counter-label">{t('socialImpact.counterLabel')}</span>
             </div>
-            <span className="counter-label">Consultas Gratuitas Resueltas</span>
+            <p className="text-center">{t('socialImpact.description')}</p>
           </div>
-          <p>Democratizando el acceso a la justicia a través de tecnología.</p>
         </div>
 
-        <div className="impact-text-content">
-          <h3>La Revolución LegalTech</h3>
-          <p>
-            <strong>Redefinición Estratégica:</strong> Transformamos el ejercicio legal automatizando tareas repetitivas para que los abogados se concentren en lo estratégico.
-          </p>
-          <p>
-            <strong>Democratización:</strong> Facilitamos el acceso a la formalización y a la justicia ("Derecho Habilitador"), reduciendo barreras para pymes y ciudadanos.
-          </p>
-          <p>
-            <strong>Paz Social:</strong> Al mejorar el acceso a la información legal, contribuimos directamente a disminuir la conflictividad y resolver disputas eficientemente.
-          </p>
-          
+        <div className="col-span-12 md:col-span-7 space-y-4 md:space-y-8">
+          {!compact && (
+            <h3 className="text-3xl md:text-4xl leading-tight">{t('socialImpact.sectionTitle')}</h3>
+          )}
+          <div className="prose prose-lg text-gray-600 max-w-none">
+            <p className="block mb-4">
+              <strong className="text-primary block text-xl mb-2">
+                {t('socialImpact.items.redefinition.title')}
+              </strong>
+              {t('socialImpact.items.redefinition.desc')}
+            </p>
+            <p className="block mb-4">
+              <strong className="text-primary block text-xl mb-2">
+                {t('socialImpact.items.democratization.title')}
+              </strong>
+              {t('socialImpact.items.democratization.desc')}
+            </p>
+            {!compact && (
+              <p className="block">
+                <strong className="text-primary block text-xl mb-2">
+                  {t('socialImpact.items.peace.title')}
+                </strong>
+                {t('socialImpact.items.peace.desc')}
+              </p>
+            )}
+          </div>
+
           {showLearnMore && (
-            <div style={{ marginTop: '30px' }}>
-              <a href="/#/sostenibilidad" style={{ textDecoration: 'none' }}>
-                <button className="btn-primary" style={{ padding: '12px 25px', fontSize: '0.9rem' }}>
-                  Ver más impacto →
+            <div className="pt-4">
+              <a href="/#/sostenibilidad" className="no-underline display-inline-block">
+                <button className="btn-primary flex items-center gap-2 text-lg px-8 py-4">
+                  {t('socialImpact.cta')} <i className="fas fa-arrow-right"></i>
                 </button>
               </a>
             </div>

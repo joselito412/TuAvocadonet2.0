@@ -1,22 +1,37 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { queryLegalAssistant } from '../services/ragService';
 import { sanitizeHTML } from '../utils/security';
 import { analytics } from '../utils/analytics';
 
 const AIChat = () => {
-  const [messages, setMessages] = useState([
-    { id: 1, text: "Hola, soy tu asistente legal de Avocado. 🥑\nPuedo ayudarte a entender documentos, redactar derechos de petición o guiarte en procesos legales.\n\n**¿En qué te puedo ayudar hoy?**", sender: 'bot' }
-  ]);
+  const { t } = useTranslation();
+  const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
   const hasMounted = useRef(false);
   const hasUserInteracted = useRef(false);
 
+  // Initialize greeting (only once or when empty)
+  useEffect(() => {
+    if (messages.length === 0) {
+      setMessages([
+        {
+          id: 1,
+          text: t('aiChat.greeting'),
+          sender: 'bot',
+        },
+      ]);
+    }
+  }, [t, messages.length]);
+  // If language changes and chat is empty (or just mounted), it sets greeting.
+  // If user has history, we preserve it (standard chat behavior).
+
   const scrollToBottom = () => {
     // Only scroll if user has interacted or messages have been added
     if (hasUserInteracted.current && messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -26,7 +41,7 @@ const AIChat = () => {
       hasMounted.current = true;
       return;
     }
-    
+
     // Only scroll if user has sent a message
     if (hasUserInteracted.current) {
       scrollToBottom();
@@ -42,23 +57,26 @@ const AIChat = () => {
     analytics.trackAction('chat_message_sent', { messageType: 'user' });
 
     const userMsg = { id: Date.now(), text, sender: 'user' };
-    setMessages(prev => [...prev, userMsg]);
+    setMessages((prev) => [...prev, userMsg]);
     setInputValue('');
     setIsLoading(true);
 
     try {
       const response = await queryLegalAssistant(text);
       const botMsg = { id: Date.now() + 1, text: response, sender: 'bot' };
-      setMessages(prev => [...prev, botMsg]);
+      setMessages((prev) => [...prev, botMsg]);
       analytics.trackAction('chat_response_received', { success: true });
     } catch (error) {
-      console.error("Error querying AI:", error);
+      console.error('Error querying AI:', error);
       analytics.trackError(error, { context: 'AI Chat' });
-      setMessages(prev => [...prev, { 
-        id: Date.now() + 1, 
-        text: error.message || "Lo siento, tuve un problema conectando con la base de datos legal.", 
-        sender: 'bot' 
-      }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          text: t('aiChat.errorGeneric'),
+          sender: 'bot',
+        },
+      ]);
     } finally {
       setIsLoading(false);
     }
@@ -81,18 +99,22 @@ const AIChat = () => {
           <i className="fas fa-robot"></i>
         </div>
         <div>
-          <h4 style={{ margin: 0, color: 'var(--color-dark)' }}>Avocado AI</h4>
-          <span style={{ fontSize: '0.8rem', color: '#2E7D32' }}>● En línea</span>
+          <h4 style={{ margin: 0, color: 'var(--color-dark)' }}>{t('aiChat.title')}</h4>
+          <span style={{ fontSize: '0.8rem', color: '#2E7D32' }}>● {t('aiChat.status')}</span>
         </div>
       </div>
 
       <div className="chat-messages">
-        {messages.map(msg => (
-          <div key={msg.id} className={`message ${msg.sender}`} dangerouslySetInnerHTML={renderMessage(msg.text)}></div>
+        {messages.map((msg) => (
+          <div
+            key={msg.id}
+            className={`message ${msg.sender}`}
+            dangerouslySetInnerHTML={renderMessage(msg.text)}
+          ></div>
         ))}
         {isLoading && (
           <div className="message bot">
-            <i className="fas fa-circle-notch fa-spin"></i> Analizando caso...
+            <i className="fas fa-circle-notch fa-spin"></i> {t('aiChat.analyzing')}
           </div>
         )}
         <div ref={messagesEndRef} />
@@ -100,15 +122,21 @@ const AIChat = () => {
 
       <div className="chat-input-area">
         <div className="suggestion-chips">
-          <div className="chip" onClick={() => handleSend('Revisar contrato de arrendamiento')}>📄 Revisar contrato</div>
-          <div className="chip" onClick={() => handleSend('Redactar derecho de petición')}>📝 Derecho de petición</div>
-          <div className="chip" onClick={() => handleSend('Multa de tránsito injusta')}>👮 Multa de tránsito</div>
+          <div className="chip" onClick={() => handleSend(t('aiChat.chipsQueries.contract'))}>
+            {t('aiChat.chips.contract')}
+          </div>
+          <div className="chip" onClick={() => handleSend(t('aiChat.chipsQueries.petition'))}>
+            {t('aiChat.chips.petition')}
+          </div>
+          <div className="chip" onClick={() => handleSend(t('aiChat.chipsQueries.fine'))}>
+            {t('aiChat.chips.fine')}
+          </div>
         </div>
         <div className="input-wrapper" style={{ marginTop: '15px' }}>
-          <input 
-            type="text" 
-            className="chat-input" 
-            placeholder="Escribe tu consulta legal aquí..." 
+          <input
+            type="text"
+            className="chat-input"
+            placeholder={t('aiChat.placeholder')}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}

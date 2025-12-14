@@ -7,8 +7,6 @@ from contextlib import asynccontextmanager
 import logging
 
 from app.config import settings
-from app.api import triaje
-
 
 # Configurar logging
 logging.basicConfig(
@@ -21,12 +19,8 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifecycle events."""
-    logger.info("🚀 Starting Consultorio Jurídico IA Backend...")
+    logger.info("🚀 Starting Backend...")
     logger.info(f"Environment: {settings.environment}")
-    
-    # TODO: Initialize database connections
-    # TODO: Load vector store
-    # TODO: Warm up models
     
     yield
     
@@ -36,8 +30,8 @@ async def lifespan(app: FastAPI):
 
 # Crear aplicación
 app = FastAPI(
-    title="Consultorio Jurídico IA",
-    description="Sistema de triaje jurídico inteligente con LangGraph",
+    title="TuAvocadonet Backend",
+    description="Backend API for TuAvocadonet",
     version="1.0.0",
     lifespan=lifespan
 )
@@ -51,12 +45,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Incluir routers
-app.include_router(
-    triaje.router,
-    prefix=f"{settings.api_prefix}/triaje",
-    tags=["triaje"]
-)
 
 
 @app.get("/")

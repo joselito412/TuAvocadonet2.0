@@ -1,0 +1,634 @@
+{
+  "navigation": {
+    "links": {
+      "home": "法律咨询",
+      "whatWeDo": "我们做什么？",
+      "users": "用户",
+      "blog": "博客",
+      "about": "关于我们",
+      "sustainability": "可持续性"
+    },
+    "buttons": {
+      "login": "登录"
+    },
+    "aria": {
+      "toggle": "切换导航"
+    }
+  },
+  "footer": {
+    "titles": {
+      "navigation": "导航",
+      "legal": "法律信息",
+      "contact": "联系方式"
+    },
+    "description": "您的口袋律师。由人工智能驱动的专业法律指导，全天候可用。",
+    "links": {
+      "personalData": "个人数据",
+      "terms": "条款和条件",
+      "privacy": "隐私政策"
+    },
+    "rights": "版权所有。"
+  },
+  "home": {
+    "hero": {
+      "title": "触手可及的法律指导",
+      "watchVideo": "Watch Video",
+      "listening": "Listening..."
+    },
+    "features": {
+      "introTitle": "未来的法律，简单易用，尽在您的手机上。",
+      "loadingVideo": "正在加载视频...",
+      "errorVideo": "加载视频时出错",
+      "retry": "重试",
+      "docsTitle": "Create documents for you and your company",
+      "docsDesc": "TuAvocado handles the repetitive work. Generate contracts and legal documents in minutes.",
+      "dashboardTitle": "Manage your services on the Private Dashboard",
+      "dashboardDesc": "An organized Notion-like space to have full control of your processes.",
+      "dashboardCards": {
+        "realTime": "Real-time case tracking",
+        "notifications": "Status notifications",
+        "digitalArchive": "Secure digital archive"
+      }
+    },
+    "specialized": {
+      "title": "全球覆盖",
+      "description": "本地专长，国际影响。",
+      "cta": "查看位置",
+      "subtitle": "Active Presence in:",
+      "countries": {
+        "co": {
+          "name": "Colombia",
+          "desc": "Operational HQ"
+        },
+        "us": {
+          "name": "USA",
+          "desc": "Commercial Office"
+        },
+        "br": {
+          "name": "Brazil",
+          "desc": "Strategic Expansion"
+        },
+        "mx": {
+          "name": "Mexico",
+          "desc": "New Market"
+        },
+        "es": {
+          "name": "Spain",
+          "desc": "Spanish Law Specialists"
+        },
+        "ar": {
+          "name": "Argentina",
+          "desc": "Argentine Law Experts"
+        }
+      }
+    },
+    "pricing": {
+      "title": "Subscriptions",
+      "subtitle": "Choose the level of support you need.",
+      "cta": "Sign Up"
+    }
+  },
+  "whatWeDo": {
+    "title": "什么是 Avocado？",
+    "description": "我们是第一个由人工智能驱动的法律平台，旨在实现司法公正的大众化。我们结合尖端技术和认证律师的监督，提供可及、快速和可靠的法律建议。",
+    "howItWorks": "我们的 AI 如何运作",
+    "steps": {
+      "01": {
+        "title": "提出您的咨询",
+        "desc": "用日常语言描述您的法律情况。"
+      },
+      "02": {
+        "title": "AI 分析",
+        "desc": "我们的系统处理并查询法律数据库。"
+      },
+      "03": {
+        "title": "收到回复",
+        "desc": "几分钟内获得清晰可行的指导。"
+      },
+      "04": {
+        "title": "监督（仅限高级订阅）",
+        "desc": "律师在复杂案件和文档发送到您的邮箱之前进行审核。"
+      }
+    },
+    "plansTitle": "我们的计划",
+    "plans": {
+      "free": {
+        "title": "免费",
+        "features": [
+          "咨询受限",
+          "无文档",
+          "无律师"
+        ]
+      },
+      "junior": {
+        "title": "初级",
+        "features": [
+          "无限 AI",
+          "文档生成",
+          "无律师"
+        ]
+      },
+      "senior": {
+        "title": "高级",
+        "features": [
+          "无限 AI",
+          "高级文档",
+          "人类律师"
+        ]
+      }
+    },
+    "catalogTitle": "自动化服务目录",
+    "catalog": {
+      "docs": "文档创建",
+      "autocomplete": "智能自动完成",
+      "concepts": "AI 法律概念",
+      "schedule": "预约咨询",
+      "sas": "SAS 成立",
+      "brand": "商标注册",
+      "compliance": "数据合规",
+      "tutelas": "监护权审查",
+      "nda": "NDA 生成",
+      "payroll": "工资清算"
+    },
+    "areasTitle": "法律领域",
+    "swipeHint": "滑动查看更多领域 →",
+    "areas": {
+      "civil": "民事",
+      "family": "家庭",
+      "commercial": "商业",
+      "smes": "中小企业",
+      "entrepreneurs": "企业家",
+      "brands": "品牌",
+      "creatives": "创意人士",
+      "developers": "开发者",
+      "data": "数据",
+      "govtech": "政府科技",
+      "public": "公共",
+      "pqrs": "申诉和请求",
+      "tutelas": "监护权",
+      "realestate": "房地产",
+      "criminal": "刑事",
+      "tax": "税务",
+      "labor": "劳工",
+      "financial": "金融",
+      "fintech": "金融科技"
+    },
+    "userJourney": {
+      "title": "Your legal path in 3 steps",
+      "steps": {
+        "01": {
+          "title": "导向",
+          "desc": "通过WhatsApp 24/7即时回答您的法律问题。"
+        },
+        "02": {
+          "title": "自动化",
+          "desc": "即时访问自动化法律服务。"
+        },
+        "03": {
+          "title": "协助",
+          "desc": "请求专家律师的专业辩护。"
+        }
+      }
+    }
+  },
+  "users": {
+    "title": "合法性不是一刀切。<0>选择你的战场。</0>",
+    "subtitle": "从保护您的第一行代码到自动化大型电子商务的合规性。我们的架构适应您的速度，而不是相反。",
+    "tabs": {
+      "creator": "我是创作者/由职业者",
+      "startup": "我是创业公司创始人",
+      "enterprise": "我是平台 / 企业"
+    },
+    "content": {
+      "creator": {
+        "headline": "保护您的才华，而不必耗尽预算。",
+        "pain": "您就像 Andrés：以代码或设计为生。您知道应该保护知识产权，但一想到聘请传统律师，就会联想到官僚主义的噩梦和付不起的账单。缓慢会让您面临剽窃风险。",
+        "solution": [
+          {
+            "title": "WhatsApp 优先",
+            "desc": "几分钟内用我们的 AI 验证您品牌的可行性。"
+          },
+          {
+            "title": "即时文档",
+            "desc": "在喝咖啡的时间生成 NDA 和使用许可。"
+          },
+          {
+            "title": "可及",
+            "desc": "只需错误成本的一小部分，即可获得专业法律保护。"
+          }
+        ],
+        "tool": "初级计划（$15/月）",
+        "cta": "开始初级计划",
+        "microcopy": "只需 2 分钟。无需信用卡。"
+      },
+      "startup": {
+        "headline": "完成融资轮。消除法律债务。",
+        "pain": "像 Catalina 一样，您感觉等待合同审查的每一天都是资金未进账的一天。风险投资人要求无可挑剔的合规性，但您的律师需要数周时间。您担心今天措辞不当的条款明天会成为您的祸根。",
+        "solution": [
+          {
+            "title": "混合审查",
+            "desc": "我们的 AI 在 5 分钟内起草；如果我们检测到高风险，高级律师会介入。"
+          },
+          {
+            "title": "透明仪表板",
+            "desc": "为您所有的尽职调查组织合规性。"
+          },
+          {
+            "title": "法律储蓄基金",
+            "desc": "您的一部分费用可保护您免受未来的诉讼。"
+          }
+        ],
+        "tool": "高级计划（$100/月）",
+        "cta": "保护我的初创公司（高级计划）",
+        "microcopy": "与法律运营人员预约 15 分钟的演示。"
+      },
+      "enterprise": {
+        "headline": "自动化风险。让合规变得无形。",
+        "pain": "Roberto 的案例：每天数百及其交易意味着数百种投诉或数据罚款风险。您不需要按小时收费的律师事务所；您需要一个在您睡觉时工作的系统。",
+        "solution": [
+          {
+            "title": "API 集成",
+            "desc": "将我们的法律引擎直接连接到您的销售流程。"
+          },
+          {
+            "title": "自动回复",
+            "desc": "我们实时解决索赔并生成合规文档。"
+          },
+          {
+            "title": "白标",
+            "desc": "您的客户感到受您保护，而您有我们支持。"
+          }
+        ],
+        "tool": "API 和企业（自定义集成）",
+        "cta": "联系销售 / API 文档",
+        "microcopy": "让我们谈谈您的定制集成。"
+      },
+      "specialized": {
+        "title": "Global Reach",
+        "description": "Local expertise, international impact.",
+        "subtitle": "Active Presence in:",
+        "cta": "View Locations",
+        "countries": {
+          "co": {
+            "name": "Colombia",
+            "desc": "Operational HQ"
+          },
+          "us": {
+            "name": "USA",
+            "desc": "Commercial Office"
+          },
+          "br": {
+            "name": "Brazil",
+            "desc": "Strategic Expansion"
+          },
+          "mx": {
+            "name": "Mexico",
+            "desc": "New Market"
+          }
+        }
+      }
+    },
+    "labels": {
+      "pain": "痛点",
+      "solution": "AVOCADO 解决方案",
+      "tool": "您的理想工具："
+    },
+    "painTitle": "The Pain",
+    "solutionTitle": "The AVOCADO Solution",
+    "toolLabel": "Your Ideal Tool:"
+  },
+  "about": {
+    "title": "我们是一个将技术置于其核心流程的法律科技团队",
+    "subtitle": "我们将法律与创新融合，创造真正有效的解决方案。",
+    "teamTech": {
+      "title": "技术团队",
+      "desc": "Avocado 架构、开发和技术指导背后的杰出人才。",
+      "roles": {
+        "devLead": "总监与管理",
+        "devX": "首席开发人员",
+        "devY": "前端专家",
+        "devZ": "AI 工程师",
+        "cto": "首席技术官"
+      }
+    },
+    "lawyers": {
+      "title": "我们的律师",
+      "desc": "致力于卓越和可及性的法律专家。",
+      "search": {
+        "title": "人才搜索",
+        "placeholder": "按名称搜索...",
+        "noResults": "未找到符合这些筛选条件的律师。"
+      },
+      "filters": {
+        "location": "所有",
+        "specialty": "所有"
+      },
+      "roles": {
+        "leadConsultant": "首席顾问",
+        "civilSpecialist": "民事专家",
+        "regionalAssociate": "区域助理",
+        "ipSpecialist": "知识产权专家",
+        "litigator": "诉讼律师"
+      },
+      "specialties": {
+        "techLaw": "科技法",
+        "civil": "Civil",
+        "commercial": "商业法",
+        "labor": "劳动法",
+        "criminal": "刑法",
+        "ip": "Intellectual Property"
+      }
+    }
+  },
+  "legal": {
+    "hero": {
+      "eyebrow": "法律透明度",
+      "title": "法律信息",
+      "description": "您的隐私和安全是我们的首要任务。了解我们如何管理您的数据以及我们的服务条款。"
+    },
+    "tabs": {
+      "personalData": "个人数据",
+      "terms": "条款和条件",
+      "privacy": "隐私政策"
+    },
+    "sections": {
+      "personalData": {
+        "title": "个人数据保护",
+        "commitment": "根据 2012 年第 1581 号法律和 2013 年第 1377 号法令，TuAvocado 致力于保护您的个人数据。",
+        "collectedTitle": "我们收集什么数据？",
+        "collectedList": [
+          "身份信息（姓名、身份证、电子邮件）",
+          "联系信息（电话、地址）",
+          "B2B 客户的专业信息（公司、职位）",
+          "法律咨询和生成文档的历史记录"
+        ],
+        "usageTitle": "我们如何使用您的数据？",
+        "usageList": [
+          "提供个性化的法律咨询服务",
+          "通过机器学习改进我们的 AI 算法",
+          "与您的案件或服务相关的沟通",
+          "履行法律和监管义务"
+        ],
+        "rightsTitle": "您的权利",
+        "rightsDesc": "您有权了解、更新、更正和删除您的个人数据。要行使这些权利，请联系我们 <0>datospersonales@avocado.legal</0>"
+      },
+      "terms": {
+        "title": "使用条款和条件",
+        "updated": "最后更新：2025 年 1 月",
+        "acceptance": {
+          "title": "1. 接受条款",
+          "desc": "访问和使用 TuAvocado 服务即表示您同意受这些条款和条件的约束。如果您不同意，请勿使用我们的服务。"
+        },
+        "description": {
+          "title": "2. 服务描述",
+          "desc": "TuAvocado 是一个 AI 驱动的法律咨询平台，它：",
+          "list": [
+            "提供基于哥伦比亚和美国法规的一般法律指导",
+            "生成标准化的法律文档",
+            "将用户与认证律师联系起来处理复杂案件",
+            "<0>不替代</0>持证律师的个性化法律咨询"
+          ]
+        },
+        "liability": {
+          "title": "3. 责任限制",
+          "desc": "<0>重要提示：</0> TuAvocado 的 AI 提供一般法律知识。对于关键的法律决策，请务必咨询认证律师。我们不对仅基于自动回复做出的决定负责。"
+        },
+        "ip": {
+          "title": "4. 知识产权",
+          "desc": "所有生成的文档均为用户财产。平台的技术、品牌和内容是 TuAvocado SAS 的独家财产。"
+        },
+        "modifications": {
+          "title": "5. 修改",
+          "desc": "我们保留随时修改这些条款的权利。重大更改将通过电子邮件通知。"
+        }
+      },
+      "privacy": {
+        "title": "隐私政策",
+        "cookies": {
+          "title": "Cookie 和跟踪技术",
+          "desc": "我们使用必要的 Cookie 进行平台操作，使用分析 Cookie（Google Analytics）来改善用户体验，并使用偏好 Cookie 来记住您的设置。"
+        },
+        "security": {
+          "title": "信息安全",
+          "desc": "我们实施强大的安全措施：",
+          "list": [
+            "所有通信的端到端加密 (TLS 1.3)",
+            "敏感数据的加密存储 (AES-256)",
+            "季度安全审计",
+            "根据最小权限原则限制数据访问"
+          ]
+        },
+        "sharing": {
+          "title": "与第三方共享",
+          "desc": "<0>我们不出售</0>您的个人数据。我们仅与以下方共享信息：",
+          "list": [
+            "分配给您案件的律师（经您同意）",
+            "在保密协议下的基本服务提供商（托管、支付）",
+            "法律要求时的司法当局"
+          ]
+        },
+        "retention": {
+          "title": "数据保留",
+          "desc": "只要您保持活跃账户或根据法律要求，我们就会保留您的数据。您可以随时请求删除您的账户和相关数据。"
+        }
+      }
+    },
+    "contact": {
+      "title": "您对我们的政策有疑问吗？",
+      "desc": "我们的法律团队可为您解答任何疑问",
+      "button": "联系"
+    }
+  },
+  "sustainability": {
+    "title": "社会与环境影响",
+    "subtitle": "Avocado 如何成为对环境和社会产生积极影响的项目。",
+    "pillarsTitle": "我们的影响支柱",
+    "pillars": {
+      "redefinition": {
+        "title": "法律重新定义",
+        "innovation": "<0>创新：</0> 我们引领法律实践的范式转变。",
+        "talent": "<0>人才：</0> 我们自动化重复工作，让律师专注于战略价值。"
+      },
+      "social": {
+        "title": "社会影响",
+        "democratization": "<0>民主化：</0> 我们消除中小企业和公民的准入门槛。",
+        "enabling": "<0>赋能法律：</0> 我们促进诉诸司法，以此作为行使其他权利的关键。"
+      },
+      "education": {
+        "title": "公民教育",
+        "participation": "<0>参与：</0> 获得清晰的法律信息促进了积极的公民权。",
+        "peace": "<0>社会和平：</0> 有效的争议解决减少了社会冲突。"
+      }
+    },
+    "manifesto": {
+      "title": "法律科技宣言",
+      "text": "“技术效率直接转化为社会价值。我们不仅让法律变得更快，而且让它对每个人都更人性化、更可及、更公正。”"
+    },
+    "description": "How Avocado is a positive project for the environment and society."
+  },
+  "language": {
+    "select": "选择语言"
+  },
+  "errorBoundary": {
+    "title": "Something went wrong",
+    "message": "We are sorry, an unexpected error occurred. Our team has been notified.",
+    "retry": "Try again",
+    "details": "View technical details"
+  },
+  "whatsapp": {
+    "tooltip": {
+      "connecting": "Connecting you with an agent...",
+      "default": {
+        "title": "Need a legal solution now?",
+        "subtitle": "Talk to an expert in real-time."
+      }
+    },
+    "menu": {
+      "option1": {
+        "title": "Free Legal Orientation",
+        "subtitle": "Consult with our AI now"
+      },
+      "option2": "Talk to my Avocado",
+      "option3": "Legal Emergency"
+    },
+    "overlay": {
+      "title": "Active Subscribers Only",
+      "desc": "If you are not a subscriber, you will talk to our Legal AI",
+      "note": "Don't worry, our Avocado AI is like another professional on the team"
+    }
+  },
+  "phoneScreens": {
+    "home": {
+      "greeting": "Hi! Can I help you with a legal question?",
+      "cta": "Start Chat",
+      "search": "Search..."
+    },
+    "docs": {
+      "title": "My Documents",
+      "new": "New",
+      "files": "Files",
+      "available": "Available"
+    },
+    "dashboard": {
+      "title": "Case Dashboard",
+      "activeProject": "ACTIVE PROJECT",
+      "sampleCase": "Labor Lawsuit SAS",
+      "status": {
+        "inProgress": "In Progress",
+        "urgent": "Urgent"
+      },
+      "pending": "Pending",
+      "tasks": [
+        "Review contract clauses",
+        "Upload photo evidence",
+        "Sign authenticated power of attorney"
+      ],
+      "progress": "Overall Progress"
+    },
+    "lawyers": {
+      "title": "Specialists",
+      "specialties": {
+        "labor": "Labor Law",
+        "civil": "Civil Law",
+        "commercial": "Commercial Law",
+        "criminal": "Criminal Law"
+      }
+    },
+    "pricing": {
+      "title": "Plus",
+      "subtitle": "Unlimited Access"
+    }
+  },
+  "aiChat": {
+    "title": "Avocado AI",
+    "status": "Online",
+    "greeting": "Hello, I'm your Avocado legal assistant. 🥑<br/><br/>I can help you understand documents, write petitions, or guide you through legal procedures.<br/><br/><strong>How can I help you today?</strong>",
+    "analyzing": "Analyzing case...",
+    "chips": {
+      "contract": "📄 Review Contract",
+      "petition": "📝 Write Petition",
+      "fine": "👮 Traffic Fine"
+    },
+    "chipsQueries": {
+      "contract": "Review lease agreement",
+      "petition": "Write a right of petition",
+      "fine": "Unfair traffic fine"
+    },
+    "placeholder": "Type your legal consultation here...",
+    "errorGeneric": "Sorry, I had trouble connecting to the legal database."
+  },
+  "common": {
+    "scrollToTop": "Scroll to Top"
+  },
+  "documents": {
+    "civil": {
+      "label": "Civil",
+      "items": [
+        "Lease Agreement",
+        "Vehicle Sale Contract",
+        "General Power of Attorney",
+        "Promissory Note"
+      ]
+    },
+    "labor": {
+      "label": "Labor",
+      "items": [
+        "Employment Contract",
+        "Severance Settlement",
+        "Work Rules",
+        "Disciplinary Memo"
+      ]
+    },
+    "commercial": {
+      "label": "Commercial",
+      "items": [
+        "SAS Incorporation",
+        "NDA",
+        "Trademark Registration",
+        "Shareholders Meeting Minutes"
+      ]
+    },
+    "criminal": {
+      "label": "Criminal",
+      "items": [
+        "Criminal Complaint",
+        "Defense Attorney Appointment",
+        "Hearing Request",
+        "Habeas Corpus"
+      ]
+    },
+    "tutelas": {
+      "label": "Tutelas",
+      "items": [
+        "Health Tutela",
+        "Education Tutela",
+        "Right of Petition",
+        "Appeal"
+      ]
+    },
+    "title": "{{category}} Documents",
+    "count": "{{count}} documents"
+  },
+  "socialImpact": {
+    "eyebrow": "OUR PROMISE",
+    "title": "Social & Environmental Impact",
+    "counterLabel": "Pro-bono consultations solved",
+    "description": "We democratize access to justice through technology.",
+    "sectionTitle": "LegalTech Revolution",
+    "items": {
+      "redefinition": {
+        "title": "Strategic Redefinition",
+        "desc": "We transform legal work automation repetitive tasks so lawyers can focus on strategy."
+      },
+      "democratization": {
+        "title": "Democratization",
+        "desc": "We lower entry barriers for SMEs and citizens by facilitating formalization and access to justice."
+      },
+      "peace": {
+        "title": "Social Peace",
+        "desc": "We contribute to efficient conflict resolution by improving access to legal information."
+      }
+    },
+    "cta": "See Impact"
+  }
+}

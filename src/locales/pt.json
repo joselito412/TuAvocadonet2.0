@@ -1,0 +1,636 @@
+{
+  "navigation": {
+    "links": {
+      "home": "Assessoria Jurídica",
+      "whatWeDo": "O que fazemos?",
+      "users": "Usuários",
+      "blog": "Blog",
+      "about": "Nós",
+      "sustainability": "Sustentabilidade"
+    },
+    "buttons": {
+      "login": "Entrar"
+    },
+    "aria": {
+      "toggle": "Alternar navegação"
+    }
+  },
+  "footer": {
+    "titles": {
+      "navigation": "Navegação",
+      "legal": "Informações Legais",
+      "contact": "Contato"
+    },
+    "description": "Seu advogado de bolso. Orientação jurídica profissional impulsionada por IA, acessível 24/7.",
+    "links": {
+      "personalData": "Dados Pessoais",
+      "terms": "Termos e Condições",
+      "privacy": "Política de Privacidade"
+    },
+    "rights": "Todos os direitos reservados."
+  },
+  "home": {
+    "hero": {
+      "title": "Orientação jurídica ao seu alcance",
+      "watchVideo": "Watch Video",
+      "listening": "Listening..."
+    },
+    "features": {
+      "introTitle": "O futuro jurídico, fácil e acessível no seu celular.",
+      "loadingVideo": "Carregando vídeo...",
+      "errorVideo": "Erro ao carregar o vídeo",
+      "retry": "Tentar novamente",
+      "docsTitle": "Crie documentos para você e sua empresa",
+      "docsDesc": "O TuAvocado cuida do trabalho repetitivo. Gere contratos e documentos jurídicos em minutos.",
+      "dashboardTitle": "Gerencie seus serviços no Painel Privado",
+      "dashboardDesc": "Um espaço organizado tipo Notion para ter o controle total de seus processos.",
+      "dashboardCards": {
+        "realTime": "Acompanhamento de casos em tempo real",
+        "notifications": "Notificações de status",
+        "digitalArchive": "Arquivo digital seguro"
+      }
+    },
+    "specialized": {
+      "title": "Global Reach",
+      "description": "Local expertise, international impact.",
+      "subtitle": "Active Presence in:",
+      "cta": "View Locations",
+      "countries": {
+        "co": {
+          "name": "Colombia",
+          "desc": "Operational HQ"
+        },
+        "us": {
+          "name": "USA",
+          "desc": "Commercial Office"
+        },
+        "br": {
+          "name": "Brazil",
+          "desc": "Strategic Expansion"
+        },
+        "mx": {
+          "name": "Mexico",
+          "desc": "New Market"
+        },
+        "es": {
+          "name": "Spain",
+          "desc": "Spanish Law Specialists"
+        },
+        "ar": {
+          "name": "Argentina",
+          "desc": "Argentine Law Experts"
+        }
+      }
+    },
+    "pricing": {
+      "title": "Subscriptions",
+      "subtitle": "Choose the level of support you need.",
+      "cta": "Sign Up"
+    }
+  },
+  "whatWeDo": {
+    "title": "O que é Avocado?",
+    "description": "Somos a primeira plataforma jurídica impulsionada por Inteligência Artificial que democratiza o acesso à justiça. Combinamos tecnologia de ponta com supervisão de advogados certificados para oferecer assessoria jurídica acessível, rápida e confiável.",
+    "howItWorks": "Nós oferecemos",
+    "userJourney": {
+      "title": "Seu caminho jurídico em 3 passos",
+      "steps": {
+        "01": {
+          "title": "Orientação",
+          "desc": "Receba respostas imediatas para suas dúvidas jurídicas via WhatsApp 24/7.\nVocê também pode tirar dúvidas sobre suas informações, documentos jurídicos e trâmites administrativos."
+        },
+        "02": {
+          "title": "Automação",
+          "desc": "Acesse serviços jurídicos automatizados e gerencie seus documentos instantaneamente pelo App."
+        },
+        "03": {
+          "title": "Assistência",
+          "desc": "Solicite defesa profissional de advogados especialistas quando seu caso exigir."
+        }
+      }
+    },
+    "steps": {
+      "01": {
+        "title": "Canais de Orientação WhatsApp",
+        "desc": "Conecte-se instantaneamente. Seu primeiro ponto de contato para orientação jurídica personalizada."
+      },
+      "02": {
+        "title": "Gestão Documental Fácil",
+        "desc": "Banco de dados seguro no Notion. Nossa IA explica seus arquivos jurídicos e os organiza para você."
+      },
+      "03": {
+        "title": "Automação Jurídica",
+        "desc": "Gere documentos e conceitos jurídicos em segundos impulsionados por Inteligência Artificial."
+      },
+      "04": {
+        "title": "Supervisão Profissional",
+        "desc": "Advogados especialistas revisam os resultados e garantem soluções personalizadas de alta qualidade."
+      }
+    },
+    "plansTitle": "Nossos Planos",
+    "plans": {
+      "free": {
+        "title": "Free",
+        "features": [
+          "Consultas Limitadas",
+          "Sem Documentos",
+          "Sem Advogado"
+        ]
+      },
+      "junior": {
+        "title": "Junior",
+        "features": [
+          "IA Ilimitada",
+          "Geração de Docs",
+          "Sem Advogado"
+        ]
+      },
+      "senior": {
+        "title": "Senior",
+        "features": [
+          "IA Ilimitada",
+          "Docs Premium",
+          "Advogado Humano"
+        ]
+      }
+    },
+    "catalogTitle": "Catálogo de Serviços Automatizados",
+    "catalog": {
+      "docs": "Criação de documentos",
+      "autocomplete": "Autocompletar inteligente",
+      "concepts": "Conceitos jurídicos IA",
+      "schedule": "Agendar consulta",
+      "sas": "Constituição SAS",
+      "brand": "Registro de marca",
+      "compliance": "Compliance de dados",
+      "tutelas": "Revisão de Tutelas",
+      "nda": "Geração de NDAs",
+      "payroll": "Liquidação de Folha"
+    },
+    "areasTitle": "Áreas do Direito",
+    "swipeHint": "Deslize para ver mais áreas →",
+    "areas": {
+      "civil": "Civil",
+      "family": "Família",
+      "commercial": "Comercial",
+      "smes": "PMEs",
+      "entrepreneurs": "Empreendedores",
+      "brands": "Marcas",
+      "creatives": "Criativos",
+      "developers": "Desenvolvedores",
+      "data": "Dados",
+      "govtech": "GovTech",
+      "public": "Público",
+      "pqrs": "PQRs",
+      "tutelas": "Tutelas",
+      "realestate": "Imobiliário",
+      "criminal": "Penal",
+      "tax": "Tributário",
+      "labor": "Trabalhista",
+      "financial": "Financeiro",
+      "fintech": "Fintech"
+    }
+  },
+  "users": {
+    "title": "A legalidade não é tamanho único. <0>Escolha sua batalha.</0>",
+    "subtitle": "Desde proteger sua primeira linha de código até automatizar o compliance de um e-commerce massivo. Nossa arquitetura se adapta à sua velocidade, não o contrário.",
+    "tabs": {
+      "creator": "Sou Criador / Freelancer",
+      "startup": "Sou Fundador de Startup",
+      "enterprise": "Sou Plataforma / Enterprise"
+    },
+    "content": {
+      "creator": {
+        "headline": "Proteja sua genialidade sem queimar seu orçamento.",
+        "pain": "Você é como Andrés: vive do seu código ou design. Sabe que deveria proteger sua Propriedade Intelectual, mas a simples ideia de contratar um advogado tradicional soa como pesadelo burocrático e faturas impagáveis. A lentidão te expõe ao plágio.",
+        "solution": [
+          {
+            "title": "WhatsApp First",
+            "desc": "Valide a viabilidade da sua marca com nossa IA em minutos."
+          },
+          {
+            "title": "Documentos Instantâneos",
+            "desc": "Gere NDAs e Licenças de uso enquanto toma um café."
+          },
+          {
+            "title": "Acessível",
+            "desc": "Proteção jurídica profissional por uma fração do custo de um erro."
+          }
+        ],
+        "tool": "Plano Junior ($15/mês)",
+        "cta": "Começar com Plano Junior",
+        "microcopy": "Leva 2 minutos. Sem cartão de crédito."
+      },
+      "startup": {
+        "headline": "Feche a rodada de investimento. Elimine a dívida jurídica.",
+        "pain": "Como Catalina, você sente que cada dia esperando a revisão de um contrato é capital que não entra. Os VCs exigem um compliance impecável, mas seu advogado demora semanas. Você tem medo de que uma cláusula mal redigida hoje seja sua ruína amanhã.",
+        "solution": [
+          {
+            "title": "Revisão Híbrida",
+            "desc": "Nossa IA redige em 5 min; se detectamos alto risco, um Advogado Senior intervém."
+          },
+          {
+            "title": "Dashboard Transparente",
+            "desc": "Todo seu compliance organizado para a Due Diligence."
+          },
+          {
+            "title": "Fundo de Poupança Legal",
+            "desc": "Parte da sua taxa te protege contra futuros litígios."
+          }
+        ],
+        "tool": "Plano Senior ($100/mês)",
+        "cta": "Blindar minha Startup (Plano Senior)",
+        "microcopy": "Agende uma demo de 15 min com um Legal Ops."
+      },
+      "enterprise": {
+        "headline": "Automatize o risco. Torne o Compliance invisível.",
+        "pain": "O caso de Roberto: Centenas de transações diárias significam centenas de riscos de PQR ou multas de dados. Você não precisa de um escritório que cobre por hora; precisa de um sistema que trabalhe enquanto você dorme.",
+        "solution": [
+          {
+            "title": "Integração API",
+            "desc": "Conecte nosso motor jurídico diretamente ao seu fluxo de vendas."
+          },
+          {
+            "title": "Resposta Automática",
+            "desc": "Resolvemos reclamações e geramos documentos de compliance em tempo real."
+          },
+          {
+            "title": "Marca Branca",
+            "desc": "Seu cliente se sente protegido por você, apoiado por nós."
+          }
+        ],
+        "tool": "API & Enterprise (Integração Personalizada)",
+        "cta": "Contatar Vendas / API Docs",
+        "microcopy": "Vamos falar sobre sua integração sob medida."
+      },
+      "specialized": {
+        "title": "Global Reach",
+        "description": "Local expertise, international impact.",
+        "subtitle": "Active Presence in:",
+        "cta": "View Locations",
+        "countries": {
+          "co": {
+            "name": "Colombia",
+            "desc": "Operational HQ"
+          },
+          "us": {
+            "name": "USA",
+            "desc": "Commercial Office"
+          },
+          "br": {
+            "name": "Brazil",
+            "desc": "Strategic Expansion"
+          },
+          "mx": {
+            "name": "Mexico",
+            "desc": "New Market"
+          }
+        }
+      }
+    },
+    "labels": {
+      "pain": "A Dor",
+      "solution": "A Solução AVOCADO",
+      "tool": "Sua Ferramenta Ideal:"
+    },
+    "painTitle": "The Pain",
+    "solutionTitle": "The AVOCADO Solution",
+    "toolLabel": "Your Ideal Tool:"
+  },
+  "about": {
+    "title": "Somos uma equipe legaltech que adota a tecnologia no coração de seus processos",
+    "subtitle": "Fundimos o direito com a inovação para criar soluções que realmente funcionam.",
+    "teamTech": {
+      "title": "Equipe Tech",
+      "desc": "Mentes brilhantes por trás da arquitetura, desenvolvimento e direção tecnológica da Avocado.",
+      "roles": {
+        "devLead": "Diretor & Gestão",
+        "devX": "Desenvolvedor Líder",
+        "devY": "Especialista Frontend",
+        "devZ": "Engenheiro de IA",
+        "cto": "CTO"
+      }
+    },
+    "lawyers": {
+      "title": "Nossos AVOCADOS",
+      "desc": "Especialistas jurídicos comprometidos com a excelência e a acessibilidade.",
+      "search": {
+        "title": "Buscador de Talento Jurídico",
+        "placeholder": "Buscar por nome...",
+        "noResults": "Nenhum advogado encontrado com estes filtros."
+      },
+      "filters": {
+        "location": "Todos",
+        "specialty": "Todas"
+      },
+      "roles": {
+        "leadConsultant": "Consultor Líder",
+        "civilSpecialist": "Especialista Civil",
+        "regionalAssociate": "Associado Regional",
+        "ipSpecialist": "Especialista em PI",
+        "litigator": "Litigante"
+      },
+      "specialties": {
+        "techLaw": "Direito Tecnológico",
+        "civil": "Civil",
+        "commercial": "Comercial",
+        "labor": "Trabalhista",
+        "criminal": "Penal",
+        "ip": "Propriedade Intelectual"
+      }
+    }
+  },
+  "errorBoundary": {
+    "title": "Algo deu errado",
+    "message": "Lamentamos, ocorreu um erro inesperado. Nossa equipe foi notificada.",
+    "retry": "Tentar novamente",
+    "details": "Ver detalhes técnicos"
+  },
+  "whatsapp": {
+    "tooltip": {
+      "connecting": "Conectando você a um agente...",
+      "default": {
+        "title": "Precisa de uma solução jurídica agora?",
+        "subtitle": "Fale com um especialista em tempo real."
+      }
+    },
+    "menu": {
+      "option1": {
+        "title": "Orientação Jurídica Gratuita",
+        "subtitle": "Consulte nossa IA agora"
+      },
+      "option2": "Falar com meu Avocado",
+      "option3": "Emergência Jurídica"
+    },
+    "overlay": {
+      "title": "Apenas Assinantes Ativos",
+      "desc": "Se você não for assinante, falará com nossa IA Jurídica",
+      "note": "Não se preocupe, nossa IA Avocado é como outro profissional da equipe"
+    }
+  },
+  "legal": {
+    "hero": {
+      "eyebrow": "TRANSPARÊNCIA JURÍDICA",
+      "title": "Informações Legais",
+      "description": "Sua privacidade e segurança são nossa prioridade. Conheça como gerenciamos seus dados e os termos de nossos serviços."
+    },
+    "tabs": {
+      "personalData": "Dados Pessoais",
+      "terms": "Termos e Condições",
+      "privacy": "Política de Privacidade"
+    },
+    "sections": {
+      "personalData": {
+        "title": "Proteção de Dados Pessoais",
+        "commitment": "Em conformidade com a Lei 1581 de 2012 e o Decreto 1377 de 2013, TuAvocado se compromete a proteger seus dados pessoais.",
+        "collectedTitle": "Que dados coletamos?",
+        "collectedList": [
+          "Informações de identificação (nome, cédula, e-mail)",
+          "Dados de contato (telefone, endereço)",
+          "Informações profissionais (empresa, cargo) para clientes B2B",
+          "Histórico de consultas jurídicas e documentos gerados"
+        ],
+        "usageTitle": "Como usamos seus dados?",
+        "usageList": [
+          "Fornecer serviços de assessoria jurídica personalizada",
+          "Melhorar nossos algoritmos de IA através de aprendizado de máquina",
+          "Comunicações relacionadas ao seu caso ou serviço",
+          "Cumprimento de obrigações legais e regulatórias"
+        ],
+        "rightsTitle": "Seus Direitos",
+        "rightsDesc": "Você tem o direito de conhecer, atualizar, retificar e suprimir seus dados pessoais. Para exercer esses direitos, contate-nos em <0>datospersonales@avocado.legal</0>"
+      },
+      "terms": {
+        "title": "Termos e Condições de Uso",
+        "updated": "Última atualização: Janeiro 2025",
+        "acceptance": {
+          "title": "1. Aceitação dos Termos",
+          "desc": "Ao acessar e usar os serviços da TuAvocado, você concorda em estar sujeito a estes termos e condições. Se você não concorda, não use nossos serviços."
+        },
+        "description": {
+          "title": "2. Descrição do Serviço",
+          "desc": "TuAvocado é uma plataforma de assessoria jurídica impulsionada por IA que:",
+          "list": [
+            "Fornece orientação jurídica geral baseada em normas colombianas e americanas",
+            "Gera documentos jurídicos padronizados",
+            "Conecta usuários com advogados certificados para casos complexos",
+            "<0>NÃO substitui</0> a assessoria jurídica personalizada de um advogado licenciado"
+          ]
+        },
+        "liability": {
+          "title": "3. Limitações de Responsabilidade",
+          "desc": "<0>IMPORTANTE:</0> A IA da TuAvocado fornece informações jurídicas gerais. Para decisões legais críticas, sempre consulte um advogado certificado. Não nos responsabilizamos por decisões tomadas exclusivamente com base em respostas automatizadas."
+        },
+        "ip": {
+          "title": "4. Propriedade Intelectual",
+          "desc": "Todos os documentos gerados são propriedade do usuário. A tecnologia, marca e conteúdos da plataforma são propriedade exclusiva da TuAvocado SAS."
+        },
+        "modifications": {
+          "title": "5. Modificações",
+          "desc": "Reservamo-nos o direito de modificar estes termos a qualquer momento. Alterações significativas serão notificadas por e-mail."
+        }
+      },
+      "privacy": {
+        "title": "Política de Privacidade",
+        "cookies": {
+          "title": "Cookies e Tecnologias de Rastreamento",
+          "desc": "Utilizamos cookies essenciais para o funcionamento da plataforma, cookies analíticos (Google Analytics) para melhorar a experiência do usuário, e cookies de preferência para lembrar suas configurações."
+        },
+        "security": {
+          "title": "Segurança da Informação",
+          "desc": "Implementamos medidas de segurança robustas:",
+          "list": [
+            "Criptografia end-to-end (TLS 1.3) para todas as comunicações",
+            "Armazenamento criptografado de dados sensíveis (AES-256)",
+            "Auditorias de segurança trimestrais",
+            "Acesso restrito a dados sob o princípio do menor privilégio"
+          ]
+        },
+        "sharing": {
+          "title": "Compartilhamento com Terceiros",
+          "desc": "<0>NÃO vendemos</0> seus dados pessoais. Apenas compartilhamos informações com:",
+          "list": [
+            "Advogados designados ao seu caso (com seu consentimento)",
+            "Provedores de serviços essenciais (hospedagem, pagamentos) sob acordos de confidencialidade",
+            "Autoridades judiciais quando legalmente exigido"
+          ]
+        },
+        "retention": {
+          "title": "Retenção de Dados",
+          "desc": "Mantemos seus dados enquanto você mantiver uma conta ativa ou conforme exigido por lei. Você pode solicitar a exclusão de sua conta e dados associados a qualquer momento."
+        }
+      }
+    },
+    "contact": {
+      "title": "Você tem perguntas sobre nossas políticas?",
+      "desc": "Nossa equipe jurídica está disponível para esclarecer qualquer dúvida",
+      "button": "Contatar"
+    }
+  },
+  "sustainability": {
+    "title": "Impacto Social e Ambiental",
+    "subtitle": "Como Avocado é um projeto positivo para o meio ambiente e a sociedade.",
+    "description": "Como Avocado é um projeto positivo para o meio ambiente e a sociedade.",
+    "pillarsTitle": "Nossos Pilares de Impacto",
+    "pillars": {
+      "redefinition": {
+        "title": "Redefinição Jurídica",
+        "innovation": "<0>Inovação:</0> Lideramos a mudança de paradigma na prática jurídica.",
+        "talent": "<0>Talento:</0> Automatizamos o repetitivo para que os advogados se concentrem em valor estratégico, melhorando a retenção e qualidade de vida."
+      },
+      "social": {
+        "title": "Impacto Social",
+        "democratization": "<0>Democratização:</0> Eliminamos barreiras de entrada para PMEs e cidadãos.",
+        "enabling": "<0>Direito Habilitador:</0> Facilitamos o acesso à justiça como chave para exercer outros direitos fundamentais."
+      },
+      "education": {
+        "title": "Educação Cidadã",
+        "participation": "<0>Participação:</0> O acesso a informações legais claras promove uma cidadania ativa.",
+        "peace": "<0>Paz Social:</0> A resolução eficiente de disputas diminui a conflitividade na sociedade."
+      }
+    },
+    "manifesto": {
+      "title": "Manifesto LegalTech",
+      "text": "\"A eficiência técnica se traduz diretamente em valor social. Não apenas fazemos o direito mais rápido, o fazemos mais humano, acessível e justo para todos.\""
+    }
+  },
+  "phoneScreens": {
+    "home": {
+      "greeting": "Olá! Posso ajudar com uma questão jurídica?",
+      "cta": "Iniciar Chat",
+      "search": "Buscar..."
+    },
+    "docs": {
+      "title": "Meus Documentos",
+      "new": "Novo",
+      "files": "Arquivos",
+      "available": "Disponível"
+    },
+    "dashboard": {
+      "title": "Painel de Casos",
+      "activeProject": "PROJETO ATIVO",
+      "sampleCase": "Trabalhista SAS",
+      "status": {
+        "inProgress": "Em Andamento",
+        "urgent": "Urgente"
+      },
+      "pending": "Pendentes",
+      "tasks": [
+        "Revisar cláusulas de contrato",
+        "Enviar evidência fotográfica",
+        "Assinar procuração autenticada"
+      ],
+      "progress": "Progresso Geral"
+    },
+    "lawyers": {
+      "title": "Especialistas",
+      "specialties": {
+        "labor": "Labor Law",
+        "civil": "Civil Law",
+        "commercial": "Commercial Law",
+        "criminal": "Criminal Law"
+      }
+    },
+    "pricing": {
+      "title": "Seu Advogado de Bolso",
+      "subtitle": "Assessoria jurídica profissional sempre com você"
+    }
+  },
+  "aiChat": {
+    "title": "Assistente Jurídico",
+    "greeting": "Como posso ajudar hoje?",
+    "cta": "Falar com Avocado",
+    "placeholder": "Digite sua mensagem aqui...",
+    "send": "Enviar",
+    "status": "Online",
+    "analyzing": "Analyzing case...",
+    "chips": {
+      "contract": "📄 Review Contract",
+      "petition": "📝 Write Petition",
+      "fine": "👮 Traffic Fine"
+    },
+    "chipsQueries": {
+      "contract": "Review lease agreement",
+      "petition": "Write a right of petition",
+      "fine": "Unfair traffic fine"
+    },
+    "errorGeneric": "Sorry, I had trouble connecting to the legal database."
+  },
+  "language": {
+    "select": "Selecione um idioma"
+  },
+  "common": {
+    "scrollToTop": "Scroll to Top"
+  },
+  "documents": {
+    "civil": {
+      "label": "Civil",
+      "items": [
+        "Lease Agreement",
+        "Vehicle Sale Contract",
+        "General Power of Attorney",
+        "Promissory Note"
+      ]
+    },
+    "labor": {
+      "label": "Labor",
+      "items": [
+        "Employment Contract",
+        "Severance Settlement",
+        "Work Rules",
+        "Disciplinary Memo"
+      ]
+    },
+    "commercial": {
+      "label": "Commercial",
+      "items": [
+        "SAS Incorporation",
+        "NDA",
+        "Trademark Registration",
+        "Shareholders Meeting Minutes"
+      ]
+    },
+    "criminal": {
+      "label": "Criminal",
+      "items": [
+        "Criminal Complaint",
+        "Defense Attorney Appointment",
+        "Hearing Request",
+        "Habeas Corpus"
+      ]
+    },
+    "tutelas": {
+      "label": "Tutelas",
+      "items": [
+        "Health Tutela",
+        "Education Tutela",
+        "Right of Petition",
+        "Appeal"
+      ]
+    },
+    "title": "{{category}} Documents",
+    "count": "{{count}} documents"
+  },
+  "socialImpact": {
+    "eyebrow": "OUR PROMISE",
+    "title": "Social & Environmental Impact",
+    "counterLabel": "Pro-bono consultations solved",
+    "description": "We democratize access to justice through technology.",
+    "sectionTitle": "LegalTech Revolution",
+    "items": {
+      "redefinition": {
+        "title": "Strategic Redefinition",
+        "desc": "We transform legal work automation repetitive tasks so lawyers can focus on strategy."
+      },
+      "democratization": {
+        "title": "Democratization",
+        "desc": "We lower entry barriers for SMEs and citizens by facilitating formalization and access to justice."
+      },
+      "peace": {
+        "title": "Social Peace",
+        "desc": "We contribute to efficient conflict resolution by improving access to legal information."
+      }
+    },
+    "cta": "See Impact"
+  }
+}

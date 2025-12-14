@@ -1,8 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { BrowserRouter, useNavigate } from 'react-router-dom'
-import App from './App'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, useNavigate } from 'react-router-dom';
+import App from './App';
+import './index.css';
+import './lib/i18n';
+import { HelmetProvider } from 'react-helmet-async';
 
 // Handle chunk load errors automatically
 window.addEventListener('vite:preloadError', () => {
@@ -12,7 +14,7 @@ window.addEventListener('vite:preloadError', () => {
 // Handle 404 redirects from GitHub Pages
 const RedirectHandler = () => {
   const navigate = useNavigate();
-  
+
   React.useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const redirectPath = urlParams.get('p');
@@ -23,15 +25,17 @@ const RedirectHandler = () => {
       navigate(newPath, { replace: true });
     }
   }, [navigate]);
-  
+
   return null;
 };
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter basename={import.meta.env.BASE_URL}>
-      <RedirectHandler />
-      <App />
+      <HelmetProvider>
+        <RedirectHandler />
+        <App />
+      </HelmetProvider>
     </BrowserRouter>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

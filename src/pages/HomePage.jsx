@@ -1,14 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation, Trans } from 'react-i18next';
+import SEO from '../components/SEO';
 import WhatsAppButton from '../components/WhatsAppButton';
 import PhoneWrapper from '../components/PhoneWrapper';
-import { PhoneHome, PhoneDocs, PhoneDashboard, PhoneLawyers, PhonePricing } from '../components/PhoneScreens';
+import {
+  PhoneHome,
+  PhoneDocs,
+  PhoneDashboard,
+  PhoneLawyers,
+  PhonePricing,
+} from '../components/PhoneScreens';
 import DocExplorer from '../components/DocExplorer';
 import useScrollSpy from '../hooks/useScrollSpy';
 import { useWhatsAppMenu } from '../contexts/WhatsAppMenuContext';
 
+const heroImages = ['background-hero.webp', 'background-hero2.webp'];
+
 function HomePage() {
+  const { t } = useTranslation();
   // IDs de las secciones que queremos trackear
-  const sectionIds = ['hero', 'features-intro', 'features', 'automation', 'specialized', 'subscriptions'];
+  const sectionIds = [
+    'hero',
+    'features-intro',
+    'features',
+    'automation',
+    'specialized',
+    'subscriptions',
+  ];
   const activeSection = useScrollSpy(sectionIds, 300);
   const [selectedPlan, setSelectedPlan] = useState('free');
   const [selectedDocCategory, setSelectedDocCategory] = useState('Civil');
@@ -30,7 +48,26 @@ function HomePage() {
   const videoRef = useRef(null);
   const videoContainerRef = useRef(null);
   const previousSectionRef = useRef('hero');
-  const heroImages = ['background-hero.svg', 'background-hero2.svg'];
+
+  // Estado para el botón de ir arriba
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  // Efecto para mostrar/ocultar botón de ir arriba
+  useEffect(() => {
+    const handleScrollTopInfo = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScrollTopInfo);
+    return () => window.removeEventListener('scroll', handleScrollTopInfo);
+  }, []);
 
   // Función para formatear tiempo (segundos a MM:SS)
   const formatTime = (seconds) => {
@@ -41,31 +78,29 @@ function HomePage() {
   };
 
   // DEBUG: Sistema de logging para desarrollo
-  const DEBUG = process.env.NODE_ENV === 'development';
-  const debugLog = (category, message, data = null) => {
-    if (DEBUG) {
-      console.log(`[${category}] ${message}`, data || '');
-    }
-  };
-
-  // OPCIÓN 1: Alternar imágenes cada 5 segundos (SIMPLE)
-  // Descomenta esto y comenta la OPCIÓN 2 si prefieres esta opción más simple
-  /*
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentHeroImage((prev) => (prev === 0 ? 1 : 0));
-    }, 5000); // Cambiar cada 5 segundos
-
-    return () => clearInterval(interval);
-  }, []);
-  */
+  const DEBUG = import.meta.env.MODE === 'development';
+  const debugLog = React.useCallback(
+    (category, message, data = null) => {
+      if (DEBUG) {
+        console.log(`[${category}] ${message}`, data || '');
+      }
+    },
+    [DEBUG]
+  );
 
   // OPCIÓN 2: Alternar imagen cuando el usuario pierde de vista la sección 1 y vuelve (AVANZADA)
   // Usando Intersection Observer y Visibility API
   const currentHeroImageRef = useRef(0);
   const wasVisibleRef = useRef(true);
-  const lastImageChangeRef = useRef(Date.now());
+  const lastImageChangeRef = useRef(null); // Init with null
   const heroSectionRef = useRef(null);
+
+  useEffect(() => {
+    // Initialize ref safely
+    if (lastImageChangeRef.current === null) {
+      lastImageChangeRef.current = Date.now();
+    }
+  }, []);
 
   useEffect(() => {
     // Sincronizar el ref con el estado
@@ -76,7 +111,7 @@ function HomePage() {
     // Obtener la sección hero
     heroSectionRef.current = document.getElementById('hero');
     const heroSection = heroSectionRef.current;
-    
+
     if (!heroSection) {
       debugLog('HERO_IMAGE', '⚠️ Sección hero no encontrada');
       return;
@@ -93,11 +128,11 @@ function HomePage() {
       (entries) => {
         entries.forEach((entry) => {
           const isVisible = entry.isIntersecting;
-          
+
           // Si la sección vuelve a ser visible después de haber estado oculta
           if (isVisible && !wasVisibleRef.current) {
             // Cambiar imagen solo si pasó al menos 1 segundo desde el último cambio
-            const timeSinceLastChange = Date.now() - lastImageChangeRef.current;
+            const timeSinceLastChange = Date.now() - (lastImageChangeRef.current || 0);
             if (timeSinceLastChange > 1000) {
               const newImage = currentHeroImageRef.current === 0 ? 1 : 0;
               setCurrentHeroImage(newImage);
@@ -105,17 +140,17 @@ function HomePage() {
               debugLog('HERO_IMAGE', '🖼️ Imagen cambiada (vuelta a vista)', {
                 previous: currentHeroImageRef.current,
                 new: newImage,
-                image: heroImages[newImage]
+                image: heroImages[newImage],
               });
             }
           }
-          
+
           wasVisibleRef.current = isVisible;
         });
       },
-      { 
+      {
         threshold: [0, 0.1, 0.3, 0.5], // Múltiples thresholds para mejor detección
-        rootMargin: '0px'
+        rootMargin: '0px',
       }
     );
 
@@ -129,9 +164,9 @@ function HomePage() {
         const rect = heroSection.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
         const isSectionVisible = rect.top < viewportHeight && rect.bottom > 0;
-        
+
         if (isSectionVisible) {
-          const timeSinceLastChange = Date.now() - lastImageChangeRef.current;
+          const timeSinceLastChange = Date.now() - (lastImageChangeRef.current || 0);
           if (timeSinceLastChange > 1000) {
             const newImage = currentHeroImageRef.current === 0 ? 1 : 0;
             setCurrentHeroImage(newImage);
@@ -140,7 +175,7 @@ function HomePage() {
             debugLog('HERO_IMAGE', '🖼️ Imagen cambiada (cambio de pestaña)', {
               previous: currentHeroImageRef.current,
               new: newImage,
-              image: heroImages[newImage]
+              image: heroImages[newImage],
             });
           }
         }
@@ -154,7 +189,7 @@ function HomePage() {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       debugLog('HERO_IMAGE', '🧹 Observer limpiado');
     };
-  }, []); // Sin dependencias para evitar recrear el observer
+  }, [debugLog]); // Included debugLog
 
   // Detectar cuando el scroll está cerca del top para ocultar el celular
   useEffect(() => {
@@ -174,9 +209,8 @@ function HomePage() {
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.muted = true;
-      setVideoMuted(true);
-      setVideoLoading(true);
-      setVideoError(false);
+      // setVideoMuted(true); // Redundant: state initialized to true
+      // setVideoLoading(true); // Redundant: state initialized to true
     }
   }, []);
 
@@ -239,39 +273,62 @@ function HomePage() {
   // Detectar dirección del scroll y aplicar animaciones
   useEffect(() => {
     const previousSection = previousSectionRef.current;
-    
-    // Si salimos de hero (bajando), el celular aparece desde arriba
+
+    // Si salimos de hero (bajando), el celular aparece
     if (previousSection === 'hero' && activeSection !== 'hero') {
       setPhoneAnimation('enter');
-      // Después de la animación de entrada, mantener visible
-      setTimeout(() => {
-        setPhoneAnimation('visible');
-      }, 1000);
-    } 
-    // Si volvemos a hero (subiendo), el celular desaparece hacia abajo
-    else if (activeSection === 'hero' && previousSection !== 'hero') {
+    }
+    // Si volvemos a hero (subiendo), el celular desaparece
+    else if (activeSection === 'hero' && activeSection !== previousSection) {
       setPhoneAnimation('exit');
-      // Limpiar la animación después de que termine
-      setTimeout(() => {
-        setPhoneAnimation('');
-      }, 800);
+      setTimeout(() => setPhoneAnimation(''), 500);
     }
-    // Si estamos en una sección que no es hero y no hay animación activa, mantener visible
-    else if (activeSection !== 'hero' && phoneAnimation === '') {
-      setPhoneAnimation('visible');
-    }
-    
+
     previousSectionRef.current = activeSection;
   }, [activeSection]);
 
+  const countries = [
+    {
+      code: 'co',
+      name: t('home.specialized.countries.co.name'),
+      desc: t('home.specialized.countries.co.desc'),
+      lawyers: 120,
+    },
+    {
+      code: 'us',
+      name: t('home.specialized.countries.us.name'),
+      desc: t('home.specialized.countries.us.desc'),
+      lawyers: 80,
+    },
+    {
+      code: 'mx',
+      name: t('home.specialized.countries.mx.name'),
+      desc: t('home.specialized.countries.mx.desc'),
+      lawyers: 45,
+    },
+    {
+      code: 'es',
+      name: t('home.specialized.countries.es.name'),
+      desc: t('home.specialized.countries.es.desc'),
+      lawyers: 35,
+    },
+    {
+      code: 'ar',
+      name: t('home.specialized.countries.ar.name'),
+      desc: t('home.specialized.countries.ar.desc'),
+      lawyers: 30,
+    },
+  ];
+
   return (
     <>
+      <SEO titleKey="home.hero.title" descriptionKey="home.features.introTitle" />
       {/* PRIMERA SECCIÓN HERO - FULL WIDTH, SIN CELULAR */}
-      <header 
-        className="section-block hero-section" 
-        id="hero" 
-        style={{ 
-          background: 'rgba(46, 125, 50, 0.3)', /* Verde con transparencia */
+      <header
+        className="section-block hero-section"
+        id="hero"
+        style={{
+          background: 'rgba(46, 125, 50, 0.3)' /* Verde con transparencia */,
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
@@ -283,30 +340,30 @@ function HomePage() {
           maxWidth: '100vw',
           overflow: 'hidden',
           paddingTop: '6rem',
-          paddingBottom: '3rem'
+          paddingBottom: '3rem',
         }}
       >
         {/* Contenido de la sección */}
-        <div 
+        <div
           className="hero-content-wrapper"
-          style={{ 
-            width: '100%', 
-            maxWidth: '1400px', 
+          style={{
+            width: '100%',
+            maxWidth: '1400px',
             padding: '0 2rem',
             position: 'relative',
             zIndex: 1,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           {/* H1 - Título principal (en la parte superior de la imagen) */}
-          <h1 
+          <h1
             className="hero-title"
-            style={{ 
+            style={{
               fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', // Responsive font size
-              fontWeight: 'bold', 
+              fontWeight: 'bold',
               color: '#fff',
               textShadow: '0 4px 20px rgba(0,0,0,0.3)',
               lineHeight: '1.2',
@@ -316,14 +373,14 @@ function HomePage() {
               alignSelf: 'flex-start',
               width: '100%',
               position: 'relative',
-              zIndex: 2
+              zIndex: 2,
             }}
           >
-            Orientación legal al alcance de tu mano
+            {t('home.hero.title')}
           </h1>
 
           {/* Bloque de imagen grande con contraste de color en los bordes */}
-          <div 
+          <div
             className="hero-image-container"
             style={{
               width: '100%',
@@ -336,11 +393,11 @@ function HomePage() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '0'
+              padding: '0',
             }}
           >
             {/* Gradiente de contraste lateral izquierdo (Azul) - Solo desktop */}
-            <div 
+            <div
               className="hero-gradient-left"
               style={{
                 position: 'absolute',
@@ -351,12 +408,12 @@ function HomePage() {
                 background: 'linear-gradient(to right, rgba(64, 101, 185, 0.2), transparent)',
                 borderRadius: '30px 0 0 30px',
                 zIndex: 0,
-                pointerEvents: 'none'
+                pointerEvents: 'none',
               }}
             />
-            
+
             {/* Gradiente de contraste lateral derecho (Amarillo) - Solo desktop */}
-            <div 
+            <div
               className="hero-gradient-right"
               style={{
                 position: 'absolute',
@@ -367,12 +424,12 @@ function HomePage() {
                 background: 'linear-gradient(to left, rgba(234, 212, 118, 0.25), transparent)',
                 borderRadius: '0 30px 30px 0',
                 zIndex: 0,
-                pointerEvents: 'none'
+                pointerEvents: 'none',
               }}
             />
-            
+
             {/* Imagen principal */}
-            <img 
+            <img
               src={`${import.meta.env.BASE_URL}img/${heroImages[currentHeroImage]}`}
               alt="Avocado Legal"
               className="hero-image"
@@ -386,14 +443,14 @@ function HomePage() {
                 boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
                 transition: 'opacity 0.5s ease-in-out',
                 position: 'relative',
-                zIndex: 1
+                zIndex: 1,
               }}
               onError={(e) => {
-                console.error('Error loading image:', e.target.src);
+                console.error('Error loading image:', e.currentTarget.src);
               }}
             />
           </div>
-          
+
           {/* Estilos CSS para responsive y diseño mejorado */}
           <style>{`
             .hero-content-wrapper {
@@ -507,7 +564,7 @@ function HomePage() {
               }
             }
           `}</style>
-          
+
           {/* Estilos para el video optimizado */}
           <style>{`
             @keyframes spin {
@@ -560,14 +617,13 @@ function HomePage() {
       <div className="split-layout">
         {/* COLUMNA IZQUIERDA: CONTENIDO SCROLLABLE */}
         <div className="scroll-content">
-          
           {/* SECCIÓN ORIGINAL HERO - AHORA SEGUNDA SECCIÓN */}
           <section className="section-block" id="features-intro">
             <div className="text-content">
-              <h2 style={{ marginBottom: '2rem' }}>El futuro legal, facil y accesible en tu celular.</h2>
-              
+              <h2 style={{ marginBottom: '2rem' }}>{t('home.features.introTitle')}</h2>
+
               {/* Bloque de Video Optimizado */}
-              <div 
+              <div
                 ref={videoContainerRef}
                 className="video-container-optimized"
                 style={{
@@ -580,7 +636,7 @@ function HomePage() {
                   boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
                   backgroundColor: '#000',
                   minHeight: '300px',
-                  aspectRatio: '16/9' // Mantener proporción 16:9
+                  aspectRatio: '16/9', // Mantener proporción 16:9
                 }}
               >
                 {/* Indicador de carga */}
@@ -596,7 +652,7 @@ function HomePage() {
                       flexDirection: 'column',
                       alignItems: 'center',
                       gap: '1rem',
-                      color: 'white'
+                      color: 'white',
                     }}
                   >
                     <div
@@ -606,10 +662,12 @@ function HomePage() {
                         border: '4px solid rgba(255, 255, 255, 0.3)',
                         borderTop: '4px solid white',
                         borderRadius: '50%',
-                        animation: 'spin 1s linear infinite'
+                        animation: 'spin 1s linear infinite',
                       }}
                     />
-                    <p style={{ margin: 0, fontSize: '0.9rem', opacity: 0.8 }}>Cargando video...</p>
+                    <p style={{ margin: 0, fontSize: '0.9rem', opacity: 0.8 }}>
+                      {t('home.features.loadingVideo')}
+                    </p>
                   </div>
                 )}
 
@@ -624,11 +682,14 @@ function HomePage() {
                       zIndex: 5,
                       textAlign: 'center',
                       color: 'white',
-                      padding: '2rem'
+                      padding: '2rem',
                     }}
                   >
-                    <i className="fas fa-exclamation-triangle" style={{ fontSize: '2rem', marginBottom: '1rem' }}></i>
-                    <p style={{ margin: 0 }}>Error al cargar el video</p>
+                    <i
+                      className="fas fa-exclamation-triangle"
+                      style={{ fontSize: '2rem', marginBottom: '1rem' }}
+                    ></i>
+                    <p style={{ margin: 0 }}>{t('home.features.errorVideo')}</p>
                     <button
                       onClick={() => {
                         setVideoError(false);
@@ -644,10 +705,10 @@ function HomePage() {
                         color: 'white',
                         border: 'none',
                         borderRadius: '8px',
-                        cursor: 'pointer'
+                        cursor: 'pointer',
                       }}
                     >
-                      Reintentar
+                      {t('home.features.retry')}
                     </button>
                   </div>
                 )}
@@ -659,13 +720,15 @@ function HomePage() {
                   loop={!userInteracted} // Solo loop si el usuario no ha interactuado
                   playsInline
                   preload="none"
+                  poster={`${import.meta.env.BASE_URL}img/hombre3d.png`} // Optimization: Show image while loading
+                  title={t('home.features.videoTitle')} // A11y
                   style={{
                     width: '100%',
                     height: '100%',
                     display: 'block',
                     objectFit: 'cover',
                     opacity: videoLoaded ? 1 : 0,
-                    transition: 'opacity 0.3s ease-in-out'
+                    transition: 'opacity 0.3s ease-in-out',
                   }}
                   onLoadStart={() => {
                     setVideoLoading(true);
@@ -678,14 +741,26 @@ function HomePage() {
                   onLoadedMetadata={(e) => {
                     setVideoLoading(false);
                     const video = e.target || videoRef.current;
-                    if (video && video.duration && !isNaN(video.duration) && isFinite(video.duration) && video.duration > 0) {
+                    if (
+                      video &&
+                      video.duration &&
+                      !isNaN(video.duration) &&
+                      isFinite(video.duration) &&
+                      video.duration > 0
+                    ) {
                       setVideoDuration(video.duration);
                       console.log('Video duration loaded from metadata:', video.duration);
                     }
                   }}
                   onDurationChange={(e) => {
                     const video = e.target || videoRef.current;
-                    if (video && video.duration && !isNaN(video.duration) && isFinite(video.duration) && video.duration > 0) {
+                    if (
+                      video &&
+                      video.duration &&
+                      !isNaN(video.duration) &&
+                      isFinite(video.duration) &&
+                      video.duration > 0
+                    ) {
                       setVideoDuration(video.duration);
                       console.log('Video duration changed:', video.duration);
                     }
@@ -696,36 +771,27 @@ function HomePage() {
                     if (video) {
                       const currentTime = video.currentTime || 0;
                       const duration = video.duration || 0;
-                      
+
                       // Actualizar tiempo actual
                       if (!isNaN(currentTime) && isFinite(currentTime)) {
                         setVideoCurrentTime(currentTime);
-                        
+
                         // Calcular y actualizar porcentaje de progreso directamente (sin transición CSS)
                         if (duration > 0 && !isNaN(duration) && isFinite(duration)) {
                           const percent = (currentTime / duration) * 100;
                           const clampedPercent = Math.max(0, Math.min(100, percent));
                           setProgressPercent(clampedPercent);
-                          
-                          // Debug cada segundo para no saturar la consola
-                          if (Math.floor(currentTime) !== Math.floor(videoCurrentTime)) {
-                            debugLog('VIDEO_PROGRESS', 'Progreso actualizado', {
-                              currentTime: currentTime.toFixed(2),
-                              duration: duration.toFixed(2),
-                              percent: clampedPercent.toFixed(2) + '%',
-                              formatted: `${formatTime(currentTime)} / ${formatTime(duration)}`
-                            });
-                          }
                         }
                       }
-                      
+
                       // Actualizar duración si está disponible y es válida
-                      if (duration > 0 && !isNaN(duration) && isFinite(duration) && duration !== videoDuration) {
+                      if (
+                        duration > 0 &&
+                        !isNaN(duration) &&
+                        isFinite(duration) &&
+                        duration !== videoDuration
+                      ) {
                         setVideoDuration(duration);
-                        debugLog('VIDEO', 'Duración actualizada desde timeUpdate', {
-                          duration: duration,
-                          formatted: formatTime(duration)
-                        });
                       }
                     }
                   }}
@@ -740,24 +806,13 @@ function HomePage() {
                   onPlay={() => {
                     setVideoPlaying(true);
                     setVideoLoading(false);
-                    debugLog('VIDEO', '▶️ Video reproducido', {
-                      muted: videoMuted,
-                      userInteracted: userInteracted,
-                      currentTime: videoRef.current?.currentTime
-                    });
                   }}
                   onPause={() => {
                     setVideoPlaying(false);
-                    debugLog('VIDEO', '⏸️ Video pausado', {
-                      currentTime: videoRef.current?.currentTime
-                    });
                   }}
                   onEnded={() => {
                     // Cuando el video termina, volver al estado inicial
                     if (userInteracted && videoRef.current) {
-                      debugLog('VIDEO', '⏹️ Video terminado - Volviendo al estado inicial', {
-                        userInteracted: userInteracted
-                      });
                       videoRef.current.currentTime = 0;
                       setVideoMuted(true);
                       videoRef.current.muted = true;
@@ -785,7 +840,10 @@ function HomePage() {
                   }}
                 >
                   {/* Video local optimizado */}
-                  <source src={`${import.meta.env.BASE_URL}videos/hero-video.mp4`} type="video/mp4" />
+                  <source
+                    src={`${import.meta.env.BASE_URL}videos/VideoAvocadoExplaines.mp4`}
+                    type="video/mp4"
+                  />
                   Tu navegador no soporta el elemento de video.
                 </video>
 
@@ -803,7 +861,7 @@ function HomePage() {
                       zIndex: 15,
                       display: 'flex',
                       flexDirection: 'column',
-                      gap: '0.5rem'
+                      gap: '0.5rem',
                     }}
                     onMouseEnter={() => setShowControls(true)}
                     onMouseLeave={() => {
@@ -823,7 +881,7 @@ function HomePage() {
                         borderRadius: '3px',
                         cursor: 'pointer',
                         position: 'relative',
-                        marginBottom: '0.5rem'
+                        marginBottom: '0.5rem',
                       }}
                       onClick={(e) => {
                         if (videoRef.current && videoRef.current.duration) {
@@ -848,7 +906,7 @@ function HomePage() {
                           willChange: 'width',
                           transform: 'translateZ(0)', // Aceleración por hardware
                           backfaceVisibility: 'hidden', // Optimización adicional
-                          WebkitBackfaceVisibility: 'hidden'
+                          WebkitBackfaceVisibility: 'hidden',
                         }}
                       >
                         {/* Indicador de posición */}
@@ -863,7 +921,7 @@ function HomePage() {
                             background: '#2E7D32',
                             borderRadius: '50%',
                             border: '2px solid white',
-                            boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
+                            boxShadow: '0 2px 4px rgba(0,0,0,0.3)',
                           }}
                         />
                       </div>
@@ -875,7 +933,7 @@ function HomePage() {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
-                        gap: '1rem'
+                        gap: '1rem',
                       }}
                     >
                       {/* Botones izquierda */}
@@ -886,20 +944,14 @@ function HomePage() {
                             if (videoRef.current) {
                               if (videoPlaying) {
                                 videoRef.current.pause();
-                                debugLog('VIDEO_CONTROLS', '⏸️ Pausado desde controles');
                               } else {
                                 if (!userInteracted) {
                                   setUserInteracted(true);
                                   videoRef.current.loop = false;
                                   setVideoMuted(false);
                                   videoRef.current.muted = false;
-                                  debugLog('VIDEO_CONTROLS', '▶️ Primera interacción del usuario', {
-                                    loop: false,
-                                    muted: false
-                                  });
                                 }
                                 videoRef.current.play();
-                                debugLog('VIDEO_CONTROLS', '▶️ Reproducido desde controles');
                               }
                             }
                           }}
@@ -912,8 +964,9 @@ function HomePage() {
                             fontSize: '1.5rem',
                             display: 'flex',
                             alignItems: 'center',
-                            justifyContent: 'center'
+                            justifyContent: 'center',
                           }}
+                          aria-label={videoPlaying ? 'Pause' : 'Play'}
                         >
                           <i className={`fas ${videoPlaying ? 'fa-pause' : 'fa-play'}`}></i>
                         </button>
@@ -925,9 +978,6 @@ function HomePage() {
                               const newMuted = !videoMuted;
                               setVideoMuted(newMuted);
                               videoRef.current.muted = newMuted;
-                              debugLog('VIDEO_CONTROLS', newMuted ? '🔇 Silenciado' : '🔊 Sonido activado', {
-                                muted: newMuted
-                              });
                             }
                           }}
                           style={{
@@ -939,21 +989,34 @@ function HomePage() {
                             fontSize: '1.2rem',
                             display: 'flex',
                             alignItems: 'center',
-                            justifyContent: 'center'
+                            justifyContent: 'center',
                           }}
+                          aria-label={videoMuted ? 'Unmute' : 'Mute'}
                         >
-                          <i className={`fas ${videoMuted ? 'fa-volume-mute' : 'fa-volume-up'}`}></i>
+                          <i
+                            className={`fas ${videoMuted ? 'fa-volume-mute' : 'fa-volume-up'}`}
+                          ></i>
                         </button>
 
                         {/* Tiempo */}
-                        <span style={{ color: 'white', fontSize: '0.9rem', minWidth: '120px', fontFamily: 'monospace' }}>
-                          {formatTime(videoCurrentTime)} / {videoDuration > 0 && !isNaN(videoDuration) ? formatTime(videoDuration) : '--:--'}
+                        <span
+                          style={{
+                            color: 'white',
+                            fontSize: '0.9rem',
+                            minWidth: '120px',
+                            fontFamily: 'monospace',
+                          }}
+                        >
+                          {formatTime(videoCurrentTime)} /{' '}
+                          {videoDuration > 0 && !isNaN(videoDuration)
+                            ? formatTime(videoDuration)
+                            : '--:--'}
                         </span>
                       </div>
                     </div>
                   </div>
                 )}
-                
+
                 {/* Botón Overlay "Ver Video" - Solo visible cuando el video está en mudo y cargado */}
                 {videoMuted && videoLoaded && !videoLoading && !videoError && !userInteracted && (
                   <div
@@ -969,7 +1032,7 @@ function HomePage() {
                       backgroundColor: 'rgba(0, 0, 0, 0.3)',
                       cursor: 'pointer',
                       transition: 'background-color 0.3s ease',
-                      zIndex: 10
+                      zIndex: 10,
                     }}
                     onClick={async () => {
                       if (videoRef.current && videoContainerRef.current) {
@@ -982,16 +1045,16 @@ function HomePage() {
                         // Quitar el muted y reproducir con sonido
                         setVideoMuted(false);
                         videoRef.current.muted = false;
-                        
+
                         // Pequeño delay para asegurar que el video se reinicie
-                        await new Promise(resolve => setTimeout(resolve, 100));
+                        await new Promise((resolve) => setTimeout(resolve, 100));
                         await videoRef.current.play();
-                        
+
                         // Hacer scroll suave al video después de un pequeño delay
                         setTimeout(() => {
-                          videoContainerRef.current?.scrollIntoView({ 
-                            behavior: 'smooth', 
-                            block: 'center' 
+                          videoContainerRef.current?.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center',
                           });
                         }, 200);
                       }
@@ -1018,7 +1081,7 @@ function HomePage() {
                         alignItems: 'center',
                         gap: '12px',
                         transition: 'all 0.3s ease',
-                        pointerEvents: 'auto'
+                        pointerEvents: 'auto',
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.transform = 'translateY(-3px)';
@@ -1043,7 +1106,7 @@ function HomePage() {
                     <div className="phone-notch"></div>
                     <div className="phone-screen">
                       <div className="screen-content fade-in">
-                <PhoneHome />
+                        <PhoneHome />
                       </div>
                     </div>
                   </div>
@@ -1055,11 +1118,10 @@ function HomePage() {
           <section className="section-block" id="features">
             <div className="text-content">
               {/* <span className="eyebrow">DOCUMENTACIÓN INTELIGENTE</span> */}
-              <h2>Crea documentos para ti y tu empresa</h2>
-              <p>TuAvocado se encarga del trabajo repetitivo. Genera contratos y documentos legales en minutos.</p>
-              
-              <DocExplorer onCategoryChange={setSelectedDocCategory} />
+              <h2>{t('home.features.docsTitle')}</h2>
+              <p>{t('home.features.docsDesc')}</p>
 
+              <DocExplorer onCategoryChange={setSelectedDocCategory} />
             </div>
             <div className="mobile-phone-display">
               <div className="phone-mockup-mobile">
@@ -1080,26 +1142,26 @@ function HomePage() {
           <section className="section-block" id="automation">
             <div className="text-content">
               {/* <span className="eyebrow">GESTIÓN EFICIENTE</span> */}
-              <h2>Gestiona tus servicios en el Tablero privado</h2>
-              <p>Un espacio organizado tipo Notion para llevar el control total de tus procesos.</p>
+              <h2>{t('home.features.dashboardTitle')}</h2>
+              <p>{t('home.features.dashboardDesc')}</p>
               <div className="dashboard-cards-container">
                 <div className="dashboard-card">
                   <div className="card-icon-wrapper">
                     <i className="fas fa-chart-line"></i>
                   </div>
-                  <span>Seguimiento de casos en tiempo real</span>
+                  <span>{t('home.features.dashboardCards.realTime')}</span>
                 </div>
                 <div className="dashboard-card">
                   <div className="card-icon-wrapper">
                     <i className="fas fa-bell"></i>
                   </div>
-                  <span>Notificaciones de estado</span>
+                  <span>{t('home.features.dashboardCards.notifications')}</span>
                 </div>
                 <div className="dashboard-card">
                   <div className="card-icon-wrapper">
                     <i className="fas fa-shield-alt"></i>
                   </div>
-                  <span>Archivo digital seguro</span>
+                  <span>{t('home.features.dashboardCards.digitalArchive')}</span>
                 </div>
               </div>
             </div>
@@ -1110,7 +1172,7 @@ function HomePage() {
                     <div className="phone-notch"></div>
                     <div className="phone-screen">
                       <div className="screen-content fade-in">
-                <PhoneDashboard />
+                        <PhoneDashboard />
                       </div>
                     </div>
                   </div>
@@ -1122,27 +1184,33 @@ function HomePage() {
           <section className="section-block" id="specialized">
             <div className="text-content">
               {/* <span className="eyebrow">MARKETPLACE LEGAL</span> */}
-              <h2>¿Necesitas un abogado especializado?</h2>
-              <p>Te conectamos con <strong>profesionales verificados</strong> en múltiples jurisdicciones.</p>
-              
+              <h2>{t('home.specialized.title')}</h2>
+              <p>
+                <Trans i18nKey="home.specialized.description" />
+              </p>
+
               {/* H2 con botón - Subtítulo y botón lado a lado */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                gap: '2rem',
-                flexWrap: 'wrap',
-                marginTop: '2rem',
-                marginBottom: '2rem'
-              }}>
-                <h2 style={{ 
-                  fontSize: '2rem', 
-                  fontWeight: '600', 
-                  color: '#2E7D32',
-                  lineHeight: '1.3',
-                  margin: 0
-                }}>
-                  Abogados contigo en cada paso
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                  gap: '2rem',
+                  flexWrap: 'wrap',
+                  marginTop: '2rem',
+                  marginBottom: '2rem',
+                }}
+              >
+                <h2
+                  style={{
+                    fontSize: '2rem',
+                    fontWeight: '600',
+                    color: '#2E7D32',
+                    lineHeight: '1.3',
+                    margin: 0,
+                  }}
+                >
+                  {t('home.specialized.subtitle')}
                 </h2>
                 <button
                   onClick={(e) => {
@@ -1161,7 +1229,7 @@ function HomePage() {
                     cursor: 'pointer',
                     boxShadow: '0 8px 20px rgba(46, 125, 50, 0.4)',
                     transition: 'all 0.3s ease',
-                    whiteSpace: 'nowrap'
+                    whiteSpace: 'nowrap',
                   }}
                   onMouseEnter={(e) => {
                     e.target.style.transform = 'translateY(-3px)';
@@ -1172,36 +1240,36 @@ function HomePage() {
                     e.target.style.boxShadow = '0 8px 20px rgba(46, 125, 50, 0.4)';
                   }}
                 >
-                  Hablar con mi avocado
+                  {t('home.specialized.cta')}
                 </button>
               </div>
-              
+
               {/* Improved Country Cards */}
-              <div className="country-cards-container" style={{ 
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', 
-                gap: '15px', 
-                marginTop: '30px',
-                maxWidth: '700px'
-              }}>
-                {[
-                  { code: 'co', name: 'Colombia', desc: 'Expertos en derecho colombiano', lawyers: 120 },
-                  { code: 'us', name: 'Estados Unidos', desc: 'Especialistas en ley americana', lawyers: 80 },
-                  { code: 'mx', name: 'México', desc: 'Expertos en derecho mexicano', lawyers: 45 },
-                  { code: 'es', name: 'España', desc: 'Especialistas en ley española', lawyers: 35 },
-                  { code: 'ar', name: 'Argentina', desc: 'Expertos en derecho argentino', lawyers: 30 }
-                ].map((country) => {
+              <div
+                className="country-cards-container"
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+                  marginTop: '50px',
+                  maxWidth: '900px',
+                  gap: '25px',
+                }}
+              >
+                {countries.map((country) => {
                   const isSelected = selectedCountry === country.code;
                   return (
-                    <div 
+                    <div
                       key={country.code}
-                      className="country-card" 
+                      className="country-card"
                       onClick={() => setSelectedCountry(country.code)}
                       style={{
                         background: 'white',
-                        borderRadius: '20px',
-                        padding: '20px',
-                        boxShadow: isSelected ? '0 8px 20px rgba(46, 125, 50, 0.3)' : '0 4px 10px rgba(0,0,0,0.1)',
+                        borderRadius: '24px',
+                        padding: '30px',
+                        minHeight: '280px',
+                        boxShadow: isSelected
+                          ? '0 8px 20px rgba(46, 125, 50, 0.3)'
+                          : '0 4px 10px rgba(0,0,0,0.1)',
                         border: isSelected ? '3px solid #2E7D32' : '2px solid #E8F5E9',
                         transition: 'all 0.3s ease',
                         display: 'flex',
@@ -1210,37 +1278,75 @@ function HomePage() {
                         textAlign: 'center',
                         cursor: 'pointer',
                         transform: isSelected ? 'scale(1.05)' : 'scale(1)',
-                        opacity: isSelected ? 1 : 0.7
+                        opacity: isSelected ? 1 : 0.7,
                       }}
                     >
-                      <div className="country-flag" style={{
-                        width: '70px',
-                        height: '70px',
-                        borderRadius: '50%',
-                        background: '#F5F5F5',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        overflow: 'hidden',
-                        marginBottom: '12px',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                        border: isSelected ? '3px solid #2E7D32' : '2px solid #E8F5E9',
-                        filter: isSelected ? 'none' : 'grayscale(100%)'
-                      }}>
-                        <img src={`https://flagcdn.com/w160/${country.code}.png`} alt={country.name} style={{ 
-                          width: '100%', 
-                          height: '100%', 
-                          objectFit: 'cover',
-                          borderRadius: '50%'
-                        }} />
-                  </div>
-                      <h4 style={{ margin: '0 0 6px', fontSize: '1rem', fontWeight: 'bold', color: isSelected ? '#2E7D32' : '#333' }}>{country.name}</h4>
-                      <p style={{ fontSize: '0.75rem', color: '#666', margin: '0 0 8px' }}>{country.desc}</p>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.7rem', color: '#888' }}>
-                        <i className="fas fa-users" style={{ color: isSelected ? '#2E7D32' : '#999' }}></i>
+                      <div
+                        className="country-flag"
+                        style={{
+                          width: '120px',
+                          height: '120px',
+                          borderRadius: '50%',
+                          background: '#F5F5F5',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          overflow: 'hidden',
+                          marginBottom: '12px',
+                          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                          border: isSelected ? '3px solid #2E7D32' : '2px solid #E8F5E9',
+                          filter: isSelected ? 'none' : 'grayscale(100%)',
+                        }}
+                      >
+                        <img
+                          src={`https://flagcdn.com/w160/${country.code}.png`}
+                          alt={country.name}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            borderRadius: '50%',
+                          }}
+                        />
+                      </div>
+                      <h4
+                        style={{
+                          margin: '0 0 10px',
+                          fontSize: '1.25rem',
+                          fontWeight: '700',
+                          fontFamily: "'Comfortaa', sans-serif", // Enforcing font-heading
+                          color: isSelected ? '#2E7D32' : '#1a1a1a',
+                        }}
+                      >
+                        {country.name}
+                      </h4>
+                      <p
+                        style={{
+                          fontSize: '0.9rem',
+                          color: '#555',
+                          margin: '0 0 16px',
+                          lineHeight: '1.5',
+                        }}
+                      >
+                        {country.desc}
+                      </p>
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          fontSize: '0.85rem',
+                          fontWeight: '500',
+                          color: '#666',
+                        }}
+                      >
+                        <i
+                          className="fas fa-users"
+                          style={{ color: isSelected ? '#2E7D32' : '#999' }}
+                        ></i>
                         <span>{country.lawyers}+ abogados</span>
-                  </div>
-                </div>
+                      </div>
+                    </div>
                   );
                 })}
               </div>
@@ -1264,76 +1370,153 @@ function HomePage() {
           <section className="section-block" id="subscriptions">
             <div className="text-content">
               {/* <span className="eyebrow">PLANES FLEXIBLES</span> */}
-              <h2>Suscripciones</h2>
-              <p style={{ marginBottom: '40px' }}>Elige el nivel de acompañamiento que necesitas.</p>
-              
+              <h2>{t('home.pricing.title')}</h2>
+              <p style={{ marginBottom: '40px' }}>{t('home.pricing.subtitle')}</p>
+
               <div className="pricing-cards-container" style={{ marginBottom: '30px' }}>
                 {/* Plan Free */}
-                <div 
+                <div
                   className={`pricing-card ${selectedPlan === 'free' ? 'popular' : ''}`}
                   onClick={() => setSelectedPlan('free')}
-                  style={{ 
+                  style={{
                     cursor: 'pointer',
                     background: selectedPlan === 'free' ? '#6c757d' : 'white',
-                    borderColor: selectedPlan === 'free' ? '#6c757d' : undefined
+                    borderColor: selectedPlan === 'free' ? '#6c757d' : undefined,
                   }}
                 >
-                  {selectedPlan === 'free' && <div className="popular-badge" style={{ background: '#6c757d' }}>Seleccionado</div>}
+                  {selectedPlan === 'free' && (
+                    <div className="popular-badge" style={{ background: '#6c757d' }}>
+                      Seleccionado
+                    </div>
+                  )}
                   <div className="plan-header">
-                    <h3 style={{ color: selectedPlan === 'free' ? 'white' : undefined }}>Free</h3>
-                    <div className="price" style={{ color: selectedPlan === 'free' ? 'white' : undefined }}>$0</div>
+                    <h3 style={{ color: selectedPlan === 'free' ? 'white' : undefined }}>
+                      {t('whatWeDo.plans.free.title')}
+                    </h3>
+                    <div
+                      className="price"
+                      style={{ color: selectedPlan === 'free' ? 'white' : undefined }}
+                    >
+                      $0
+                    </div>
                   </div>
-                  <ul className="plan-features" style={{ color: selectedPlan === 'free' ? 'rgba(255,255,255,0.9)' : undefined }}>
-                    <li style={{ color: selectedPlan === 'free' ? 'rgba(255,255,255,0.9)' : undefined }}><i className="fas fa-robot"></i> Consultas Limitadas</li>
-                    <li className="disabled" style={{ color: selectedPlan === 'free' ? 'rgba(255,255,255,0.5)' : undefined }}><i className="fas fa-file-contract"></i> Sin Documentos</li>
-                    <li className="disabled" style={{ color: selectedPlan === 'free' ? 'rgba(255,255,255,0.5)' : undefined }}><i className="fas fa-user-tie"></i> Sin Abogado</li>
+                  <ul
+                    className="plan-features"
+                    style={{ color: selectedPlan === 'free' ? 'rgba(255,255,255,0.9)' : undefined }}
+                  >
+                    <li
+                      style={{
+                        color: selectedPlan === 'free' ? 'rgba(255,255,255,0.9)' : undefined,
+                      }}
+                    >
+                      <i className="fas fa-robot"></i> {t('whatWeDo.plans.free.features.0')}
+                    </li>
+                    <li
+                      className="disabled"
+                      style={{
+                        color: selectedPlan === 'free' ? 'rgba(255,255,255,0.5)' : undefined,
+                      }}
+                    >
+                      <i className="fas fa-file-contract"></i> {t('whatWeDo.plans.free.features.1')}
+                    </li>
+                    <li
+                      className="disabled"
+                      style={{
+                        color: selectedPlan === 'free' ? 'rgba(255,255,255,0.5)' : undefined,
+                      }}
+                    >
+                      <i className="fas fa-user-tie"></i> {t('whatWeDo.plans.free.features.2')}
+                    </li>
                   </ul>
                 </div>
 
                 {/* Plan Junior */}
-                <div 
+                <div
                   className={`pricing-card ${selectedPlan === 'junior' ? 'popular' : ''}`}
                   onClick={() => setSelectedPlan('junior')}
                   style={{ cursor: 'pointer' }}
                 >
                   {selectedPlan === 'junior' && <div className="popular-badge">Recomendado</div>}
                   <div className="plan-header">
-                    <h3>Junior</h3>
+                    <h3>{t('whatWeDo.plans.junior.title')}</h3>
                     <div className="price">$15</div>
                   </div>
                   <ul className="plan-features">
-                    <li><i className="fas fa-robot"></i> <strong>IA Ilimitada</strong></li>
-                    <li><i className="fas fa-file-contract"></i> Generación Docs</li>
-                    <li className="disabled"><i className="fas fa-user-tie"></i> Sin Abogado</li>
+                    <li>
+                      <i className="fas fa-robot"></i>{' '}
+                      <strong>{t('whatWeDo.plans.junior.features.0')}</strong>
+                    </li>
+                    <li>
+                      <i className="fas fa-file-contract"></i>{' '}
+                      {t('whatWeDo.plans.junior.features.1')}
+                    </li>
+                    <li className="disabled">
+                      <i className="fas fa-user-tie"></i> {t('whatWeDo.plans.junior.features.2')}
+                    </li>
                   </ul>
                 </div>
-
                 {/* Plan Senior */}
-                <div 
+                <div
                   className={`pricing-card premium ${selectedPlan === 'senior' ? 'popular' : ''}`}
                   onClick={() => setSelectedPlan('senior')}
-                  style={{ 
+                  style={{
                     cursor: 'pointer',
                     background: selectedPlan === 'senior' ? '#4065B9' : 'white',
-                    borderColor: selectedPlan === 'senior' ? '#4065B9' : undefined
+                    borderColor: selectedPlan === 'senior' ? '#4065B9' : undefined,
                   }}
                 >
-                  {selectedPlan === 'senior' && <div className="popular-badge" style={{ background: '#4065B9' }}>Seleccionado</div>}
+                  {selectedPlan === 'senior' && (
+                    <div className="popular-badge" style={{ background: '#4065B9' }}>
+                      Seleccionado
+                    </div>
+                  )}
                   <div className="plan-header">
-                    <h3 style={{ color: selectedPlan === 'senior' ? 'white' : undefined }}>Senior</h3>
-                    <div className="price" style={{ color: selectedPlan === 'senior' ? 'white' : undefined }}>$100</div>
+                    <h3 style={{ color: selectedPlan === 'senior' ? 'white' : undefined }}>
+                      {t('whatWeDo.plans.senior.title')}
+                    </h3>
+                    <div
+                      className="price"
+                      style={{ color: selectedPlan === 'senior' ? 'white' : undefined }}
+                    >
+                      $100
+                    </div>
                   </div>
-                  <ul className="plan-features" style={{ color: selectedPlan === 'senior' ? 'rgba(255,255,255,0.9)' : undefined }}>
-                    <li style={{ color: selectedPlan === 'senior' ? 'rgba(255,255,255,0.9)' : undefined }}><i className="fas fa-robot"></i> IA Ilimitada</li>
-                    <li style={{ color: selectedPlan === 'senior' ? 'rgba(255,255,255,0.9)' : undefined }}><i className="fas fa-file-contract"></i> Docs Premium</li>
-                    <li style={{ color: selectedPlan === 'senior' ? 'rgba(255,255,255,0.9)' : undefined }}><i className="fas fa-user-tie"></i> <strong>Abogado Humano</strong></li>
+                  <ul
+                    className="plan-features"
+                    style={{
+                      color: selectedPlan === 'senior' ? 'rgba(255,255,255,0.9)' : undefined,
+                    }}
+                  >
+                    <li
+                      style={{
+                        color: selectedPlan === 'senior' ? 'rgba(255,255,255,0.9)' : undefined,
+                      }}
+                    >
+                      <i className="fas fa-robot"></i> {t('whatWeDo.plans.senior.features.0')}
+                    </li>
+                    <li
+                      style={{
+                        color: selectedPlan === 'senior' ? 'rgba(255,255,255,0.9)' : undefined,
+                      }}
+                    >
+                      <i className="fas fa-file-contract"></i>{' '}
+                      {t('whatWeDo.plans.senior.features.1')}
+                    </li>
+                    <li
+                      style={{
+                        color: selectedPlan === 'senior' ? 'rgba(255,255,255,0.9)' : undefined,
+                      }}
+                    >
+                      <i className="fas fa-user-tie"></i>{' '}
+                      <strong>{t('whatWeDo.plans.senior.features.2')}</strong>
+                    </li>
                   </ul>
                 </div>
               </div>
 
               {/* Botón Sign Up */}
               <div style={{ marginTop: '30px', textAlign: 'center' }}>
-                <button 
+                <button
                   className="btn-primary"
                   style={{
                     background: 'linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)',
@@ -1347,7 +1530,7 @@ function HomePage() {
                     boxShadow: '0 8px 20px rgba(46, 125, 50, 0.3)',
                     transition: 'all 0.3s ease',
                     textTransform: 'uppercase',
-                    letterSpacing: '1px'
+                    letterSpacing: '1px',
                   }}
                   onMouseEnter={(e) => {
                     e.target.style.transform = 'translateY(-3px)';
@@ -1359,10 +1542,9 @@ function HomePage() {
                   }}
                 >
                   <i className="fas fa-user-plus" style={{ marginRight: '10px' }}></i>
-                  Sign Up
+                  {t('home.pricing.cta')}
                 </button>
               </div>
-
             </div>
             <div className="mobile-phone-display">
               <div className="phone-mockup-mobile">
@@ -1379,19 +1561,23 @@ function HomePage() {
               </div>
             </div>
           </section>
-
         </div>
 
-        {/* COLUMNA DERECHA: CELULAR STICKY - CON ANIMACIONES SEGÚN DIRECCIÓN */}
-        {(activeSection !== 'hero' || phoneAnimation === 'exit') && !isNearTop && (
-          <div className={`sticky-column ${
-            phoneAnimation === 'enter' ? 'phone-slide-down' : 
-            phoneAnimation === 'exit' ? 'phone-slide-out' : 
-            activeSection !== 'hero' ? 'phone-visible' : ''
-          }`}>
+        {/* COLUMNA DERECHA: CELULAR STICKY - SIEMPRE RENDERIZADO PARA EVITAR FLICKER, VISIBILIDAD CONTROLADA POR CSS */}
+        {/* COLUMNA DERECHA: CELULAR STICKY - RENDERIZADO CONDICIONAL (REVERTIDO) */}
+        {activeSection !== 'hero' && (
+          <div
+            className={`sticky-column ${
+              phoneAnimation === 'enter'
+                ? 'phone-slide-down'
+                : phoneAnimation === 'exit'
+                  ? 'phone-slide-out'
+                  : 'phone-visible'
+            }`}
+          >
             <div className="sticky-wrapper">
-              <PhoneWrapper 
-                activeSection={activeSection !== 'hero' ? activeSection : previousSectionRef.current} 
+              <PhoneWrapper
+                activeSection={activeSection}
                 selectedPlan={selectedPlan}
                 selectedDocCategory={selectedDocCategory}
                 selectedCountry={selectedCountry}
@@ -1399,9 +1585,25 @@ function HomePage() {
             </div>
           </div>
         )}
+
+        {/* SCROLL TO TOP BUTTON - Correctly Placed */}
+        <button
+          onClick={scrollToTop}
+          className={`fixed bottom-6 right-28 sm:right-32 z-40 bg-gray-900/90 backdrop-blur-sm text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:bg-black hover:scale-110 focus:outline-none focus:ring-4 focus:ring-primary/50 flex flex-col items-center justify-center gap-1 group ${
+            showScrollTop ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+          }`}
+          aria-label={t('common.scrollToTop')}
+          title={t('common.scrollToTop')}
+        >
+          <i
+            className="fas fa-arrow-up text-lg group-hover:-translate-y-1 transition-transform duration-300"
+            aria-hidden="true"
+          ></i>
+          <span className="text-[10px] font-bold uppercase tracking-wider sr-only sm:not-sr-only sm:visible">
+            {t('common.scrollToTop')}
+          </span>
+        </button>
       </div>
-
-
     </>
   );
 }

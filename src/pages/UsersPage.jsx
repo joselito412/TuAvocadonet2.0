@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation, Trans } from 'react-i18next';
+import SEO from '../components/SEO';
 
 const UsersPage = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('creator');
   const [isMobile, setIsMobile] = useState(false);
 
@@ -9,13 +14,13 @@ const UsersPage = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
+
     // Initial check
     checkMobile();
-    
+
     // Event listener
     window.addEventListener('resize', checkMobile);
-    
+
     // Cleanup
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
@@ -23,160 +28,222 @@ const UsersPage = () => {
   const content = {
     creator: {
       key: 'creator',
-      headline: "Protege tu genialidad sin quemar tu presupuesto.",
-      pain: "Eres como Andrés: vives de tu código o diseño. Sabes que deberías proteger tu Propiedad Intelectual, pero la sola idea de contratar un abogado tradicional te suena a pesadilla burocracia y facturas impagables. La lentitud te expone al plagio.",
-      solution: [
-        { title: "WhatsApp First", desc: "Valida la viabilidad de tu marca con nuestra IA en minutos." },
-        { title: "Documentos al Instante", desc: "Genera NDAs y Licencias de uso mientras te tomas un café." },
-        { title: "Accesible", desc: "Protección legal profesional por una fracción del costo de un error." }
-      ],
-      tool: "Plan Junior ($15/mes)",
-      cta: "Empezar con Plan Junior",
-      microcopy: "Te toma 2 minutos. Sin tarjeta de crédito.",
-      className: "creator",
-      btnClass: "btn-primary",
-      label: "Soy Creador / Freelancer"
+      headline: t('users.content.creator.headline'),
+      pain: t('users.content.creator.pain'),
+      solution: t('users.content.creator.solution', { returnObjects: true }), // Expecting array of objects
+      tool: t('users.content.creator.tool'),
+      cta: t('users.content.creator.cta'),
+      microcopy: t('users.content.creator.microcopy'),
+      className: 'creator',
+      btnClass: 'btn-primary',
+      label: t('users.tabs.creator'),
     },
     startup: {
       key: 'startup',
-      headline: "Cierra la ronda de inversión. Elimina la deuda legal.",
-      pain: "Como Catalina, sientes que cada día esperando la revisión de un contrato es capital que no entra. Los VCs exigen un compliance impecable, pero tu abogado tarda semanas. Tienes miedo de que una cláusula mal redactada hoy sea tu ruina mañana.",
-      solution: [
-        { title: "Revisión Híbrida", desc: "Nuestra IA redacta en 5 min; si detectamos alto riesgo, interviene un Abogado Senior." },
-        { title: "Dashboard Transparente", desc: "Todo tu compliance organizado para la Due Diligence." },
-        { title: "Bolsa de Ahorro Legal", desc: "Parte de tu fee te protege contra futuros litigios." }
-      ],
-      tool: "Plan Senior ($100/mes)",
-      cta: "Blindar mi Startup (Plan Senior)",
-      microcopy: "Agenda una demo de 15 min con un Legal Ops.",
-      className: "startup",
-      btnClass: "btn-primary",
-      label: "Soy Startup Founder"
+      headline: t('users.content.startup.headline'),
+      pain: t('users.content.startup.pain'),
+      solution: t('users.content.startup.solution', { returnObjects: true }),
+      tool: t('users.content.startup.tool'),
+      cta: t('users.content.startup.cta'),
+      microcopy: t('users.content.startup.microcopy'),
+      className: 'startup',
+      btnClass: 'btn-primary',
+      label: t('users.tabs.startup'),
     },
     enterprise: {
       key: 'enterprise',
-      headline: "Automatiza el riesgo. Haz que el Compliance sea invisible.",
-      pain: "El caso de Roberto: Cientos de transacciones diarias significan cientos de riesgos de PQR o multas de datos. No necesitas un bufete que te cobre por hora; necesitas un sistema que trabaje mientras duermes.",
-      solution: [
-        { title: "Integración API", desc: "Conecta nuestro motor legal directamente a tu flujo de ventas." },
-        { title: "Respuesta Automática", desc: "Resolvemos reclamos y generamos documentos de compliance en tiempo real." },
-        { title: "Marca Blanca", desc: "Tu cliente se siente protegido por ti, respaldado por nosotros." }
-      ],
-      tool: "API & Enterprise (Custom Integration)",
-      cta: "Contactar Ventas / API Docs",
-      microcopy: "Hablemos de tu integración a medida.",
-      className: "enterprise",
-      btnClass: "btn-primary",
-      label: "Soy Plataforma / Enterprise"
-    }
+      headline: t('users.content.enterprise.headline'),
+      pain: t('users.content.enterprise.pain'),
+      solution: t('users.content.enterprise.solution', { returnObjects: true }),
+      tool: t('users.content.enterprise.tool'),
+      cta: t('users.content.enterprise.cta'),
+      microcopy: t('users.content.enterprise.microcopy'),
+      className: 'enterprise',
+      btnClass: 'btn-primary',
+      label: t('users.tabs.enterprise'),
+    },
   };
 
-  const renderContentCard = (data) => (
-    <div className={`user-content-card ${data.className}`}>
-      <div className="max-w-4xl mx-auto">
-        {isMobile && <h3 className="text-center text-primary mb-4">{data.label}</h3>}
-        <h2 className="text-center mb-40 text-2xl md:text-4xl">
-          {data.headline}
-        </h2>
+  const renderNotebookContent = (data) => (
+    <div
+      className={`relative bg-white rounded-b-3xl rounded-tr-3xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] w-full md:h-full flex flex-col md:overflow-hidden border-4 lg:border-8 transition-colors duration-500`}
+      style={{ borderColor: data.color }}
+    >
+      {/* Notebook Content Grid */}
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 md:overflow-hidden min-h-0">
+        {/* Left Page: The Pain (58%) */}
+        <div className="lg:col-span-7 bg-red-50 p-4 lg:p-6 flex flex-col justify-center relative overflow-hidden text-center lg:text-left border-b lg:border-b-0 lg:border-r border-gray-100 md:h-full">
+          {/* Decorative background element */}
+          <div className="absolute top-0 left-0 w-24 h-24 bg-red-100 rounded-br-full opacity-50"></div>
 
-        <div className="pain-solution-grid">
-          <div>
-            <h3 className="mb-5 flex items-center gap-3">
-              <span>😓</span> El Dolor
+          <div className="relative z-10 flex flex-col items-center lg:items-start h-full justify-center py-8 lg:py-0">
+            <span className="inline-block px-3 py-1 mb-4 text-[10px] font-bold tracking-widest text-red-500 uppercase bg-white rounded-full shadow-sm">
+              {t('users.painTitle')}
+            </span>
+
+            <div className="mb-4">
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl shadow-sm animate-pulse-slow mx-auto lg:mx-0">
+                {data.emoji || '😓'}
+              </div>
+            </div>
+
+            <h3 className="text-lg lg:text-xl font-heading text-gray-900 mb-2 leading-tight">
+              {data.headline}
             </h3>
-            <p className="leading-relaxed text-gray-600">
-              {data.pain}
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="mb-5 flex items-center gap-3">
-              <span>🥑</span> La Solución AVOCADO
-            </h3>
-            <ul className="list-none p-0">
-              {data.solution.map((item, idx) => (
-                <li key={idx} className="mb-4 flex gap-3">
-                  <i className="fas fa-check-circle text-primary mt-1"></i>
-                  <div>
-                    <strong className="block text-dark">{item.title}</strong>
-                    <span className="text-sm text-gray-600">{item.desc}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
+
+            <p className="text-xs lg:text-sm text-gray-500 leading-relaxed max-w-sm">{data.pain}</p>
           </div>
         </div>
 
-        <div className="text-center border-t border-gray-200 pt-8">
-          <p className="mb-5 text-lg">
-            Tu Herramienta Ideal: <strong className="text-dark">{data.tool}</strong>
-          </p>
-          
-          <button className={data.btnClass}>
-            {data.cta}
-          </button>
-          
-          <p className="mt-4 text-sm italic text-gray-500">
+        {/* Right Page: The Solution (42%) */}
+        <div className="lg:col-span-5 bg-white p-4 lg:p-6 flex flex-col md:h-full md:overflow-hidden relative">
+          {/* Header / Quote */}
+          <div className="mb-4 text-center lg:text-left flex-shrink-0">
+            <span className="inline-block px-3 py-1 text-xs font-bold tracking-widest text-primary uppercase bg-green-50 rounded-full">
+              {t('users.solutionTitle')}
+            </span>
+          </div>
+
+          {/* Solution List - Main Scrollable Area */}
+          <div className="flex-1 md:overflow-y-auto pr-2 custom-scrollbar min-h-0">
+            <ul className="space-y-4 pb-4 md:pb-0">
+              {Array.isArray(data.solution) &&
+                data.solution.map((item, idx) => (
+                  <li
+                    key={idx}
+                    className="flex gap-4 items-start group p-2 hover:bg-gray-50 rounded-lg transition-colors"
+                  >
+                    <div className="mt-1 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors flex-shrink-0">
+                      <i className="fas fa-check text-xs"></i>
+                    </div>
+                    <div>
+                      <strong className="block text-base lg:text-lg text-gray-900 mb-0.5 group-hover:text-primary transition-colors">
+                        {item.title}
+                      </strong>
+                      <span className="text-sm text-gray-500 leading-relaxed block">
+                        {item.desc}
+                      </span>
+                    </div>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer / CTA Area - Full Width Bottom Section */}
+      <div className="bg-gray-50 border-t border-gray-100 p-6 lg:px-12 lg:py-4 flex flex-col md:flex-row items-center justify-between gap-4 flex-shrink-0 z-10 transition-colors duration-300">
+        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8">
+          <div className="text-center md:text-left">
+            <p className="text-xs text-gray-400 mb-0.5 uppercase tracking-wider">
+              {t('users.toolLabel')}
+            </p>
+            <p className="font-bold text-gray-900 text-lg">{data.tool}</p>
+          </div>
+          <div className="hidden md:block h-8 w-px bg-gray-200"></div>
+          <p className="italic text-xs text-gray-500 hidden md:block max-w-[200px]">
             {data.microcopy}
           </p>
+        </div>
+
+        <div className="text-center md:text-right flex flex-col items-center md:items-end">
+          <button
+            onClick={() => navigate('/whatsapp')}
+            className={`${data.btnClass} py-3 px-8 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all text-sm font-bold`}
+          >
+            {data.cta}
+          </button>
+          <p className="mt-2 text-[10px] text-gray-400 italic md:hidden">{data.microcopy}</p>
         </div>
       </div>
     </div>
   );
 
-  return (
-    <div className="section-block" style={{ background: 'white', minHeight: '100vh' }}>
-      {/* Hero Section */}
-      <div className="content-wrapper text-center mb-60">
-        <h1 className="mb-5">
-          La legalidad no es talla única. <span className="text-secondary">Elige tu batalla.</span>
-        </h1>
-        <p className="lead-text mx-auto">
-          Desde proteger tu primera línea de código hasta automatizar el compliance de un e-commerce masivo. 
-          Nuestra arquitectura se adapta a tu velocidad, no al revés.
-        </p>
-      </div>
+  // Add colors/emojis to content object
+  content.creator = { ...content.creator, color: '#22c55e', emoji: '😓' };
+  content.startup = { ...content.startup, color: '#3b82f6', emoji: '🤯' };
+  content.enterprise = { ...content.enterprise, color: '#a855f7', emoji: '📉' };
 
-      <div className="content-wrapper">
-        
-        {/* DESKTOP: Tabs View */}
-        {!isMobile ? (
-          <>
-            <div className="users-tabs-container">
+  return (
+    <>
+      <SEO titleKey="users.title" descriptionKey="users.subtitle" />
+      <div
+        className={`section-block min-h-screen h-auto lg:h-screen lg:overflow-hidden bg-gray-50 transition-colors duration-700 lg:flex`}
+      >
+        {/* Header Section (Left Panel on Desktop) */}
+        <div
+          className={`w-full px-4 ${isMobile ? 'pt-20 pb-10' : 'lg:w-[30%] h-full flex flex-col justify-center p-12'}`}
+        >
+          <div className="text-center lg:text-left">
+            <h1 className="text-3xl md:text-4xl mb-4 lg:text-5xl lg:mb-8 font-heading leading-tight whitespace-pre-line">
+              <Trans
+                i18nKey="users.title"
+                components={{ 0: <span className="text-secondary" /> }}
+              />
+            </h1>
+            <p className="text-gray-500 text-sm md:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0 whitespace-pre-line">
+              {t('users.subtitle')}
+            </p>
+          </div>
+        </div>
+
+        {/* Main Content Area (Right Panel on Desktop) */}
+        <div
+          className={`w-full px-4 ${isMobile ? 'pb-20' : 'lg:w-[70%] h-full py-8 pr-8 flex flex-col'}`}
+        >
+          {/* DESKTOP: Notebook Layout */}
+          {!isMobile ? (
+            <div className="flex flex-col h-full">
+              {/* Tabs as Bookmarks */}
+              <div className="flex gap-2 pl-4 md:pl-8 relative z-10 translate-y-1">
+                {Object.values(content).map((tab) => (
+                  <button
+                    key={tab.key}
+                    onClick={() => setActiveTab(tab.key)}
+                    className={`
+                    px-6 py-3 rounded-t-xl text-sm font-bold uppercase tracking-wider transition-all duration-300 transform origin-bottom
+                    ${
+                      activeTab === tab.key
+                        ? 'bg-white text-gray-900 shadow-[0_-5px_15px_-5px_rgba(0,0,0,0.1)] scale-110 z-20 pb-4'
+                        : 'bg-gray-200 text-gray-500 hover:bg-gray-100 hover:text-gray-700 hover:-translate-y-1 scale-100 z-10 opacity-70'
+                    }
+                  `}
+                    style={{
+                      borderTop: activeTab === tab.key ? `4px solid ${tab.color}` : 'none',
+                    }}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Notebook Card */}
+              <div className="flex-1 relative z-10">
+                {renderNotebookContent(content[activeTab])}
+              </div>
+            </div>
+          ) : (
+            /* MOBILE: Stacked Cards */
+            <div className="space-y-12">
               {Object.values(content).map((tab) => (
-                <button
+                <div
                   key={tab.key}
-                  onClick={() => setActiveTab(tab.key)}
-                  className={`user-tab-btn ${activeTab === tab.key ? 'active' : ''}`}
+                  className="bg-white rounded-3xl shadow-xl overflow-hidden border-t-8"
+                  style={{ borderColor: tab.color }}
                 >
-                  {tab.label}
-                </button>
+                  <div className="bg-gray-50 p-4 border-b border-gray-100">
+                    <h3 className="text-center font-bold text-gray-900 uppercase tracking-widest">
+                      {tab.label}
+                    </h3>
+                  </div>
+                  {renderNotebookContent(tab)}
+                </div>
               ))}
             </div>
-            {renderContentCard(content[activeTab])}
-          </>
-        ) : (
-          /* MOBILE: Swipe Cards View */
-          <div className="swipe-cards-container">
-            {Object.values(content).map((tab) => (
-              <div key={tab.key} className="swipe-card">
-                {renderContentCard(tab)}
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Mobile Swipe Indicator (Optional visual cue) */}
-        {isMobile && (
-          <div className="swipe-indicator">
-            <div className="swipe-dot active"></div>
-            <div className="swipe-dot"></div>
-            <div className="swipe-dot"></div>
-          </div>
-        )}
-        
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

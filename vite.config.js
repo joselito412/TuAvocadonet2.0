@@ -19,7 +19,6 @@ export default defineConfig({
             params: {
               overrides: {
                 cleanupNumericValues: false,
-                removeViewBox: false, // Important for scaling
               },
             },
           },
@@ -46,7 +45,7 @@ export default defineConfig({
       // webp is already quite small, but we can try
       webp: {
         // https://sharp.pixelplumbing.com/api-output#webp
-        lossless: true,
+        quality: 80,
       },
       avif: {
         // https://sharp.pixelplumbing.com/api-output#avif

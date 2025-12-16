@@ -93,6 +93,11 @@ export function Footer() {
                 onClick={scrollToTop}
               />
               <FooterLink
+                to="/aprende-ia"
+                label={t('navigation.links.learnAI')}
+                onClick={scrollToTop}
+              />
+              <FooterLink
                 to="/sostenibilidad"
                 label={t('navigation.links.sustainability')}
                 onClick={scrollToTop}
@@ -100,6 +105,11 @@ export function Footer() {
               <FooterLink
                 to="/sobre-nosotros"
                 label={t('navigation.links.about')}
+                onClick={scrollToTop}
+              />
+              <FooterLink
+                to="/trabaja-con-nosotros"
+                label={t('navigation.links.workWithUs')}
                 onClick={scrollToTop}
               />
             </ul>

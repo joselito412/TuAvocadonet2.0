@@ -13,28 +13,36 @@ const WhatWeDoPage = lazy(() => import('./pages/WhatWeDoPage'));
 const UsersPage = lazy(() => import('./pages/UsersPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const LegalPage = lazy(() => import('./pages/LegalPage'));
+const LearnAIPage = lazy(() => import('./pages/LearnAIPage'));
+const WorkWithUsPage = lazy(() => import('./pages/WorkWithUsPage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
 const SustainabilityPage = lazy(() => import('./pages/SustainabilityPage'));
 const WhatsAppPage = lazy(() => import('./pages/WhatsAppPage'));
 
+import ScrollToTop from './components/ScrollToTop';
+
 // Loading component
 const PageLoader = () => (
-  <div style={{ 
-    display: 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    minHeight: '60vh',
-    flexDirection: 'column',
-    gap: '1rem'
-  }}>
-    <div style={{
-      width: '50px',
-      height: '50px',
-      border: '4px solid #E8F5E9',
-      borderTop: '4px solid #2E7D32',
-      borderRadius: '50%',
-      animation: 'spin 1s linear infinite'
-    }}></div>
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '60vh',
+      flexDirection: 'column',
+      gap: '1rem',
+    }}
+  >
+    <div
+      style={{
+        width: '50px',
+        height: '50px',
+        border: '4px solid #E8F5E9',
+        borderTop: '4px solid #2E7D32',
+        borderRadius: '50%',
+        animation: 'spin 1s linear infinite',
+      }}
+    ></div>
     <p style={{ color: '#2E7D32', fontSize: '1.1rem' }}>Cargando...</p>
     <style>{`
       @keyframes spin {
@@ -60,14 +68,17 @@ function AppContent() {
 
   return (
     <WhatsAppMenuProvider>
+      <ScrollToTop />
       <Navigation />
-      
+
       <ErrorBoundary name="PageContent">
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/que-hacemos" element={<WhatWeDoPage />} />
             <Route path="/usuarios" element={<UsersPage />} />
+            <Route path="/aprende-ia" element={<LearnAIPage />} />
+            <Route path="/trabaja-con-nosotros" element={<WorkWithUsPage />} />
             <Route path="/sobre-nosotros" element={<AboutPage />} />
             <Route path="/sostenibilidad" element={<SustainabilityPage />} />
             <Route path="/legal" element={<LegalPage />} />

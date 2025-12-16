@@ -42,11 +42,10 @@ export const WhatsAppMenuProvider = ({ children }) => {
         highlightedOption,
         openMenu,
         closeMenu,
-        toggleMenu
+        toggleMenu,
       }}
     >
       {children}
     </WhatsAppMenuContext.Provider>
   );
 };
-

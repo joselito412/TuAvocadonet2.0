@@ -4,6 +4,8 @@
       "home": "Asesoría Legal",
       "whatWeDo": "¿Qué hacemos?",
       "users": "Usuarios",
+      "learnAI": "Aprende IA",
+      "workWithUs": "Trabaja con nosotros",
       "blog": "Blog",
       "about": "Nosotros",
       "sustainability": "Sostenibilidad"
@@ -165,85 +167,112 @@
     }
   },
   "users": {
-    "title": "La legalidad no es talla única.\n<0>Elige tu batalla.</0>",
-    "subtitle": "Desde proteger tu primera línea de código hasta automatizar el compliance de un e-commerce masivo. Nuestra arquitectura se adapta a tu velocidad, no al revés.",
-    "painTitle": "El Desafío",
-    "solutionTitle": "La Solución",
-    "toolLabel": "Plan Ideal",
-    "tabs": {
-      "creator": "Soy Creador / Freelancer",
-      "startup": "Soy Startup Founder",
-      "enterprise": "Soy Plataforma / Enterprise"
+    "title": "Elige tu camino",
+    "subtitle": "Soluciones a medida para cada necesidad legal",
+    "seo": {
+      "title": "Usuarios | Avocado",
+      "description": "Soluciones legales para personas y herramientas avanzadas para abogados."
     },
-    "content": {
-      "creator": {
-        "headline": "Protege tu genialidad sin quemar tu presupuesto.",
-        "pain": "Eres como Andrés: vives de tu código o diseño. Sabes que deberías proteger tu Propiedad Intelectual, pero la sola idea de contratar un abogado tradicional te suena a pesadilla burocracia y facturas impagables. La lentitud te expone al plagio.",
-        "solution": [
-          {
-            "title": "WhatsApp First",
-            "desc": "Valida la viabilidad de tu marca con nuestra IA en minutos."
-          },
-          {
-            "title": "Documentos al Instante",
-            "desc": "Genera NDAs y Licencias de uso mientras te tomas un café."
-          },
-          {
-            "title": "Accesible",
-            "desc": "Protección legal profesional por una fracción del costo de un error."
-          }
-        ],
-        "tool": "Plan Junior ($15/mes)",
-        "cta": "Empezar con Plan Junior",
-        "microcopy": "Te toma 2 minutos. Sin tarjeta de crédito."
+    "books": {
+      "clients": {
+        "title": "Para Empresas y Personas",
+        "subtitle": "Soluciones Legales",
+        "quote": "Tengo un problema legal y necesito ayuda rápida."
       },
-      "startup": {
-        "headline": "Cierra la ronda de inversión. Elimina la deuda legal.",
-        "pain": "Como Catalina, sientes que cada día esperando la revisión de un contrato es capital que no entra. Los VCs exigen un compliance impecable, pero tu abogado tarda semanas. Tienes miedo de que una cláusula mal redactada hoy sea tu ruina mañana.",
-        "solution": [
-          {
-            "title": "Revisión Híbrida",
-            "desc": "Nuestra IA redacta en 5 min; si detectamos alto riesgo, interviene un Abogado Senior."
-          },
-          {
-            "title": "Dashboard Transparente",
-            "desc": "Todo tu compliance organizado para la Due Diligence."
-          },
-          {
-            "title": "Bolsa de Ahorro Legal",
-            "desc": "Parte de tu fee te protege contra futuros litigios."
-          }
-        ],
-        "tool": "Plan Senior ($100/mes)",
-        "cta": "Blindar mi Startup (Plan Senior)",
-        "microcopy": "Agenda una demo de 15 min con un Legal Ops."
-      },
-      "enterprise": {
-        "headline": "Automatiza el riesgo. Haz que el Compliance sea invisible.",
-        "pain": "El caso de Roberto: Cientos de transacciones diarias significan cientos de riesgos de PQR o multas de datos. No necesitas un bufete que te cobre por hora; necesitas un sistema que trabaje mientras duermes.",
-        "solution": [
-          {
-            "title": "Integración API",
-            "desc": "Conecta nuestro motor legal directamente a tu flujo de ventas."
-          },
-          {
-            "title": "Respuesta Automática",
-            "desc": "Resolvemos reclamos y generamos documentos de compliance en tiempo real."
-          },
-          {
-            "title": "Marca Blanca",
-            "desc": "Tu cliente se siente protegido por ti, respaldado por nosotros."
-          }
-        ],
-        "tool": "API & Enterprise (Custom Integration)",
-        "cta": "Contactar Ventas / API Docs",
-        "microcopy": "Hablemos de tu integración a medida."
+      "lawyers": {
+        "title": "Para Abogados",
+        "subtitle": "Herramientas de IA",
+        "quote": "Quiero modernizar mi práctica y conseguir más clientes."
       }
     },
-    "labels": {
-      "pain": "El Dolor",
-      "solution": "La Solución AVOCADO",
-      "tool": "Tu Herramienta Ideal:"
+    "clients": {
+      "headline": "Tu abogado de bolsillo, siempre listo.",
+      "intro": "Olvídate de las citas costosas y la incertidumbre. Resolvemos tus dudas legales al instante.",
+      "cta": "Iniciar Consulta Gratis",
+      "profiles": {
+        "creator": {
+          "label": "Creador / Freelance",
+          "headline": "Tu talento es crear. El nuestro, protegerte.",
+          "pain": "El caos de ser tu propio jefe: Contratos verbales que no se cumplen, clientes que no pagan y el miedo constante a una demanda por copy.",
+          "solution": [
+            { "title": "Contratos Flash", "desc": "Genera acuerdos de servicios en 2 minutos." },
+            {
+              "title": "Cobro Jurídico",
+              "desc": "Cartas de cobro con peso legal para clientes morosos."
+            },
+            {
+              "title": "Protección IP",
+              "desc": "Registro de marca y derechos de autor simplificado."
+            }
+          ],
+          "tool": "Avocado Chat (Tu Paralegal 24/7)"
+        },
+        "startup": {
+          "label": "Startup / PyME",
+          "headline": "Crece rápido, rompe cosas (menos la ley).",
+          "pain": "El dolor del crecimiento: Contratar al primer empleado, dar acciones a co-founders o recibir inversión. Un error legal aquí te puede costar la empresa.",
+          "solution": [
+            {
+              "title": "Vestings & Cap Table",
+              "desc": "Acuerdos de socios y stock options listos."
+            },
+            {
+              "title": "Laboral Blindado",
+              "desc": "Contratos de trabajo y confidencialidad robustos."
+            },
+            {
+              "title": "Due Diligence Ready",
+              "desc": "Mantén tu 'Data Room' legal impecable para inversores."
+            }
+          ],
+          "tool": "Avocado Docs + Dashboard"
+        },
+        "enterprise": {
+          "label": "Empresa",
+          "headline": "Automatiza el riesgo. Haz que el Compliance sea invisible.",
+          "pain": "El caso de Roberto: Cientos de transacciones diarias significan cientos de riesgos de PQR o multas de datos. No necesitas un bufete que te cobre por hora; necesitas un sistema que trabaje mientras duermes.",
+          "solution": [
+            {
+              "title": "Integración API",
+              "desc": "Conecta nuestro motor legal directamente a tu flujo de ventas."
+            },
+            {
+              "title": "Respuesta Automática",
+              "desc": "Resolvemos reclamos y generamos documentos de compliance en tiempo real."
+            },
+            {
+              "title": "Marca Blanca",
+              "desc": "Tu cliente se siente protegido por ti, respaldado por nosotros."
+            }
+          ],
+          "tool": "API & Enterprise (Custom Integration)"
+        }
+      },
+      "labels": {
+        "pain": "El Dolor",
+        "solution": "La Solución AVOCADO",
+        "tool": "Tu Herramienta Ideal:"
+      }
+    },
+    "lawyers": {
+      "tag": "Avocado for Pros",
+      "headline": "Potencia tu firma con Inteligencia Artificial.",
+      "intro": "No te quedes atrás. Usa nuestras herramientas para automatizar tareas repetitivas y conseguir clientes calificados.",
+      "cta": "Unirme como Abogado",
+      "toolsTitle": "Tu caja de herramientas",
+      "tool1": {
+        "title": "Generación de Documentos",
+        "desc": "Crea contratos y demandas en segundos con nuestros templates inteligentes."
+      },
+      "tool2": {
+        "title": "Leads Calificados",
+        "desc": "Recibe casos que ya han sido pre-filtrados por nuestra IA."
+      },
+      "learn": {
+        "title": "¿Nuevo en IA?",
+        "desc": "Aprende cómo aplicar estas tecnologías en tu día a día.",
+        "link": "Ir a Aprende IA ->"
+      }
     }
   },
   "about": {
@@ -557,5 +586,62 @@
     },
     "placeholder": "Escribe tu consulta legal aquí...",
     "errorGeneric": "Lo siento, tuve un problema conectando con la base de datos legal."
+  },
+  "learnAI": {
+    "title": "Avocado Academy",
+    "subtitle": "Domina el futuro del derecho con nuestra escuela Legal-Tech.",
+    "seo": {
+      "title": "Aprende IA Legal | Avocado Academy",
+      "description": "Cursos especializados en Inteligencia Artificial para abogados y profesionales del derecho."
+    },
+    "clickToOpen": "Abrir Clase",
+    "openCourse": "Abrir curso de {{course}}",
+    "enrollNow": "Inscribirme Ahora",
+    "viewAllCourses": "Ver todos los cursos",
+    "courses": {
+      "lawyers": {
+        "title": "IA para Abogados",
+        "description": "Descubre cómo la inteligencia artificial está transformando la práctica legal y cómo puedes subirte a la ola.",
+        "details": "<h3>Breve Historia del Futuro</h3><p>La abogacía está cambiando más rápido que nunca. En este curso fundamental, exploraremos:</p><ul><li>Fundamentos de IA Generativa</li><li>Ética y responsabilidad en el uso de IA</li><li>Casos de uso reales en firmas legales</li></ul><p>Ideal para quienes quieren perder el miedo y ganar superpoderes.</p>"
+      },
+      "prompts": {
+        "title": "Prompt Engineering Legal",
+        "description": "Aprende el arte de hablar con las máquinas. Crea prompts efectivos y bases de datos especializadas.",
+        "details": "<h3>El Arte de Pedir</h3><p>Una IA es tan buena como las instrucciones que recibe. Aprenderás a:</p><ul><li>Estructurar prompts para resultados precisos</li><li>Crear bases de conocimiento (RAG) con tu propia jurisprudencia</li><li>Iterar y refinar respuestas para documentos complejos</li></ul><p>Convierte a ChatGPT o Claude en tu paralegal estrella.</p>"
+      },
+      "docs": {
+        "title": "Documentación Automatizada",
+        "description": "De horas a minutos. Técnicas avanzadas para revisar y generar documentos legales masivos con IA.",
+        "details": "<h3>Eficiencia Radical</h3><p>Deja de \"quemar pestañas\" revisando contratos de 100 páginas línea por línea.</p><ul><li>Análisis de riesgos automático</li><li>Generación de cláusulas a medida</li><li>Comparación de versiones y control de cambios inteligente</li></ul><p>Recupera tu tiempo para lo que realmente importa: la estrategia.</p>"
+      }
+    }
+  },
+  "workWithUs": {
+    "title": "Trabaja con Avocado",
+    "pill": "Unete al Equipo",
+    "subtitle": "Ayudanos a construir el sistema operativo legal del futuro. Buscamos mentes curiosas, no solo currículums.",
+    "seo": {
+      "title": "Trabaja con Nosotros | Avocado",
+      "description": "Únete al equipo que está redefiniendo el futuro legal."
+    },
+    "mission": {
+      "title": "Impacto Real",
+      "desc": "Tu código y tus ideas protegerán los derechos de miles de personas. Literalmente."
+    },
+    "culture": {
+      "title": "Cultura Humana",
+      "desc": "Tecnología de punta, pero primero las personas. Salud mental y balance real."
+    },
+    "openings": {
+      "title": "Roles Abiertos"
+    },
+    "cta": "Ver todas las vacantes",
+    "ctaClose": "Cerrar vacantes",
+    "table": {
+      "title": "Vacantes Disponibles",
+      "role": "Rol",
+      "team": "Equipo",
+      "location": "Ubicación"
+    }
   }
 }

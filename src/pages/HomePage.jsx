@@ -236,7 +236,6 @@ function HomePage() {
         const duration = videoRef.current.duration;
         if (duration && !isNaN(duration) && isFinite(duration) && duration > 0) {
           setVideoDuration(duration);
-          console.log('Video duration captured:', duration);
         }
       }
     };
@@ -737,7 +736,6 @@ function HomePage() {
                       video.duration > 0
                     ) {
                       setVideoDuration(video.duration);
-                      console.log('Video duration loaded from metadata:', video.duration);
                     }
                   }}
                   onDurationChange={(e) => {
@@ -750,7 +748,6 @@ function HomePage() {
                       video.duration > 0
                     ) {
                       setVideoDuration(video.duration);
-                      console.log('Video duration changed:', video.duration);
                     }
                   }}
                   onTimeUpdate={(e) => {

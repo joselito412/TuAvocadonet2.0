@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next'; // Blog seems to have hardcoded text, adding hook anyway for consistency if needed later
 import SEO from '../components/SEO';
 
 function BlogPage() {

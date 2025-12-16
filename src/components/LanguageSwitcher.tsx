@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useId } from 'react';
 import { useTranslation } from 'react-i18next';
 
 // Language configuration interface
@@ -26,20 +26,21 @@ const STANDARD_LANGUAGES: LanguageConfig[] = [
 
 // 2. Indigenous Languages (Colombia) Reference
 // Fallback to Spanish is handled in i18n.ts
-const INDIGENOUS_LANGUAGES: LanguageConfig[] = [
-  { code: 'guc', name: 'Wayuunaiki', flag: '🇨🇴' },
-  { code: 'pbb', name: 'Nasa Yuwe', flag: '🇨🇴' },
-  { code: 'gum', name: 'Namtrik', flag: '🇨🇴' },
-  { code: 'inb', name: 'Inga', flag: '🇨🇴' },
-  { code: 'cmi', name: 'Embera Chamí', flag: '🇨🇴' },
-];
+// const INDIGENOUS_LANGUAGES: LanguageConfig[] = [
+//   { code: 'guc', name: 'Wayuunaiki', flag: '🇨🇴' },
+//   { code: 'pbb', name: 'Nasa Yuwe', flag: '🇨🇴' },
+//   { code: 'gum', name: 'Namtrik', flag: '🇨🇴' },
+//   { code: 'inb', name: 'Inga', flag: '🇨🇴' },
+//   { code: 'cmi', name: 'Embera Chamí', flag: '🇨🇴' },
+// ];
 
 interface LanguageSwitcherProps {
-  mobile?: boolean;
+  variant?: 'default' | 'bookmark';
 }
 
-export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ mobile }) => {
+export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ variant = 'default' }) => {
   const { i18n } = useTranslation();
+  const selectId = useId();
 
   // Logic: update document.documentElement.lang on change for SEO/Accessibility
   useEffect(() => {
@@ -53,16 +54,23 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ mobile }) =>
     i18n.changeLanguage(e.target.value);
   };
 
+  const isBookmark = variant === 'bookmark';
+
   return (
-    <div className="relative inline-block text-left m-2">
-      <label htmlFor="language-switcher" className="sr-only">
+    <div className={`relative inline-block text-left ${isBookmark ? 'w-full' : 'm-2'}`}>
+      <label htmlFor={selectId} className="sr-only">
         {i18n.t('language.select', 'Selecciona un idioma')}
       </label>
       <select
-        id="language-switcher"
+        id={selectId}
         value={i18n.language}
         onChange={handleChange}
-        className="block w-full px-3 py-2 text-base text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm cursor-pointer"
+        className={`block w-full px-2 py-1 text-sm focus:outline-none cursor-pointer appearance-none text-center
+          ${
+            isBookmark
+              ? 'bg-transparent text-white border-none font-medium opacity-90 hover:opacity-100'
+              : 'text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500'
+          }`}
         aria-label="Language Switcher"
       >
         <optgroup label="Standard">

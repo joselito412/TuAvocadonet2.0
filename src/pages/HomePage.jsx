@@ -309,7 +309,7 @@ function HomePage() {
 
   return (
     <>
-      <SEO titleKey="home.hero.title" descriptionKey="home.features.introTitle" />
+      <SEO titleKey="home.hero.title" descriptionKey="home.seo.description" />
       {/* PRIMERA SECCIÓN HERO - FULL WIDTH, SIN CELULAR */}
       <header
         className="section-block hero-section"

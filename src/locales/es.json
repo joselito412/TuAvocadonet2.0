@@ -35,6 +35,9 @@
     "rights": "Todos los derechos reservados."
   },
   "home": {
+    "seo": {
+      "description": "Tu abogado de bolsillo. Orientación legal profesional impulsada por IA, accesible 24/7 en Colombia."
+    },
     "hero": {
       "title": "Orientación legal al alcance de tu mano",
       "watchVideo": "Ver Video",

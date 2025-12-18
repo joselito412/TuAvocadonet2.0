@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowLeft, BookOpen, User, Zap, CheckCircle } from 'lucide-react';
 import SEO from '../components/SEO';
 import { Button } from '../components/ui';
-import { useWhatsAppMenu } from '../contexts/WhatsAppMenuContext';
+import { useWhatsAppMenu } from '../contexts/WhatsAppMenuCtx';
 
 type BookType = 'none' | 'clients' | 'lawyers';
 type ProfileType = 'creator' | 'startup' | 'enterprise';

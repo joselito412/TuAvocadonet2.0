@@ -12,7 +12,7 @@ import {
 } from '../components/PhoneScreens';
 import DocExplorer from '../components/DocExplorer';
 import useScrollSpy from '../hooks/useScrollSpy';
-import { useWhatsAppMenu } from '../contexts/WhatsAppMenuContext';
+import { useWhatsAppMenu } from '../contexts/WhatsAppMenuCtx';
 
 const heroImages = ['background-hero.webp', 'background-hero2.webp'];
 

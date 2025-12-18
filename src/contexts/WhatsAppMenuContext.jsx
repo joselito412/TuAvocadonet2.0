@@ -1,14 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
-
-const WhatsAppMenuContext = createContext();
-
-export const useWhatsAppMenu = () => {
-  const context = useContext(WhatsAppMenuContext);
-  if (!context) {
-    throw new Error('useWhatsAppMenu must be used within WhatsAppMenuProvider');
-  }
-  return context;
-};
+import React, { useState } from 'react';
+import { WhatsAppMenuContext } from './WhatsAppMenuCtx';
 
 export const WhatsAppMenuProvider = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

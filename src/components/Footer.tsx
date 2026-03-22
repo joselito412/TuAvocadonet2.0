@@ -60,7 +60,7 @@ export function Footer() {
             >
               <div className="relative w-64 h-32 md:w-80 md:h-40 flex items-center justify-center bg-white rounded-[1.5rem] md:rounded-[2rem] shadow-xl shadow-[#90ee90]/20 transition-all duration-300 group-hover:scale-105 group-hover:rotate-1">
                 <img
-                  src={`${import.meta.env.BASE_URL}img/Logo_Avocado.svg`}
+                  src={`${import.meta.env.BASE_URL}Logos_MARCA/Avocadoai_LongLogo.svg`}
                   alt="AVOCADO Logo"
                   className="w-full h-full object-contain p-4"
                 />

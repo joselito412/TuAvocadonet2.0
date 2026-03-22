@@ -50,7 +50,7 @@ export function Navigation() {
       >
         <div className="w-[30vw] sm:w-[24vw] lg:w-[15vw] xl:w-[18vw] min-w-[140px] max-w-[260px] h-24 lg:h-28 flex items-center justify-center bg-white shadow-xl shadow-green-900/10 rounded-b-2xl lg:rounded-b-[2.5rem] rounded-t-lg transition-all duration-300 group-hover:h-28 lg:group-hover:h-32 group-hover:shadow-2xl">
           <img
-            src={`${import.meta.env.BASE_URL}img/Logo_Avocado.svg`}
+            src={`${import.meta.env.BASE_URL}Logos_MARCA/Avocadoai_LongLogo.svg`}
             alt="AVOCADO Logo"
             className="w-[85%] h-auto object-contain mt-1 lg:mt-2 transition-all duration-300"
           />

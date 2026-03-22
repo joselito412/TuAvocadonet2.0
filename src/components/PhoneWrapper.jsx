@@ -2,7 +2,7 @@ import React from 'react';
 import { PhoneHome, PhoneDocs, PhoneDashboard, PhoneLawyers, PhonePricing } from './PhoneScreens';
 import useDeviceDetection from '../hooks/useDeviceDetection';
 
-const PhoneWrapper = ({ activeSection, selectedPlan = 'junior', selectedDocCategory = 'Civil', selectedCountry = 'co' }) => {
+const PhoneWrapper = ({ activeSection, selectedPlan = 'junior' }) => {
   const { isDesktop } = useDeviceDetection();
 
   // Don't render anything on non-desktop devices
@@ -14,13 +14,12 @@ const PhoneWrapper = ({ activeSection, selectedPlan = 'junior', selectedDocCateg
   const renderScreen = () => {
     switch (activeSection) {
       case 'features-intro':
+      case 'about':
         return <PhoneHome />;
-      case 'features': // Documentos
-        return <PhoneDocs selectedCategory={selectedDocCategory} />;
-      case 'automation': // Dashboard
+      case 'steps':
         return <PhoneDashboard />;
-      case 'specialized': // Abogados
-        return <PhoneLawyers selectedCountry={selectedCountry} />;
+      case 'offerings':
+        return <PhoneLawyers />;
       case 'subscriptions': // Pricing
         return <PhonePricing selectedPlan={selectedPlan} />;
       default:

@@ -10,9 +10,7 @@ import {
   PhoneLawyers,
   PhonePricing,
 } from '../components/PhoneScreens';
-import DocExplorer from '../components/DocExplorer';
 import useScrollSpy from '../hooks/useScrollSpy';
-import { useWhatsAppMenu } from '../contexts/WhatsAppMenuCtx';
 
 const heroImages = ['background-hero.webp', 'background-hero2.webp'];
 
@@ -22,15 +20,13 @@ function HomePage() {
   const sectionIds = [
     'hero',
     'features-intro',
-    'features',
-    'automation',
-    'specialized',
+    'about',
+    'steps',
+    'offerings',
     'subscriptions',
   ];
   const activeSection = useScrollSpy(sectionIds, 300);
   const [selectedPlan, setSelectedPlan] = useState('free');
-  const [selectedDocCategory, setSelectedDocCategory] = useState('Civil');
-  const [selectedCountry, setSelectedCountry] = useState('co');
   const [phoneAnimation, setPhoneAnimation] = useState(''); // 'enter', 'exit', 'visible', ''
 
   const [videoPlaying, setVideoPlaying] = useState(false);
@@ -44,7 +40,6 @@ function HomePage() {
   const [userInteracted, setUserInteracted] = useState(false); // Para controlar si el usuario interactuó
   const [showControls, setShowControls] = useState(false);
   const [currentHeroImage, setCurrentHeroImage] = useState(0); // 0 = background-hero.svg, 1 = background-hero2.svg
-  const { openMenu } = useWhatsAppMenu();
   const videoRef = useRef(null);
   const videoContainerRef = useRef(null);
   const previousSectionRef = useRef('hero');
@@ -274,38 +269,6 @@ function HomePage() {
     previousSectionRef.current = activeSection;
   }, [activeSection]);
 
-  const countries = [
-    {
-      code: 'co',
-      name: t('home.specialized.countries.co.name'),
-      desc: t('home.specialized.countries.co.desc'),
-      lawyers: 120,
-    },
-    {
-      code: 'us',
-      name: t('home.specialized.countries.us.name'),
-      desc: t('home.specialized.countries.us.desc'),
-      lawyers: 80,
-    },
-    {
-      code: 'mx',
-      name: t('home.specialized.countries.mx.name'),
-      desc: t('home.specialized.countries.mx.desc'),
-      lawyers: 45,
-    },
-    {
-      code: 'es',
-      name: t('home.specialized.countries.es.name'),
-      desc: t('home.specialized.countries.es.desc'),
-      lawyers: 35,
-    },
-    {
-      code: 'ar',
-      name: t('home.specialized.countries.ar.name'),
-      desc: t('home.specialized.countries.ar.desc'),
-      lawyers: 30,
-    },
-  ];
 
   return (
     <>
@@ -1100,13 +1063,10 @@ function HomePage() {
             </div>
           </section>
 
-          <section className="section-block" id="features">
+          <section className="section-block" id="about">
             <div className="text-content">
-              {/* <span className="eyebrow">DOCUMENTACIÓN INTELIGENTE</span> */}
-              <h2>{t('home.features.docsTitle')}</h2>
-              <p>{t('home.features.docsDesc')}</p>
-
-              <DocExplorer onCategoryChange={setSelectedDocCategory} />
+              <h2>{t('whatWeDo.title')}</h2>
+              <p>{t('whatWeDo.description')}</p>
             </div>
             <div className="mobile-phone-display">
               <div className="phone-mockup-mobile">
@@ -1115,7 +1075,7 @@ function HomePage() {
                     <div className="phone-notch"></div>
                     <div className="phone-screen">
                       <div className="screen-content fade-in">
-                        <PhoneDocs selectedCategory={selectedDocCategory} />
+                        <PhoneHome />
                       </div>
                     </div>
                   </div>
@@ -1124,29 +1084,36 @@ function HomePage() {
             </div>
           </section>
 
-          <section className="section-block" id="automation">
+          <section className="section-block" id="steps">
             <div className="text-content">
-              {/* <span className="eyebrow">GESTIÓN EFICIENTE</span> */}
-              <h2>{t('home.features.dashboardTitle')}</h2>
-              <p>{t('home.features.dashboardDesc')}</p>
-              <div className="dashboard-cards-container">
-                <div className="dashboard-card">
-                  <div className="card-icon-wrapper">
-                    <i className="fas fa-chart-line"></i>
+              <h2>{t('whatWeDo.userJourney.title')}</h2>
+              <div className="dashboard-cards-container" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem' }}>
+                <div className="dashboard-card" style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', textAlign: 'left' }}>
+                  <div className="card-icon-wrapper" style={{ flexShrink: 0, marginTop: '5px' }}>
+                    <i className="fas fa-comment-dots"></i>
                   </div>
-                  <span>{t('home.features.dashboardCards.realTime')}</span>
+                  <div>
+                    <h3 style={{ fontSize: '1.2rem', margin: '0 0 0.5rem 0', color: 'var(--color-primary)' }}>1. {t('whatWeDo.userJourney.steps.01.title')}</h3>
+                    <p style={{ margin: 0, fontSize: '0.95rem' }}>{t('whatWeDo.userJourney.steps.01.desc')}</p>
+                  </div>
                 </div>
-                <div className="dashboard-card">
-                  <div className="card-icon-wrapper">
-                    <i className="fas fa-bell"></i>
+                <div className="dashboard-card" style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', textAlign: 'left' }}>
+                  <div className="card-icon-wrapper" style={{ flexShrink: 0, marginTop: '5px' }}>
+                    <i className="fas fa-robot"></i>
                   </div>
-                  <span>{t('home.features.dashboardCards.notifications')}</span>
+                  <div>
+                    <h3 style={{ fontSize: '1.2rem', margin: '0 0 0.5rem 0', color: 'var(--color-primary)' }}>2. {t('whatWeDo.userJourney.steps.02.title')}</h3>
+                    <p style={{ margin: 0, fontSize: '0.95rem' }}>{t('whatWeDo.userJourney.steps.02.desc')}</p>
+                  </div>
                 </div>
-                <div className="dashboard-card">
-                  <div className="card-icon-wrapper">
-                    <i className="fas fa-shield-alt"></i>
+                <div className="dashboard-card" style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', textAlign: 'left' }}>
+                  <div className="card-icon-wrapper" style={{ flexShrink: 0, marginTop: '5px' }}>
+                    <i className="fas fa-user-tie"></i>
                   </div>
-                  <span>{t('home.features.dashboardCards.digitalArchive')}</span>
+                  <div>
+                    <h3 style={{ fontSize: '1.2rem', margin: '0 0 0.5rem 0', color: 'var(--color-primary)' }}>3. {t('whatWeDo.userJourney.steps.03.title')}</h3>
+                    <p style={{ margin: 0, fontSize: '0.95rem' }}>{t('whatWeDo.userJourney.steps.03.desc')}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1166,174 +1133,26 @@ function HomePage() {
             </div>
           </section>
 
-          <section className="section-block" id="specialized">
+          <section className="section-block" id="offerings">
             <div className="text-content">
-              {/* <span className="eyebrow">MARKETPLACE LEGAL</span> */}
-              <h2>{t('home.specialized.title')}</h2>
-              <p>
-                <Trans i18nKey="home.specialized.description" />
-              </p>
-
-              {/* H2 con botón - Subtítulo y botón lado a lado */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'flex-start',
-                  gap: '2rem',
-                  flexWrap: 'wrap',
-                  marginTop: '2rem',
-                  marginBottom: '2rem',
-                }}
-              >
-                <h2
-                  style={{
-                    fontSize: '2rem',
-                    fontWeight: '600',
-                    color: '#2E7D32',
-                    lineHeight: '1.3',
-                    margin: 0,
-                  }}
-                >
-                  {t('home.specialized.subtitle')}
-                </h2>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    openMenu(2); // Abrir menú y resaltar opción 2 (Hablar con mi avocado)
-                  }}
-                  style={{
-                    background: 'linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)',
-                    color: 'white',
-                    border: 'none',
-                    padding: '16px 32px',
-                    borderRadius: '50px',
-                    fontSize: '1.1rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    boxShadow: '0 8px 20px rgba(46, 125, 50, 0.4)',
-                    transition: 'all 0.3s ease',
-                    whiteSpace: 'nowrap',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-3px)';
-                    e.target.style.boxShadow = '0 12px 30px rgba(46, 125, 50, 0.5)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = '0 8px 20px rgba(46, 125, 50, 0.4)';
-                  }}
-                >
-                  {t('home.specialized.cta')}
-                </button>
-              </div>
-
-              {/* Improved Country Cards */}
-              <div
-                className="country-cards-container"
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-                  marginTop: '50px',
-                  maxWidth: '900px',
-                  gap: '25px',
-                }}
-              >
-                {countries.map((country) => {
-                  const isSelected = selectedCountry === country.code;
-                  return (
-                    <div
-                      key={country.code}
-                      className="country-card"
-                      onClick={() => setSelectedCountry(country.code)}
-                      style={{
-                        background: 'white',
-                        borderRadius: '24px',
-                        padding: '30px',
-                        minHeight: '280px',
-                        boxShadow: isSelected
-                          ? '0 8px 20px rgba(46, 125, 50, 0.3)'
-                          : '0 4px 10px rgba(0,0,0,0.1)',
-                        border: isSelected ? '3px solid #2E7D32' : '2px solid #E8F5E9',
-                        transition: 'all 0.3s ease',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        textAlign: 'center',
-                        cursor: 'pointer',
-                        transform: isSelected ? 'scale(1.05)' : 'scale(1)',
-                        opacity: isSelected ? 1 : 0.7,
-                      }}
-                    >
-                      <div
-                        className="country-flag"
-                        style={{
-                          width: '120px',
-                          height: '120px',
-                          borderRadius: '50%',
-                          background: '#F5F5F5',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          overflow: 'hidden',
-                          marginBottom: '12px',
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                          border: isSelected ? '3px solid #2E7D32' : '2px solid #E8F5E9',
-                          filter: isSelected ? 'none' : 'grayscale(100%)',
-                        }}
-                      >
-                        <img
-                          src={`https://flagcdn.com/w160/${country.code}.png`}
-                          alt={country.name}
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            borderRadius: '50%',
-                          }}
-                        />
-                      </div>
-                      <h4
-                        style={{
-                          margin: '0 0 10px',
-                          fontSize: '1.25rem',
-                          fontWeight: '700',
-                          fontFamily: "'Comfortaa', sans-serif", // Enforcing font-heading
-                          color: isSelected ? '#2E7D32' : '#1a1a1a',
-                        }}
-                      >
-                        {country.name}
-                      </h4>
-                      <p
-                        style={{
-                          fontSize: '0.9rem',
-                          color: '#555',
-                          margin: '0 0 16px',
-                          lineHeight: '1.5',
-                        }}
-                      >
-                        {country.desc}
-                      </p>
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '8px',
-                          fontSize: '0.85rem',
-                          fontWeight: '500',
-                          color: '#666',
-                        }}
-                      >
-                        <i
-                          className="fas fa-users"
-                          style={{ color: isSelected ? '#2E7D32' : '#999' }}
-                        ></i>
-                        <span>{country.lawyers}+ abogados</span>
-                      </div>
-                    </div>
-                  );
-                })}
+              <h2>{t('whatWeDo.howItWorks')}</h2>
+              <div className="dashboard-cards-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
+                <div className="dashboard-card" style={{ textAlign: 'left', padding: '1.5rem' }}>
+                  <h4 style={{ color: 'var(--color-primary)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>{t('whatWeDo.steps.01.title')}</h4>
+                  <p style={{ fontSize: '0.9rem', margin: 0 }}>{t('whatWeDo.steps.01.desc')}</p>
+                </div>
+                <div className="dashboard-card" style={{ textAlign: 'left', padding: '1.5rem' }}>
+                  <h4 style={{ color: 'var(--color-primary)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>{t('whatWeDo.steps.02.title')}</h4>
+                  <p style={{ fontSize: '0.9rem', margin: 0 }}>{t('whatWeDo.steps.02.desc')}</p>
+                </div>
+                <div className="dashboard-card" style={{ textAlign: 'left', padding: '1.5rem' }}>
+                  <h4 style={{ color: 'var(--color-primary)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>{t('whatWeDo.steps.03.title')}</h4>
+                  <p style={{ fontSize: '0.9rem', margin: 0 }}>{t('whatWeDo.steps.03.desc')}</p>
+                </div>
+                <div className="dashboard-card" style={{ textAlign: 'left', padding: '1.5rem' }}>
+                  <h4 style={{ color: 'var(--color-primary)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>{t('whatWeDo.steps.04.title')}</h4>
+                  <p style={{ fontSize: '0.9rem', margin: 0 }}>{t('whatWeDo.steps.04.desc')}</p>
+                </div>
               </div>
             </div>
             <div className="mobile-phone-display">
@@ -1343,7 +1162,7 @@ function HomePage() {
                     <div className="phone-notch"></div>
                     <div className="phone-screen">
                       <div className="screen-content fade-in">
-                        <PhoneLawyers selectedCountry={selectedCountry} />
+                        <PhoneLawyers />
                       </div>
                     </div>
                   </div>
@@ -1564,8 +1383,6 @@ function HomePage() {
               <PhoneWrapper
                 activeSection={activeSection}
                 selectedPlan={selectedPlan}
-                selectedDocCategory={selectedDocCategory}
-                selectedCountry={selectedCountry}
               />
             </div>
           </div>

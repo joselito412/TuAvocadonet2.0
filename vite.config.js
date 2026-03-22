@@ -53,7 +53,7 @@ export default defineConfig({
       },
     }),
   ],
-  base: '/TuAvocadonet2.0/', // Keep this hardcoded as per current working setup, or use process.env if we were injecting it.
+  base: '/', // Updated to root for tuavocado.net Hostinger deployment
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
